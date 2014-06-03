@@ -1,0 +1,103 @@
+
+\title{{\normalsize Project Proposal RP2}\\Search optimization through JPEG quantization tables\\ }
+\author{
+		Sharon Gieske (6167667)  \\
+}
+\date{\today}
+
+\documentclass[a4paper,8pt]{article}
+\usepackage{cite}
+\usepackage{titling}
+\usepackage{graphicx}
+\usepackage[hyperfootnotes=true]{hyperref}
+\usepackage{float} % for table
+\restylefloat{table}
+\usepackage{enumitem}
+\setlist{itemsep=0.1pt,leftmargin=*}
+\usepackage[margin=1.5in]{geometry}
+\usepackage{nameref}
+
+\setlength{\droptitle}{-1.5in}
+
+\begin{document}
+\maketitle
+
+\section*{Introduction}
+Taking pictures is very easy and popular in this digital age. The demand for digital cameras was forecast to be 86 million units for 2013 by Futuresource Consulting\cite{futuresource}. And even though a decline in market share is present for digital cameras, due to the  proliferation of smartphones (nowadays all equipped with a camera function) the total number of digital images taken each year is very high. Social media sites which have photo upload functions, such as Facebook and Instagram, report significantly huge numbers on the total upload of images. Facebook alone reported in a white paper \cite{whitefacebook} that more than 250 billion photos are uploaded to their site, with on average a total upload of more than 350 million photos every day. Statistics on Instagram\footnote{http://instagram.com/press/} show a total of 20 billion photos shared on Instagram.
+
+Due to this popularity, digital images are often recovered in forensic investigation. For example, in child pornography cases many digital images are present and are important evidence for the investigation. In such a case it can be very important to identify the origin of images to a specific camera or identify images that come from a common source. This can be done by uncovering traces on pictures which are distinguishable for camera models. One of these traces is the JPEG quantization table which is specified as a table of 192 values: set of 8 × 8 values associated with each frequency, for each of three channels (YCbCr)
+
+With over a dozen different camera brands, each developing different models over the years, the number of camera models (and consequently the number of JPEG quantization table) is significantly high. This increases the search space for matching images to camera models. The matching of large databases of images against the camera models will be time costly but needs to be minimized since time is often limited in forensic investigations. This research will focus on optimizing search through the image databases regarding JPEG quantization tables.
+
+% digital image forensic
+% matching images to camera model. clustering images (common source of images)
+% QT effective at narrowing the source ofan image to a single camera make and model or to a small set of possible cameras
+
+
+
+%Acceleration methods for searching image databases, for example through optimizing search through quantization tables in JPEG. Some investigation has been done on how this JPEG characteristic can be used by such methods, but further investigation should give a better view on its feasibility. Other JPEG characteristics not yet exploited by any search method in current use may be investigated as well. These methods are used to search for images that have, for example, deviant or specific values for these characteristics. Certain values may indicate the use of a camera of some kind, or that it has been altered (or recreated) by specific image editing software. A proof-of-concept that shows the use of such characteristics in search methods will probably be implemented.
+
+
+\section*{Research Question}
+
+The research question on which is focused is set as: \textit{`How can search through JPEG quantization tables be optimized?}
+
+In order to answer the research question, this research will focus on the following subquestions:
+\begin{enumerate}
+\item What are identifiable parameters of JPEG quantization tables?
+\item How can we quickly decrease the search space for JPEG quantization table matches?
+\end{enumerate}
+
+\section*{Related Work}
+
+
+
+
+\section*{Approach \& Methods}
+
+\subsection*{Requirements}
+
+\section*{Planning}
+The planning for this research is proposed in Table \ref{table:planning}.
+
+\begin{table}[H]
+\small
+\caption{Project planning including dates and tasks}
+\label{table:planning}
+\begin{tabular}{|l|l|}
+
+\hline
+\multicolumn{2}{|c|}{\textbf{Week 1 (2-8/06)}}\\
+\hline
+\multicolumn{2}{|c|}{Literature research}\\
+\hline
+\textbf{6} & Deadline project proposal\\ 
+\hline
+\multicolumn{2}{|c|}{\textbf{Week 2 (9-15/06)}}\\
+\hline
+
+\multicolumn{2}{|c|}{\textbf{Week 3 (16-22/06)}}\\
+\hline
+
+\multicolumn{2}{|c|}{\textbf{Week 4 (23-29/06)}}\\
+\hline
+\multicolumn{2}{|c|}{\textbf{Week 5 (30/06 - 06/07)}}\\
+\hline
+\textbf{2} & Presentation\\
+\textbf{4} & Deadline report\\
+\hline
+
+\hline
+\end{tabular}
+\end{table}
+
+\section*{Expected Product}
+
+
+
+\pagebreak
+
+\bibliography{bibliography}{}
+\bibliographystyle{plain}
+
+\end{document}
