@@ -21,7 +21,7 @@
 
 \begin{document}
 \maketitle
-
+\vspace{-2em}
 \section*{Introduction}
 Taking pictures is very easy and popular in this digital age. The demand for digital cameras was forecast to be 86 million units for 2013 by Futuresource Consulting\cite{futuresource}. And even though a decline in market share is present for digital cameras, due to the  proliferation of smartphones (nowadays all equipped with a camera function) the total number of digital images taken each year is very high. Social media sites which have photo upload functions, such as Facebook and Instagram, report significantly huge numbers on the total upload of images. Facebook alone reported in a white paper \cite{whitefacebook} that more than 250 billion photos are uploaded to their site, with on average a total upload of more than 350 million photos every day. Statistics on Instagram\footnote{http://instagram.com/press/ accessed 03-06-2014} show a total of 20 billion photos shared on Instagram.
 
@@ -49,12 +49,21 @@ In order to answer the research question, this research will focus on the follow
 \end{enumerate}
 
 \section*{Related Work}
+Research on digital image forensics is a research growing field. It focuses on two main interests, namely source identification and forgery detection. Van Lanh et al. \cite{van2007survey} created a survey on digital camera forensics, which describes several techniques in these two fields. Their survey shows the use of intrinsic features of camera hardware and software for camera identification and concludes that hardware features give more reliable and better result. To distinguish between cameras of the same model imperfections of camera the use of hardware features seems to be the best method. Methods for forgery detection also rely on hardware-dependent characteristics but show a lower accuracy rates compared to camera identification methods. In another survey, Weiqi et al. \cite{luo2007survey} describe methods for passive technology for digital image forensics. They state that in most cases passive forensics can be converted to a problem of pattern recognition.
+
+In forgery detection methods to identify JPEG quantization tables are often used. In reseach by Kornblum\cite{kornblum2008using} quantization tables used by several image software are identified. A software library called Calvin is developed to identify those images who cannot
+be guaranteed to have been created by a real camera. Reseach by Farid\cite{4773149} shows a technique for detecting tampering in low-quality JPEG images by identifying a cumulative effect of quantization.
+
+JPEG quantization tables can also be used for source identification. Farid has performed research\cite{farid1}\cite{farid2008digital} on source identification with the use of JPEG quantization tables. This research states that a sort of camera signature is embedded within each JPEG image due to the used JPEG quantization tables since they differ between manufacturers. Although the JPEG quantization is not perfectly unique, the majority of cases where the same tables are found it is cameras from the same manufacturer that share the same quantization table. It states that (the use of JPEG quantization tables) ``\textit{is reasonably effective at narrowing the source of an image to a single camera make and model or to a small set of possible cameras.}" (p. 3)
+
+There exist several projects where JPEG quantization tables are used as camera signatures. For example, the JPEGsnoop\footnote{http://www.impulseadventure.com/photo/jpeg-snoop.html} project reports a huge amount of information to expose hidden information in images. Another project is the (discontinued) commercial FourMatch\footnote{http://www.fourandsix.com/fourmatch}, which was focused on forgery detection. These projects are not focused on matching large sets of images against a large camera database. In contrast, this research hopes to contribute by creating a decision tree model in order to decrease the search space for large datasets and which can easily be combined further with other (more accurate) source identification techniques. 
 
 \section*{Approach \& Methods}
 
 In order to optimize search through JPEG quantization tables the search space needs to be decreased. This reduction in search space can be performed by creating a decision tree model. This model maps observations about an item (specific features of the quantization table) to conclusions about the item's target value (camera model). Decision tree learning is used, which is the construction of a decision tree from class-labelled training tuples, to identify important parameters and their position in the decision tree model. The matching with the use of decision tree model parameters and the matching between full JPEG quantization tables are both benchmarked for time to see whether the search time is accelerated.
-~\\
-The following steps are taken:
+\pagebreak
+
+\noindent The following steps are taken:
 \begin{enumerate}
 \item Gather dataset of JPEG quantization tables. Dataset of pictures and their JPEG quantization table and for JPEG quantization for camera models are needed.
 \item Create numerous possible parameters to identify these tables. Rewrite JPEG quantization table as collection of these parameter values.
@@ -73,8 +82,7 @@ For this project the following requirements are made:
 \item Database of JPEG quantization tables from many different cameras
 \end{itemize}
 
-These databases are needed to analyse JPEG quantization tables. They are also needed to create a training and test set to perform the decision tree learning algorithm.
-
+\noindent These databases are needed to analyse JPEG quantization tables. They are also needed to create a training and test set to perform the decision tree learning algorithm.
 \section*{Planning}
 The planning for this research is proposed in Table \ref{table:planning}.
 
@@ -82,32 +90,36 @@ The planning for this research is proposed in Table \ref{table:planning}.
 \small
 \caption{Project planning including dates and tasks}
 \label{table:planning}
+%\resizebox{0.75\textwidth}{!}{\begin{minipage}{\textwidth}
 \begin{tabular}{|l l|l l|}
 
 \hline
-\multicolumn{2}{|c|}{\textbf{Week 1 (2-8/06)}} & \multicolumn{2}{|c|}{\textbf{Week 2 (9-15/06)}}\\
+\multicolumn{2}{|l|}{\textbf{Week 1 (2-8/06)}} & \multicolumn{2}{|l|}{\textbf{Week 2 (9-15/06)}}\\
 \hline
 & Literature research & & Gather databases \\
 & Write project proposal & & Create parameters  \\
 
-\textbf{6} & Deadline project proposal & & Start decision tree learning \\ 
+\textbf{6/06} & Deadline project proposal & & Start decision tree learning \\ 
 \hline
-\multicolumn{2}{|c|}{\textbf{Week 3 (16-22/06)}} & \multicolumn{2}{|c|}{\textbf{Week 4 (23-29/06)}}\\
+\multicolumn{2}{|l|}{\textbf{Week 3 (16-22/06)}} & \multicolumn{2}{|l|}{\textbf{Week 4 (23-29/06)}}\\
 \hline
 & Continue decision tree learning & & Write report\\
 & Benchmark methods & & Start presentation\\
 \hline
-\multicolumn{2}{|c|}{\textbf{Week 5 (30/06 - 06/07)}} & & \\
+\multicolumn{2}{|l|}{\textbf{Week 5 (30/06 - 06/07)}} & & \\
 \hline
 & Write report &  \multicolumn{2}{|c|}{~} \\
-\textbf{2} & Presentation &   \multicolumn{2}{|c|}{~}\\
-\textbf{4} & Deadline report &  \multicolumn{2}{|c|}{~} \\
+\textbf{2/07} & Presentation &   \multicolumn{2}{|c|}{~}\\
+\textbf{4/07} & Deadline report &  \multicolumn{2}{|c|}{~} \\
 \hline
 
 \hline
 \end{tabular}
+%      \end{minipage}}
+
 \end{table}
 
+\vspace{-2em}
 \section*{Expected Product}
 The expected product of this research will be a decision tree model which can be used to quickly decrease the search space for identifying the origin of images to a specific camera with the use of JPEG quantization tables.
 
