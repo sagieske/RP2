@@ -1,0 +1,117 @@
+% Appendix X
+
+\chapter{Appendix Results}\label{ch:appendixResult}
+This appendix contains results for the methods used in this research.
+\section{Classification results}
+\vspace{-1em}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+Score & Classifier & Feature type & Token type & $N$-gram & Size & F1-score\\
+\hline
+\#1 & SVM (RBF) & cont. pos + neg  & standard  & [1,2]  & 150 & 0.7476\\
+\#2 & SVM (RBF) & cont. pos + neg  & standard  & [1,2, 3] &  124 & 0.7460 \\
+\#3 & SVM (RBF) & bool. pos + neg  &  standard  & [1,2, 3] &   124 & 0.7457   \\
+\#4 & SVM (RBF) & bool. pos + neg  & standard  & [1,2] &   150 & 0.7433   \\
+\#5 & SVM (RBF) & cont. pos + neg  & lemmatized  &  [1,2, 3]  &  200 & 0.7429\\
+\#6 & SVM (RBF) & cont. pos + neg & standard   & [1,2]  & 200 & 0.7421\\ 
+\#7 & SVM (RBF) & bool. pos + neg &  standard  & [1,2, 3]  & 150 & 0.7419\\
+\#8 & SVM (RBF) & cont. pos + neg & lemmatized  & [1,2]  &  200 & 0.7411 \\
+\#9 & SVM (RBF) & bool. pos + neg & lemmatized  &  [1,2, 3]  &  150 & 0.7410\\
+\#10 & SVM (RBF) & bool. pos + neg & lemmatized  & [1,2]  & 174 & 0.7398 \\  
+
+\hline
+\end{tabular}
+\caption{Top 10 classifiers}*{
+   \begin{tabular}{c}
+   	Abbreviations:
+   cont: continuous, bool: boolean\\
+   \end{tabular}
+ }
+\label{table:top10_clf}
+\end{table}
+\vspace{-1em}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+\multicolumn{7}{|c|}{\textbf{SVM with RBF kernel}}\\
+\hline
+Score & Classifier & Feature type & Token type & $N$-gram & Size & F1-score\\
+\hline
+\#1 & SVM (RBF) & cont. pos + neg  & standard  & [1,2]  & 150 & 0.7476\\
+\#2 & SVM (RBF) & cont. pos + neg  & standard  & [1,2, 3] &  124 & 0.7460 \\
+\#3 & SVM (RBF) & bool. pos + neg  & standard  & [1,2, 3] &  124 & 0.7460 \\
+
+\hline
+\multicolumn{7}{|c|}{\textbf{SVM with Linear kernel}}\\
+\hline
+Score & Classifier & Feature type & Token type & $N$-gram & Size & F1-score\\
+\hline
+\#1 & SVM (LIN) & cont. pos + neg  & standard  & [1,2, 3]  & 150 & 0.6965\\
+\#2 & SVM (LIN) & bool. pos  & standard  & [1,2] &  174 & 0.6943 \\
+\#3 & SVM (LIN) & bool. pos + neg  & standard  & [1,2, 3] &  200 & 0.6914  \\
+
+\hline
+\multicolumn{7}{|c|}{\textbf{Naive Bayes}}\\
+\hline
+Score & Classifier & Feature type & Token type & $N$-gram & Size & F1-score\\
+\hline
+\#1 & Naive Bayes & cont. pos + neg  & lemmatized  & [2, 3]  & 200 & 0.7016\\
+\#2 & Naive Bayes & cont. pos + neg  & standard  & [1,2] &  200 & 0.6996 \\
+\#3 & Naive Bayes & cont. pos + neg  & standard  & [1,2] &  174 & 0.6955 \\
+
+\hline
+\end{tabular}
+\caption{Top 3 per classification method}*{
+   \begin{tabular}{c}
+   	Abbreviations:
+   cont: continuous, bool: boolean\\
+   \end{tabular}
+ }
+\label{table:top_clf}
+\end{table}
+
+\section{Ranking results}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|r|}
+\hline
+\multicolumn{4}{|c|}{\textbf{Top 20: popular activities}}\\
+\hline
+Rank & Activity & Frequency & Scoring\\
+\hline
+\# 1 & gaan &                     23.00 & 0 \\
+\# 2 & doen &                     20.00 & 0 \\
+\# 3 & eten &                     19.00  & 1 \\
+\# 4 & slapen &                   15.00  & 1 \\
+\# 5  & bbq &                      11.00  & 1 \\
+\# 6  & stad &                     11.00  & 1 \\
+\# 7  & feestje &                  9.00  & 1 \\
+\# 8  & verjaardag &               8.00  & 1 \\
+\# 9  & uit eten &                8.00  & 1 \\
+\# 10 & feest &                    7.00  & 1 \\
+\# 11 & gaan doen &               6.00  & 0.5 \\
+\# 12 & naar stad &               5.00  & 1 \\
+\# 13 & naar lier &               5.00  & 1 \\
+\# 14 & naar bios &               5.00  & 1 \\
+\# 15 & solar rocken &            5.00  & 1 \\
+\# 16 & naar verjaardag &         5.00  & 1 \\
+\# 17 & ledig erf &               5.00  & 1 \\
+\# 18 & filmpje kijken &          4.00  & 1 \\
+\# 19 & naar breda &              4.00  & 1 \\
+\# 20 & naar inception &          3.00  & 1 \\
+\hline
+\end{tabular}
+%\caption{Ranking popular activities}
+\caption{Ranking popular activities}*{
+   \begin{tabular}{c}
+   	Evaluation scoring:
+    1: correct, 0.5: vague, 0: incorrect\\
+   \end{tabular}
+ }\label{table:rank}
+
+\end{table}
+
+

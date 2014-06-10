@@ -1,0 +1,106 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Classicthesis Typographic Thesis
+% LaTeX Template
+% Version 1.1 (4/8/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% André Miede (http://www.miede.de)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%	
+% General Tips:
+% 1) Make sure to edit the classicthesis-config.file
+% 2) New enumeration (A., B., C., etc in small caps): \begin{aenumerate} \end{aenumerate}
+% 3) For margin notes: \marginpar or \graffito{}
+% 4) Do not use bold fonts in this style, it is designed around them
+% 5) Use tables as in the examples
+% 6) See classicthesis-preamble.sty for useful commands
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+%		twoside,openright,titlepage,numbers=noenddot,headinclude,%1headlines,
+		oneside,titlepage,numbers=noenddot,headinclude, %1headlines,
+                footinclude=true,cleardoublepage=empty,
+                BCOR=5mm,paper=a4,fontsize=11pt, % Binding correction, paper type and font size
+                ngerman,american, % Languages
+                dottedtoc]{scrreprt} 
+                
+% Includes the file which contains all the document configurations and packages - make sure to edit this file
+\input{classicthesis-config}
+
+\begin{document}
+\frenchspacing % Reduces space after periods to make text more compact
+
+\raggedbottom % Makes all pages the height of the text on that page
+
+\selectlanguage{american} % Select your default language - e.g. american or ngerman
+
+%\renewcommand*{\bibname}{new name} % Uncomment to change the name of the bibliography
+%\setbibpreamble{} % Uncomment to include a preamble to the bibliography - some text before the reference list starts
+
+\pagenumbering{roman} % Roman page numbering prior to the start of the thesis content (i, ii, iii, etc)
+
+\pagestyle{plain} % Suppress headers for the pre-content pages
+
+%----------------------------------------------------------------------------------------
+%	PRE-CONTENT THESIS PAGES
+%----------------------------------------------------------------------------------------
+
+\include{FrontBackMatter/Titlepage} % Main title page
+
+\clearpage\include{FrontBackMatter/Abstract} % Abstract page
+
+\clearpage\include{FrontBackMatter/Acknowledgments} % Acknowledgements page
+
+%\pagestyle{scrheadings} % Show chapter titles as headings
+\pagestyle{plain} % Show chapter titles as headings
+
+
+\include{FrontBackMatter/Contents} % Contents, list of figures/tables/listings and acronyms
+
+\pagenumbering{arabic} % Arabic page numbering for thesis content (1, 2, 3, etc)
+%\setcounter{page}{90} % Uncomment to manually start the page counter at an arbitrary value (for example if you wish to count the pre-content pages in the page count)
+
+%\cleardoublepage % Avoids problems with pdfbookmark
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - CHAPTERS
+%-------------------------------------------------------------------------
+
+\include{Chapters/Chapter_introduction} % Chapter 4 - empty template
+%\include{Chapters/Chapter_literature} % Chapter 4 - empty template
+%\include{Chapters/Chapter_method} % Chaper describing methods and theorems.
+%\include{Chapters/Chapter_implementation} % Chaper describing implementation of methods
+%\include{Chapters/Chapter_results} % TODO
+%\include{Chapters/Chapter_discussion} % TODO
+
+
+%\include{Chapters/Chapter01} % Chapter 4 - empty template
+
+
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - APPENDICES
+%----------------------------------------------------------------------------------------
+
+\appendix
+%\include{Chapters/ChapterAppendix1} % Appendix B - empty template
+%\include{Chapters/ChapterAppendix2} % Appendix B - empty template
+
+%----------------------------------------------------------------------------------------
+%	POST-CONTENT THESIS PAGES
+%----------------------------------------------------------------------------------------
+
+\clearpage\include{FrontBackMatter/Bibliography} % Bibliography
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

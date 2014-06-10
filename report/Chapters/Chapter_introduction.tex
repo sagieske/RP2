@@ -1,0 +1,48 @@
+% Chapter X
+
+\chapter{Introduction} % Chapter title
+
+\label{ch:name} % For referencing the chapter elsewhere, use \autoref{ch:name} 
+
+
+%----------------------------------------------------------------------------------------
+
+\section{Motivation}
+
+Social media provide a platform for people to interact and share messages with each other over the internet. The use of social media has been increasing in popularity over recent years. People comment about what they hear, post about their activities, their plans for the future or contribute their expertise and opinions on different subjects.  Social media take different forms, such as microblogs, blogs and social networks, which are all employed for different types of messages and meet different needs. The focus of this research will be microblogs, in specifically Twitter.
+
+The microblog platform is used for sharing quick updates on people's lives. A distinguishing feature of microblog platforms is the limited size of their content. Twitter,\footnote{http://www.Twitter.com} a popular microblog platform, consists of messages with a limited size of 140 characters. Twitter has approximately 500 million active registered users all around the world, sending in total approximately 9000 Twitter messages per second.\footnote{http://www.statisticbrain.com/Twitter-statistics Accessed: 31/05/2013.} The collection of Twitter messages is enormous and contains, among other things, opinions, as well as event and activity announcements. This collection holds a significant amount of information and is therefore useful for information extraction and data analysis. 
+
+By employing this collection as a knowledge base, time-aware information extraction tasks, such as prediction tasks, can be conducted. An example is prediction of sentiment on topics, which is conducted by analysing Twitter messages and examining the sentiment expressed in them. Another example is event prediction, which tries to predict future events, e.g. earthquakes\cite{Sakaki}. The task conducted in this research is activity prediction. This is a time-aware information extraction task which focuses on trying to establish a set of activities that are likely to be popular at a later time. 
+
+There are several reasons why activity prediction is an interesting task. From the end-user perspective, activity prediction can contribute to a recommendation system, recommending new or popular activities among friends. In advertising, identifying the activities which are popular among the target market of a particular product for example, will aid in reaching their target audiences. Popular activities can take advantage of this knowledge by, for example, increasing the size of the event, adjusting entrance fees or adding additional promotional campaigns. Finally, from emergency services perspective, predicting popular activities can aid them in estimating overcrowding of locations and therefore deploying better crowd control.
+%-----------------------------------------------
+
+\section{Focus of research}
+This research examines the time-aware information extraction task; activity prediction. The research question on which is focused is set as: \textit{`Can we accurately predict future activities using Twitter data?'} and will be applied on the Dutch language domain. In order to answer this question, the research is divided into three parts, each containing an important subquestion for the evaluation of the research question. These parts are defined as followed: 
+\begin{enumerate}
+\item \textbf{Activity Classification}: The identification of Twitter messages containing a future activity. The subquestion that arises is: \textit{`Can we accurately classify Twitter messages containing activities?'}
+\item \textbf{Activity Extraction}: The identification of future activities, for which the following subquestion arises: \textit{`Can we accurately identify future activities in Twitter messages?'}
+\item \textbf{Ranking}: The identification of popularity. The subquestion that arises is: \textit{`Can we accurately identify popular activities?'}
+\end{enumerate}
+In the following chapters the answers to these questions will be given.
+
+\section{Challenges}\label{challenges}
+
+There are different challenges in the task of activity prediction using Twitter data. Below, we will list the challenges:
+
+\begin{description}
+\item[Short texts] Twitter messages contain only 140 characters or less which results in sparse data for text classification.
+\item[Informal style] Twitter is used in an informal matter to express oneself in few words. Twitter messages have an informal structure; words are abbreviated or omitted creating messages which are often not grammatically correct. Due to this informal style, Natural Language Processing (NLP) tools perform extremely poor.
+\item[Changing vocabulary] As a result of the informal style Twitter messages contain a significant amount of slang. A constantly changing vocabulary is used for the creation of these messages. A dynamic program has to be designed to accommodate these changes.
+\item[Activity extraction] Even though Twitter messages have a small size, users often try to comment as much as possible in these messages which results in short messages containing multiple activities. Also, due to the informal language, important verbs which indicate an activity are ommitted.
+\item[Time-awareness] Twitter messages can contain activities which happen in different time frames. Due to the short text size and the informal style only few temporal words are used. This results in difficulties in identifying time frames of activities.
+\end{description}
+
+Based on the challenges mentioned above, an activity prediction system should be dynamic to handle the constantly changing vocabulary and informal language. The system should overcome classification challenges due to the limited size of texts. Left out verbs should be taken into account for activity extraction. Finally, the system should take into account the aspect of time-awareness by only predicting popular activities using extraction for activities taking place in the future.
+
+%------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------------------

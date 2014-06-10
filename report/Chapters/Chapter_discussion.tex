@@ -1,0 +1,20 @@
+% Chapter X
+\chapter{Conclusion} % Chapter title
+\label{ch:cncl} % For referencing the chapter elsewhere, use \autoref{ch:name} 
+This chapter describes the conclusions that can be drawn from this research. In \autoref{sec:con} the results gained in this research will be discussed and in \autoref{sec:fut} future work for improvement of this research are described.
+%----------------------------------------------------------------------------------------
+\section{Conclusion}\label{sec:con}
+This research has focused on predicting popular activities using Twitter data. This task was divided into 3 subtasks: activity classification, activity extraction and ranking. The subtask of activity classification is examined with the use of Naive Bayes and Support Vector Machine (SVM) classification, experimenting with several values for feature vectors. The best classifier scored 75 \% on the F1-scoring, which was a SVM using a RBF kernel and, among other things, standard tokens and a combination of uni- and bigrams.
+The subtask of activity extraction is examined using two different methods; the Latent Dirichlet Allocation (LDA) algorithm and the POS tag approach. The LDA algorithm performs poorly for this task as it clusters words which are not interlinked for the same activity. The algorithm is dependent on meaningful words to perform clustering, however, the words created using the log-likelihood distribution are not significantly meaningful. The data set used for this task is sparse and results in unsatisfactorily performance.
+However, the POS tag approach does create satisfactorily results with a scoring of 66 \% for extraction of activities. It identifies activities using frequent POS tag sequences from a training set. 
+The ranking for the popularity of activities is conducted using a frequency count for activities. In the top 40 for most popular activities for one evening 75 \% showed a correct activities. The ranking demonstrates common, as well as uncommon popular activities. Activity descriptions are, however, not clustered into groups concerning the same activity.
+Overall, the conclusion can be drawn that popular activities using Twitter data can be predicted satisfactorily accurate, although there is room for improvements. 
+\section{Future Work}\label{sec:fut}
+The following adjustments for the methods used in this research, as well as improvements using other techniques, are proposed:
+\begin{itemize}
+\item \textbf{More training data classification}: In the classification of activities, false predictions are often a result of the fact that activities can be described in many different ways. In order to classify these predictions, the classifier has to have more training data in order to encounter and learn these descriptions.
+\item \textbf{More annotators}: As seen in the results, the agreed assesement of the annotation is initially very low and increases after incorporating rules. In order to identify more of these rules and improve the annotations, more annotators can be used.
+\item \textbf{Clustering activity words}: In order to improve the extraction of activities described by similar words, a POS tag analysis can be conducted to assign words and their conversions as, for example, dimmunitives, to the same clusters to improve the prediction of the popularity of these activities.
+\item \textbf{Different time frame}: The time frame on which this research focused was `vanavond'. The system can be extended by examining different time frames.
+\item \textbf{Combining different sources}: This research relied soley on data obtained from Twitter. As an improvement for the system different sources can be combined, such as other social media platforms for the identification of more popular activities and more accurate calculations in ranking, or informational websites, to improve the identification of activities in Twitter messages.
+\end{itemize}

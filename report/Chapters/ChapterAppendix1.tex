@@ -1,0 +1,97 @@
+% Appendix X
+
+\chapter{Appendix Pseudocode}\label{ch:appendix}
+This appendix contains the pseudocode of the activity extraction algorithms.
+%----------------------------------------------------------------------------------------
+\renewcommand{\algorithmicrequire}{\textbf{Parameters:}}
+\renewcommand{\algorithmicensure}{\textbf{Procedure:}}
+
+\section{Latent Dirichlet Allocation}
+\begin{algorithm}
+\begin{algorithmic} 
+\REQUIRE ~\\
+\hspace{\algorithmicindent} $\alpha$: ~~~~as parameter of Dirichlet prior on per-document topic distributions\\ 
+\hspace{\algorithmicindent}	$\beta$: ~~~~as parameter of Dirichlet prior on per-topic word distribution \\ 
+\hspace{\algorithmicindent}	$\theta _i$:~~~~ is the topic distribution for document $i$ \\ 
+\hspace{\algorithmicindent}	$\phi _k$: ~~~is the word distribution for topic $k$ \\
+\hspace{\algorithmicindent}	$t_{i,j}$: ~~~is the topic for the jth word in document $i$\\
+\hspace{\algorithmicindent}	$w_{i,j}$: ~is the $j$th word in document $i$.\\
+\hrulefill
+\ENSURE ~\\
+\FORALL{document $i$ in corpus $D$}
+	\STATE 1. Choose $\theta _i \sim Dirichlet distribution of \alpha$ 
+	\STATE 2. Choose $phi _k  \sim Dirichlet distribution of \beta$ 
+	3. \FORALL {$w_{i,j}$ in document $i$}
+		\STATE 1. Choose topic $t_{i,j} \sim Multinomial(\theta _i)$
+		\STATE 2. Choose word $w_{i,j} \sim Multinomial(\phi _{t_i})$
+
+	\ENDFOR 
+\ENDFOR
+\end{algorithmic}
+\caption[Algorithm 1]{Latent Dirichlet Allocation}
+\label{alg:lda}
+\end{algorithm}
+
+
+\begin{algorithm}
+\begin{algorithmic} 
+\REQUIRE ~\\
+\hspace{\algorithmicindent} $CP$: ~~~~~~ as set of corpora: corpus $C$ and backgroundcorpus $B$\\ 
+\hspace{\algorithmicindent}	$N_{cp}$: ~~~~~ as total word count in corpus $cp$\\
+\hspace{\algorithmicindent}	$w_{cp}p$: ~~~ word in corpus $cp$\\
+
+\hrulefill
+\ENSURE ~\\
+\FORALL{word $w$ in corpus $C$}
+	\STATE $freq_{c}$  = frequency of  $w_C$
+	\STATE $freq_{b}$  = frequency of  $w_B$
+	\FORALL{corpus $cp$ in corpora $CP$}
+		\STATE Expected value $E_i = count_{cp}p* sum(freq_{i})/ sum(N_{i})$ for $i \in N$
+	\ENDFOR
+	\STATE $ LLR_{w}= 2 * sum(freq_{i} * ln(freq_{i}/E_i) $ for $i \in N$ and $cp \in CP$
+ 
+\ENDFOR
+\end{algorithmic}
+\caption[Algorithm 2]{Log-likelihood ratio}
+\label{alg:llr}
+\end{algorithm}
+
+\section{POS tag approach}
+
+
+\begin{algorithm}
+\begin{algorithmic} 
+\REQUIRE ~\\
+\hspace{\algorithmicindent} $C$: ~~~~~~~~ as set of corpora containing $N$ messages $m$ \\ 
+\hspace{\algorithmicindent} $POS$: ~~~ as set of all $pos_{s}$ for all messages $m$\\
+\hspace{\algorithmicindent} $P$: ~~~~~~~~ as set of all $part_{m}$ for all messages $m$\\
+
+\hspace{\algorithmicindent}	$w_{time}$: ~~~ as time frame word\\
+\hspace{\algorithmicindent}	$part_{m}$: ~~ as part of $m$ containing $w_{time}$\\
+\hspace{\algorithmicindent}	$pos_{s}$: ~~~~ as POS tag sequence with size $s$\\
+\hspace{\algorithmicindent}	$s$: ~~~~~~~~~~ as size of specified $n$-gram\\
+
+
+
+\hrulefill
+\ENSURE ~\\
+\FORALL{message $m$ in corpus $C$}
+		\STATE Extract $part_{m}$
+		\STATE Identify $pos_{s}$ of  $part_{m}$
+		\STATE Extract all $n$-grams from $pos_{s}$
+\ENDFOR \\
+\STATE Get frequency of all { $pos_{s}$} in $POS$
+\STATE Sort $POS$ with highest frequency first \\
+\FORALL{$part_{m}$ in $P$}
+		\STATE Get $pos_{s}$ of $part_{m}$ 
+		\FORALL{$pos$ in $POS$}
+				\IF{$pos$ == $pos_{s}$}
+				\RETURN corresponding $w$'s to $pos_{s}$ of $part_{m}$ 
+				\ENDIF
+		\ENDFOR
+		\RETURN $part_{m}$
+\ENDFOR
+\end{algorithmic}
+\caption[Algorithm 3]{POS tag approach}
+\label{alg:pos}
+\end{algorithm}

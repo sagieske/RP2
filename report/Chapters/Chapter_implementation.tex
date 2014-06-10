@@ -1,0 +1,57 @@
+% Chapter X
+\chapter{Experimental Setup} % Chapter title
+\label{ch:impl} % For referencing the chapter elsewhere, use \autoref{ch:name} 
+%Rules for annotation:
+%- Negations are not activities
+%- Expressing wish "ik hoop" is not an activity
+%- Questions are not activities
+%----------------------------------------------------------------------------------------
+In this chapter the implementation of the algorithms for predicting popular activities is described. First, the dataset will be described in \autoref{sec:data}. In \autoref{sec:prep} the data preprocessing will be explained on how to obtain the Twitter message with their corresponding classes and the meaningful words that are extracted for further use in the classification algorithms. Thirdly, the implementation of these classification algorithms and their evaluation is described in \autoref{sec:clf}, After this, the two algorithms for the extraction of future activities from the dataset are described in \autoref{sec:extraction}. Finally, the implementation of the ranking function will be depicted in \autoref{sec:ranking}.
+
+\section{Data Set}\label{sec:data}
+The dataset used for the classification consists of 2000 Dutch Twitter messages extracted from multiple days containing the Dutch word for ` tonight': \textit{`vanavond'} which depicts the future time frame, as described in \autoref{ch:method} This data is collected between 9 AM and 18 PM on the assumption that Twitter messages between this period of time will concern activities to be exercised in this time frame. The data is obtained at the starting data of the 4th of August, 2010, over 40 days by extracting 5 Twitter messages every hour within the previously specified frame, obtaining 500 Twitter messages of every day. The data set consists of 807 messages that contain a future activity and 1193 messages that do no.
+
+Due to the fact that supervised classification methods are used, the dataset needs annotations of the class of each Twitter message. These annotations are done manually, each message given the value `$0$' if it contains a future activity or value `$1$' otherwise. The following rules for annotation are followed:
+\begin{enumerate}
+\item Twitter messages containing a question about the future activity are not seen as positive classes. For example: `\textit{What should we bake tonight?}'
+\item Twitter messages containing a wish about the future activity are not seen as positive classes. For example: `\textit{I want to go to MacDonalds tonight}'
+\item Twitter messages containing a negation about the future activity are not seen as positive classes. For example: `\textit{I am not going to bed early tonight}'
+\end{enumerate}
+
+
+
+The dataset used for LDA and the POS tag approach consists of all Dutch Twitter messages extracted from Saturday 7th of Augustus, 2010, containing future activities which were annotated by the best classifier found in \autoref{sec:clf}. This dataset consisted of a total of 3370 Twitter messages, in which 1370 messages contained a future activity and 2000 did not. The LDA also uses a background corpus which consists of the activity Twitter messages from the day before, which has a size of 3263 messages in which 1262 messages contain a future activity and 2001 do not. The ranking algorithm uses the activities found using the activity extraction method.
+
+\section{Data Preprocessing}\label{sec:prep}
+The classification methods work on the assumption that \textit{tokens}  (a string of one or more characters that form a group) which are frequently used in a class are representative features for this class. For the identification of these features a \textit{Bag-of-Words} model (BOW) is created, which contains all words and the frequency of occurrence in the dataset. In this research different BOW models are examined which are obtained from input which is formed using combinations from the following variables which are described below; \textit{Token type}, \textit{N-grams}, \textit{Influence} and \textit{Size BOW}.
+
+\begin{description}
+\item[Token Type] One of four different token types can be used: \textit{standard token}, \textit{stemmed token}, \textit{lemmatized token} or \textit{POS tag token}. A \textit{standard token} is obtained from splitting a Twitter message at the whitespaces and is also used as a base for a \textit{stemmed token} which is then stemmed by a Dutch Porter Stemmer. The \textit{lemmatized tokens} and \textit{POS tag tokens} are created using the Dutch morpho-syntactic analyzer and dependency parser \textit{Frog} \cite{frog} on every standard token. In the lemmatization of tokens, a lemma is given which groups together different inflected words, for example `walk', `walks' and `walked' are all represented by lemma `walk'. A POS tag token is the Part-of-Speech tag belonging to the standard token. 
+\item[N-grams combination] $N$-grams are sequences of $n$ words. This parameter takes into account the underlying structure in sequences of words in messages. Different $n$-grams can be combined in creating the BOW. For this implementation, the following options for this parameter are used: unigrams, uni- and bigrams, uni-, bi- and trigrams, and bi- and trigrams.
+\item[Influence] Tokens can have an influence on the outcome of the class of a message. The influence of a token for a class is calculated by dividing the count of the occurrence of the token in messages belonging to this class by the total count of tokens in messages within class. The total influence is calculated by subtracting the influence value for class `1' from the influence value for class `0' which gives tokens descriptive for class `0' a positive value and tokens descriptive for class `1' a negative value. This last step also decreases the influence of tokens occurring in similar frequencies in both classes. The BOW can be created using only words with high positive influences or high negative influences, or both.
+
+\item[Size BOW] The size of the BOW model determines the total number of tokens considered as meaningful features. The tokens which are used are obtained by taking the most influential tokens having a positive or negative value, descending or ascending respectively towards zero, until the specified size of the BOW model is achieved. The options for these parameters are in range 50 to 200, with taken steps in this range alternated between 24 and 26, to hold an even size which is useful for division in obtaining tokens from both influential positive and negative tokens. 
+\end{description}
+
+The Twitter messages are converted to boolean feature vectors, in which features can be represented in boolean values, or continuous feature vectors, which are represented by their influence value found when constructing the BOW.
+
+\section{Classification}\label{sec:clf}
+The SVM classifier and the Naive Bayes classifier are implemented with the use of the Scikit-learn package\footnote{http://scikit-learn.org/stable/} in Python. The classifiers use feature vectors created from a combination of parameters described above. A grid search method is used for optimization of the classification method parameters, described in \autoref{sec:svm} and \autoref{sec:naivebayes}, to optimize the F1-score of the predictions, which is described in \autoref{sec:f1}. 
+
+In order to obtain the average F1-score of the predictions made by the classifier using the chosen feature vectors, a 10-fold cross-validation is conducted on the dataset. In this cross-validation the dataset is shuffled and partitioned in 10 equal size subsets. On each fold, one subset is used as a test set for measuring the F1-score of the classifier trained on the other subsets. This process is repeated 10 times, with each subset used exactly once as a test set.
+
+\section{Activity Extraction}\label{sec:extraction}
+The LDA algorithm and a POS-tag approach are implemented for the extraction of future activities.
+
+\subsection{Latent Dirichlet Allocation}
+In the LDA algorithm implementation for this research, activities will be seen as topics. The algorithm requires meaningful words, which are identified using a log-likelihood ratio calculation of each word as they are often uncommon words. This function employs a background corpus of Twitter messages to calculate the likelihood of a word in the analyzed corpus and uses this to filter out non-meaningful words that are used in both corpora. A more detailed description of the procedure of LLR calculation can be found in the pseudocode in \nameref{alg:llr} in \autoref{ch:appendix}.The LLR value will be high for meaningful words while remain low for more common words, which allows the algorithm to identify the most meaningful words by having the highest LLR values.
+
+The Gensim package \footnote{http://radimrehurek.com/gensim/} for Python is used for the implementations and experiments are conducted using different numbers of meaningful words and different total of topics, to obtain topics and topical word probabilities. 
+
+\subsection{POS Tag Approach}
+In the POS tag approach, the assumption is made that the future activity is often mentioned near the word depicting the time frame: \textit{`vanavond'}. The algorithm extracts the part of the Twitter message, which is split by specified punctuations, which contains this word and its corresponding POS tag sequence. Then it creates a dictionary of uni-, bi- and trigrams of POS tag sequences and their frequency which were found in all parts. Due to the fact that the unigrams will have the highest frequencies, the algorithm scales the frequencies by calculating the cube of the frequency to increase the influence of bi- and trigrams since they typically describe the activity more accurately. Finally, all POS tags in this dictionary are compared to the POS tag sequences in all partial Twitter messages in descending order of frequency. When a match is found, the words corresponding to this POS tag sequence are extracted and form the future activity.
+
+\section{Activity Ranking}\label{sec:ranking}
+The ranking of popular activities is conducted by creating uni- and bigrams word sequences, which are obtained from the POS tag approach described in the previous section. These sequences are created by obtaining the highest frequencies until a specified size is reached, using a size for total unigrams sequences which is 10\% of the size of the total bigram sequences specified. The frequencies of word occurrences in the partial Twitter messages are calculated by the subtraction of their frequency from the frequency of larger $n$-grams in which they occur. These last two step are conducted on the assumption that activities are described more accurately in bigrams and to avoid counting double occurrences of words. Finally, the word sequences are ranked according to their frequency.
+
+The scoring is evaluated manually using a simple scoring function. Score $1$ for ranking of a sufficient correctly described activity, $0.5$ for ranking of words which almost describe an activity, for example `going to do', which describes the activity of doing something but where it is not sure what the assessor is exactly going to do. Score $0$ is given for ranking of an incorrect activity, meaning a word sequence which does not describe an actual activity.
