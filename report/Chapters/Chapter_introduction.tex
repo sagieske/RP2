@@ -9,24 +9,23 @@
 
 \section{Motivation}
 
-Social media provide a platform for people to interact and share messages with each other over the internet. The use of social media has been increasing in popularity over recent years. People comment about what they hear, post about their activities, their plans for the future or contribute their expertise and opinions on different subjects.  Social media take different forms, such as microblogs, blogs and social networks, which are all employed for different types of messages and meet different needs. The focus of this research will be microblogs, in specifically Twitter.
+Taking pictures is very easy and popular in this digital age. The demand for digital cameras was forecast to be 86 million units for 2013 by Futuresource Consulting\cite{futuresource}. And even though a decline in market share is present for digital cameras, due to the  proliferation of smartphones (nowadays all equipped with a camera function) the total number of digital images taken each year is very high. Social media sites which have photo upload functions, such as Facebook and Instagram, report significantly huge numbers on the total upload of images. Facebook alone reported in a white paper \cite{whitefacebook} that more than 250 billion photos are uploaded to their site, with on average a total upload of more than 350 million photos every day. Statistics on Instagram\footnote{http://instagram.com/press/ accessed 03-06-2014} show a total of 20 billion photos shared on Instagram.
 
-The microblog platform is used for sharing quick updates on people's lives. A distinguishing feature of microblog platforms is the limited size of their content. Twitter,\footnote{http://www.Twitter.com} a popular microblog platform, consists of messages with a limited size of 140 characters. Twitter has approximately 500 million active registered users all around the world, sending in total approximately 9000 Twitter messages per second.\footnote{http://www.statisticbrain.com/Twitter-statistics Accessed: 31/05/2013.} The collection of Twitter messages is enormous and contains, among other things, opinions, as well as event and activity announcements. This collection holds a significant amount of information and is therefore useful for information extraction and data analysis. 
+Due to this popularity, digital images are often recovered in forensic investigation. For example, in child pornography cases many digital images are present and are important evidence for the investigation. In such a case it can be very important to identify the origin of images to a specific camera or identify images that come from a common source. This can be done by uncovering traces on pictures that are distinguishable for camera models. One of these traces is the JPEG quantization table, which is specified as a set of 8 $\times$ 8 (integer) values. Separate quantization tables are employed for luminance and chrominance data, where some implementations include two chrominance quantization tables for chrominance-red and chrominance-blue. 
 
-By employing this collection as a knowledge base, time-aware information extraction tasks, such as prediction tasks, can be conducted. An example is prediction of sentiment on topics, which is conducted by analysing Twitter messages and examining the sentiment expressed in them. Another example is event prediction, which tries to predict future events, e.g. earthquakes\cite{Sakaki}. The task conducted in this research is activity prediction. This is a time-aware information extraction task which focuses on trying to establish a set of activities that are likely to be popular at a later time. 
-
-There are several reasons why activity prediction is an interesting task. From the end-user perspective, activity prediction can contribute to a recommendation system, recommending new or popular activities among friends. In advertising, identifying the activities which are popular among the target market of a particular product for example, will aid in reaching their target audiences. Popular activities can take advantage of this knowledge by, for example, increasing the size of the event, adjusting entrance fees or adding additional promotional campaigns. Finally, from emergency services perspective, predicting popular activities can aid them in estimating overcrowding of locations and therefore deploying better crowd control.
+In order to match JPEG quantization tables a comparison between 128 values, or 192 when two chrominance quantization tables are present, is made. With over a dozen different camera brands, each developing different models over the years, the number of camera models (and consequently the number of JPEG quantization tables) to be matched against is significantly high. The matching of large databases of images against these camera models will be time costly as for every matching 128 or more integer comparisons are made. This matching process needs to be minimized since time is often limited in forensic investigations. This research will focus on optimizing search through the image databases regarding JPEG quantization tables.
 %-----------------------------------------------
 
 \section{Focus of research}
-This research examines the time-aware information extraction task; activity prediction. The research question on which is focused is set as: \textit{`Can we accurately predict future activities using Twitter data?'} and will be applied on the Dutch language domain. In order to answer this question, the research is divided into three parts, each containing an important subquestion for the evaluation of the research question. These parts are defined as followed: 
+The research question on which is focused is set as: \textit{`How can searching through JPEG quantization tables be optimized?}
+
+In order to answer the research question, this research will focus on the following subquestions:
 \begin{enumerate}
-\item \textbf{Activity Classification}: The identification of Twitter messages containing a future activity. The subquestion that arises is: \textit{`Can we accurately classify Twitter messages containing activities?'}
-\item \textbf{Activity Extraction}: The identification of future activities, for which the following subquestion arises: \textit{`Can we accurately identify future activities in Twitter messages?'}
-\item \textbf{Ranking}: The identification of popularity. The subquestion that arises is: \textit{`Can we accurately identify popular activities?'}
+\item What are identifiable parameters of JPEG quantization tables?
+\item How can we quickly decrease the search space for JPEG quantization table matches?
 \end{enumerate}
 In the following chapters the answers to these questions will be given.
-
+\iffalse
 \section{Challenges}\label{challenges}
 
 There are different challenges in the task of activity prediction using Twitter data. Below, we will list the challenges:
@@ -40,7 +39,7 @@ There are different challenges in the task of activity prediction using Twitter 
 \end{description}
 
 Based on the challenges mentioned above, an activity prediction system should be dynamic to handle the constantly changing vocabulary and informal language. The system should overcome classification challenges due to the limited size of texts. Left out verbs should be taken into account for activity extraction. Finally, the system should take into account the aspect of time-awareness by only predicting popular activities using extraction for activities taking place in the future.
-
+\fi
 %------------------------------------------------
 
 

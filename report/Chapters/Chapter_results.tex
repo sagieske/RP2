@@ -4,11 +4,11 @@
 
 \label{ch:results} % For referencing the chapter elsewhere, use \autoref{ch:name}
 
-In this chapter the results of this research will be discussed. \autoref{sec:res_activity} shows the results of the activity classification. In \autoref{sec:res_extraction} the results of the two different activity extraction methods are described and finally, in \autoref{sec:res_ranking}, the results for ranking popular activities are shown.
+In this chapter the results of this research will be discussed. %\autoref{sec:res_activity} shows the results of the activity classification. In \autoref{sec:res_extraction} the results of the two different activity extraction methods are described and finally, in \autoref{sec:res_ranking}, the results for ranking popular activities are shown.
 
 
 %----------------------------------------------------------------------------------------
-
+\iffalse
 \section{Activity Classification}\label{sec:res_activity}
 Firstly,we explore the inter-annotator agreement of our two annotors for the classification task. The Cohen kappa is tested on 149 manual classifications resulting in fairly mediocre value ($\kappa$ = 0.51). After assesing classification rules described in \autoref{sec:data}, which are described below, the agreement rises substantially and obtain a Cohen kappe score where $\kappa$ = 0.87. This shows that initial annotation of messages containing a future activities is initially hard, but can be improved by setting these boundaries.
  
@@ -82,3 +82,4 @@ Since 26 \% of the activities are not extracted exactly, but do contain the impo
 \section{Ranking}\label{sec:res_ranking}
 The ranking is conducted using frequency scoring. The top frequencies of 100 bigrams are used, resulting in the use of the top frequencies of 10 unigrams. The top 40 popular activities are evaluated, obtaining results for correctly ranking of 75 \% of the activities. Among the ranked activities 5 \% are vague activities and 20 \% are not correct activities. In \autoref{table:rank} in \autoref{ch:appendixResult}, the top 15 popular activities are displayed, also showing their frequencies. There are not many activities mentioned more than 5 times in the data set, which results in higher ranking of incorrect activities containing verbs which often follow an activity, for example `\textit{do}' or `\textit{go}'. In the ranking some uncommon popular activities are shown, for example `\textit{Ledig Erf}' which is a caf\'e and `\textit{Solar rocken}' in which Solar is the name of a party. The ranking shows satisfactory performance, demonstrating the popularity of common and uncommon events on one day. 
 %----------------------------------------------------------------------------------------
+\fi

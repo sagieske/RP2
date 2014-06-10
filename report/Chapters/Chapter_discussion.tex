@@ -3,6 +3,7 @@
 \label{ch:cncl} % For referencing the chapter elsewhere, use \autoref{ch:name} 
 This chapter describes the conclusions that can be drawn from this research. In \autoref{sec:con} the results gained in this research will be discussed and in \autoref{sec:fut} future work for improvement of this research are described.
 %----------------------------------------------------------------------------------------
+\iffalse
 \section{Conclusion}\label{sec:con}
 This research has focused on predicting popular activities using Twitter data. This task was divided into 3 subtasks: activity classification, activity extraction and ranking. The subtask of activity classification is examined with the use of Naive Bayes and Support Vector Machine (SVM) classification, experimenting with several values for feature vectors. The best classifier scored 75 \% on the F1-scoring, which was a SVM using a RBF kernel and, among other things, standard tokens and a combination of uni- and bigrams.
 The subtask of activity extraction is examined using two different methods; the Latent Dirichlet Allocation (LDA) algorithm and the POS tag approach. The LDA algorithm performs poorly for this task as it clusters words which are not interlinked for the same activity. The algorithm is dependent on meaningful words to perform clustering, however, the words created using the log-likelihood distribution are not significantly meaningful. The data set used for this task is sparse and results in unsatisfactorily performance.
@@ -18,3 +19,4 @@ The following adjustments for the methods used in this research, as well as impr
 \item \textbf{Different time frame}: The time frame on which this research focused was `vanavond'. The system can be extended by examining different time frames.
 \item \textbf{Combining different sources}: This research relied soley on data obtained from Twitter. As an improvement for the system different sources can be combined, such as other social media platforms for the identification of more popular activities and more accurate calculations in ranking, or informational websites, to improve the identification of activities in Twitter messages.
 \end{itemize}
+\fi

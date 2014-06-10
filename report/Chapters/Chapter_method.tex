@@ -4,154 +4,20 @@
 
 \label{ch:method} % For referencing the chapter elsewhere, use \autoref{ch:name} 
 
-%Rules for annotation:
-
-%- Negations are not activities
-%- Expressing wish "ik hoop" is not an activity
-%- Questions are not activities
 
 %----------------------------------------------------------------------------------------
 
-%\section{Approach}
+In order to optimize search through JPEG quantization tables the search space needs to be decreased. This reduction in search space can be performed by creating a decision tree model. This model maps observations about an item (specific features of the quantization table) to conclusions about the item's target value (camera model). Decision tree learning is used, which is the construction of a decision tree from class-labelled training tuples, to identify important parameters and their position in the decision tree model. The matching with the use of decision tree model parameters and the matching between full JPEG quantization tables are both benchmarked for time to see whether the search time is accelerated.
 
-The aim of this research is to predict popular activities. The definition of an activity, used in preceding research by De Rijke and Weerkamp \cite{Weerkamp}, will be used in this thesis:
-\begin{description}
-\item[Activity:] something you (the assessor) could actually do tonight, assuming you can move to any location instantaneously.
-\end{description}
+The following steps are taken:
+\begin{enumerate}
+\item Gather dataset of JPEG quantization tables. Dataset of pictures and their JPEG quantization table and for JPEG quantization for camera models are needed.
+\item Create numerous possible parameters to identify these tables. Rewrite JPEG quantization table as collection of these parameter values.
+\item Create training and test set for decision tree learning.
+\item Perform decision tree learning to create decision tree model
+\item Perform benchmarks: matching with the decision tree model parameters and matching full JPEG quantization tables
+\end{enumerate}
 
-To tackle the challenge of time-awareness in activity prediction mentioned in \autoref{challenges}, a time frame is specified in which the predicted future activities will be exercised, namely `tonight'. Twitter messages mentioning an activity taking place tonight will be classified as an activity Twitter message.
+\section{JPEG Quantization Table}
 
-
-Our approach is divided into three sections; first, we will extract twitter messages containing activities using supervised classification methods, after which we will extract the activities from these messages using unsupervised methods. Lastly, the activities will be ranked by frequency for popularity indications. These methods are described in the following sections of this chapter.
-
-
-%------------------------------------------------
-
-\section{Activity Classification}
-Classification is a datamining task which assigns items to target classes based on a set of observations of these items. The classification problem is commonly described as: \begin{quotation} \noindent \textit{Let there be a set of objects X, each belonging solely to one of Y's distinct classes, construct a classification function $C$ that can correctly predict the classification $y = C(x)$ for each $x\in X, y \in Y$.}
-\end{quotation}
-
-The classification of Twitter messages in this research can be placed under text classification due to the input of short text messages. It is also of a binary form as the messages are placed in one of two classes: messages which contain a future activity and messages which do not. A supervised learning approach is taken which means the input of this function will be a set of training examples which consist of Twitter messages and their corresponding classes.
-
-For the classification of activities we have examined two widely used supervised machine learning techniques for text classification: Support Vector Machines and the Naive Bayes classifier, which will be described in the following subsections.
-
-\subsection{Support Vector Machines}\label{sec:svm}
-Support vector machines are supervised learning models which contain associative algorithms for the analysis and identification of items and their corresponding classes. A Support Vector Machine (SVM) performs classification based on boundaries between classes, typically hyperplanes. The data items that lie on the hyperplane, which are called support vectors, support the hyperplane and determine the solution. The SVM constructs a model that contains the optimal hyperplane, which maximizes the margin between the classes to minimize the generalization error of the classifier. The separating hyperplane can be written as:
-\begin{equation}
-f(x) = \displaystyle\sum\limits_{i=1}^N \alpha _i y_i K(x_i, x) + b
-\end{equation}
-where  $\alpha _i \geq 0$, $N$ is the training sample size, $x_i $ is the input vector of the i-th example and $y_i$ the target class belonging to vector $x_i$ which takes values \{0,1\}, $K(x_i,x)$ is the inner-product kernel and $b$ is a bias which translates the hyperplane away from the origin.
-
-The parameter $\alpha _i$ identifies the support vectors and can be found by solving the following convex quadratic programming problem:
-\begin{equation}
-\text{maximize }\displaystyle\sum\limits_{i}\alpha _i - \frac{1}{2}\displaystyle\sum\limits_{i,j}  \alpha _i  \alpha _i  y_i y_i (x_i \cdot x_j)
-\end{equation}
-\indent \indent ~~subject to 
-\begin{equation*}
-0 \leq \alpha _i \leq C \text{ and }\displaystyle\sum\limits_{i=1}^N \alpha _i  y_i = 0
-\end{equation*}
-where C controls the trade-off between training error and generalization ability.
-
-The inner-product kernel $K(x_i,x)$  is used to implicitly map inputs into high-dimensional feature spaces. In this research the Linear and RBF Kernel, which are described below, were implemented.
-
-\subsubsection{Linear Kernel}
-The linear kernel is the simplest kernel. The kernel function is given by the inner product of $x $ and adding a constant $c$. 
-\begin{equation}
-K(x,x')_{linear} = x^T x' + c
-\end{equation}
-
-The hyperplane for this kernel divides the data space in two, linear to the input examples. 
-
-\subsubsection{RBF Kernel}
-The radial basis function kernel (RBF kernel) has features that identify hyperspheres used to approximate functions thus creating smooth planes from a large number of data points. The RBF kernel is defined as:
-\begin{equation}
-K(x,x')_{rbf} = exp\left(-\frac{\parallel x-x'\parallel^2_2}{2\sigma^2}\right)
-\end{equation}
-
-The kernel exponentially decays uniformly in all directions around the support vector with $\sigma$ as a free parameter to control the radius of the influence of the data points. 
-
-
-\subsection{Multinomial Naive Bayes Classification}\label{sec:naivebayes}
-% TODO: LAPLACE??
-The Multinomial Naive Bayes classifier is a probabilistic supervised learning algorithm based on applying Bayes' theorem using strong independence assumptions. The distribution of each feature is a multinomial distribution, which takes into account the number of times a word occurs in a corpus. 
-
-To determine the class of a message $M$ the Multinomial Naive Bayes classifier tries to identify the optimal class $C$ such that $P(C|M)$ is maximal. The classifier uses the conditional model for message $M$ consisting of $n$ tokens $t$ in class $C$:
-\begin{equation}\label{eq:cond}\begin{aligned}
-P(C|M) = P(C|t_1, ..., t_n) & & ~~~ & \mbox{with } t_1, ..., t_n \in M \\
-\end{aligned} \end{equation}
-Applying the Bayes' theorem on equation \ref{eq:cond} gives the following model:
-\begin{equation}
-P(C|t_1, ..., tn) = P(C) \frac{P(t_1,...,t_n|C)}{P(t_1, ..., t_n)}
-\end{equation}
-As a result of the strong indepence assumptions used in the classifier the following equation is formed:
-\begin{equation}
-P(C|M) = P(C) *  \displaystyle\prod\limits_{i=1}^n P(t_i|C)
-\end{equation}
-The prior P(C) is calculated as the relative frequency of the class in the data and given by the formula:
-\begin{equation}
-P(C) = \frac{M_c}{M}
-\end{equation}
-where $M_c$ is the number of messages in class $C$ and $M$ is the total number of messages in the data.
-
-The estimation of the conditional probability of  $P(t|C)$ is a unigram language model and takes into account the frequency of terms in classes. The probability is identified as followed :
-\begin{equation}
-P(t|C) = \frac{\text{frequency of }  t \text{ in messages with class } C}{ \text{frequency of }  t \text{ in all messages} }
-\end{equation}
-
-\subsection{Classification Evaluation}\label{sec:f1}
-In order to evaluate the classifications made by both classifiers the F1 score (also called F-score or F-measure) is used. This score is commonly used in information retrieval and measures the classification's accuracy by considering both the precision $p$ and recall $r$. The following table is used to ascertain precision and recall scores:\\
-
-\begin{table}[H]
-\begin{tabular}{|l|l|l|}
-\hline
-& \multicolumn{2}{c|}{Actual class (observations)}\\
-\hline
-\multirow{4}{*}{Predicted class} & true positives (tp) & false positives (fp)\\
- & correct positive classification & incorrect positive classification\\
- \cline{2-3}
- & false negatives (fn) & true negatives (tn)\\
-& incorrect negative classification& correct negative classification\\
-\hline
-\end{tabular}
-\caption{Prediction terms}
-\label{table:evaluationtable}
-\end{table}
-
-The precision and recall can be calculated as followed:
-
-\begin{equation}
-\text{Precision} = \frac{\text{tp}}{\text{tp}+\text{fp}}
-\end{equation}
-\begin{equation}
-\text{Recall} = \frac{\text{tp}}{\text{tp}+\text{fn}}
-\end{equation}
-
-The F1-score calculates the harmonic mean between precision and recall to evaluate the classification. The F1-score is calculated as followed:
-\begin{equation}
-\text{F1-score} = 2 * \frac{\text{precision} * \text{recall}}{ \text{precision} + \text{recall}}
-\end{equation}
-%------------------------------------------------
-
-\section{Activity Extraction}
-The future activities have to be extracted from the messages in order to identify popular activities. In this section two methods will be described for acquiring these activities: the Latent Dirichlet Allocation algorithm and a Part-of-Speech tag algorithm. Both methods are evaluated manually.
-
-\subsection{Latent Dirichlet Allocation}
-Latent Dirichlet Allocation (LDA) is a generative probabilistic model for collections of (unlabeled) discrete data. It uses a Dirichlet distribution, which is a multivariate distribution whose components all takes values in range [0,1] and for which the sum of all distributions is one.
-
-In text classification, LDA is used for discovering topics in documents. For example, in the research of Maskeri et al. \cite{Maskeri} LDA is used for the identification of business topics in source code and was able to satisfactorily extract part of the domain topics. In the research by Newman et al. \cite{Newman} the LDA algorithm extracted 400 topics from news articles in the New York times. Another study of text classification using LDA is the research of Arora and Ravindran \cite{arora}, who focused on LDA for capturing events in documents to form a summary representing these different events and showed good performance. In this research LDA will be implemented to examine the extraction of activities as topics from Twitter messages.
-
-The basic idea of LDA is that documents can be considered as a mixture of a limited number of topics. It creates soft clusters from each meaningful word in these documents, as they can belong to one or more topics, and tries to discover the set of topics from word observations, their co-occurences and the distribution of each of these topics in the documents. A more detailed description of the procedure of LDA can be found in the pseudocode in \nameref{alg:lda} in \autoref{ch:appendix}.
-
-\subsection{Part-of-speech Tag Approach}
-The Part-of-speech (POS) tag approach tries to identify activities from underlying structures in Part-of-Speech tags. These tags are linguistical categories of words based on definition as well as context. In this approach, the assumption is made that the structural way activities are described in Twitter messages is often very similar. A challenge, taking this assumption into account, is the informal language structure used in Twitter messages which results in poor performance of standard Natural Language Processing tools.
-
-To overcome this challenge, the basic idea for this algorithm is to identify $n$-grams of POS tag sequences of all Twitter messages and each sequence is analysed to calculate the frequency of this tag. It then obtains a simple ranking based on the frequency of these tags. Finally, the algorithm examines every message to see wether it contains the most frequent POS tag structure and if falsified, it tries to fit a POS tag structure which is lower ranking. A more detailed description of the procedure of LDA can be found in the pseudocode in \nameref{alg:pos} in \autoref{ch:appendix}.
-
-
-%----------------------------------------------------------------------------------------
-
-\section{Activity Ranking}
-The system should predict popularity of activities. The assumption is made that a future activity is considered popular when it is mentioned frequently in messages within a certain time frame. Let $A$ be the set of all future activities mentioned in this time frame, the popularity of an activity $a$ is calculated by it's relative frequency as followed:
-\begin{equation}
-popularity(a) = \frac{\text{frequency of }a}{\displaystyle\sum\limits_{a'\in A} \text{frequency of }a'}
-\end{equation}
+EXPLAIN BASICS
