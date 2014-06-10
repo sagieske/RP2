@@ -1,4 +1,8 @@
-for url in $(cat ../imagedb/images-55922388.txt);
+sudo mkdir /images/
+for file in ../imagedb/*;
+do
+for url in $(cat $file);
 do 
-wget $url
+wget -P /images/ $url
+done
 done
