@@ -1,0 +1,11 @@
+LINUX JPEGSNOOP!
+wine JPEGsnoop.exe -i IMG_6471.JPG -o 20050203_1234_snoop.txt -nogui
+
+loop? :
+
+for image in *.JPG
+do
+outputfilename = $image.output
+wine JPEGsnoop.exe -i image -o $outputfilename -nogui
+done
+
