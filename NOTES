@@ -5,7 +5,7 @@ loop? :
 
 for image in *.JPG
 do
-outputfilename = $image.output
-wine JPEGsnoop.exe -i image -o $outputfilename -nogui
+outputfilename=$image.output
+wine JPEGsnoop.exe -i $image -o $outputfilename -nogui
 done
 
