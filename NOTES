@@ -9,3 +9,6 @@ outputfilename=$image.output
 wine JPEGsnoop.exe -i $image -o $outputfilename -nogui
 done
 
+THIS FINALLY SEEMS TO WORK SORT OF!
+djpeg -verbose -verbose IMG_6472.JPG 2>&1 | cat > testing1
+
