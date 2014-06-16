@@ -1,4 +1,4 @@
-for image in *.JPG
+for image in /images/*.JPG
 do
 outputfilename=$image.output
 djpeg -verbose -verbose $image 2>&1 | cat > $outputfilename
