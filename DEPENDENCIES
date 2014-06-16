@@ -1,0 +1,6 @@
+# DEPENDENCIES NEEDED FOR SCRIPTS:
+djpeg
+python
+numpy
+sklearn
+

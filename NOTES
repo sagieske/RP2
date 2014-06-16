@@ -1,14 +1,21 @@
-LINUX JPEGSNOOP!
-wine JPEGsnoop.exe -i IMG_6471.JPG -o 20050203_1234_snoop.txt -nogui
-
-loop? :
-
+#################
+LINUX JPEGSNOOP:
+#################
 for image in *.JPG
 do
 outputfilename=$image.output
 wine JPEGsnoop.exe -i $image -o $outputfilename -nogui
 done
 
+#################
 THIS FINALLY SEEMS TO WORK SORT OF!
+#################
 djpeg -verbose -verbose IMG_6472.JPG 2>&1 | cat > testing1
 
+
+################
+TODO
+################
+ - implement sklearn decision tree. 
+ - use PCA?
+ - ccheck if works on Windows :(
