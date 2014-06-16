@@ -5,6 +5,14 @@ from sys import argv
 
 INPUTFILE = argv[1]
 OUTPUTFILE = INPUTFILE + '.djpeg-dqt'
+
+# extract camera information from title
+camerainfo = re.sub('.JPG', '',INPUTFILE).split('_')
+manufacturer = camerainfo[0]
+cameramodel = camerainfo[1]
+deviceid = camerainfo[2]
+uniqueID = camerainfo[3]
+
 # read file
 with open(INPUTFILE) as f:
     data=f.read(1500)
@@ -12,6 +20,7 @@ with open(INPUTFILE) as f:
 # get all dqt rows
 dqt_values = re.findall(r'\s{3,4}\d{1,2}', data)
 
+# only extract & dump if values are found
 if dqt_values:
 	# extract tables to array
 	dqt1 = []
@@ -22,7 +31,8 @@ if dqt_values:
 			dqt1.append(row)
 		else:
 			dqt2.append(row)
-	pickle.dump( (dqt1, dqt2), open( OUTPUTFILE, "wb" ) )
+	# pickle dump camera data and quantization tables
+	pickle.dump( (camerainfo, dqt1, dqt2), open( OUTPUTFILE, "wb" ) )
 
 
 
