@@ -2,12 +2,17 @@ import re
 import pickle
 import sys
 from sys import argv
+import os.path
 
 INPUTFILE = argv[1]
 OUTPUTFILE = INPUTFILE + '.djpeg-dqt'
 
+# File already exists, stop! (should already be handled by shell script)
+if os.path.isfile(OUTPUTFILE):
+	sys.exit()
+
 # extract camera information from title
-camerainfo = re.sub('.JPG', '',INPUTFILE).split('_')
+camerainfo = re.sub('.JPG.output', '',INPUTFILE).split('_')
 manufacturer = camerainfo[0]
 cameramodel = camerainfo[1]
 deviceid = camerainfo[2]
