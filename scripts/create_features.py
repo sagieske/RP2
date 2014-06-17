@@ -12,6 +12,7 @@ class Create_features(object):
 	FILEPATTERN = '/images/*.output.djpeg-dqt'
 	#FILEPATTERN = '/tmp/*'
 	ITEMS = []
+	camera_dict = {}
 
 	def __init__(self):
 		self.load_files()
@@ -27,28 +28,28 @@ class Create_features(object):
 			#	camera = re.sub('/images/','',infotuple[0][0])
 			#except:
 			#	print "nooooo %s" %name
-			self.ITEMS.append(infotuple)
+			#self.ITEMS.append(infotuple)
+			self.create_patterns(infotuple)
 
-	def create_patterns(self):
+	def create_patterns(self, infotuple):
 		"""
 		Extract camera make, model and the dqt	
 		"""
-		camera_dict = {}
-		for item in self.ITEMS:
-			camerainfo = item[0]
-			print camerainfo
-			try:
-				camera = re.sub('/images/','',camerainfo[0])
-				identifier = (camera, camerainfo[1])
-				if identifier in camera_dict:
-					if camera_dict[identifier] == [item[1], item[2]]:
-						print "TRUE"
-					else:
-						print "FALSE"
+
+		camerainfo = infotuple[0]
+		try:
+			camera = re.sub('/images/','',camerainfo[0])
+			identifier = (camera, camerainfo[1])
+			if identifier in self.camera_dict:
+				if self.camera_dict[identifier] == [infotuple[1], infotuple[2]]:
+					print "TRUE"
 				else:
-					camera_dict[identifier] = [item[1], item[2]]
-			except:
-				print "problem!"
+					print "FALSE"
+			else:
+				print "ADD"
+				self.camera_dict[identifier] = [infotuple[1], infotuple[2]]
+		except:
+			print "problem!"
 
 test = Create_features()
 test.create_patterns()
