@@ -11,5 +11,7 @@ WEEK 2:
 14-06:		Write scripts for quantization table extraction JPEG SNOOP
 
 WEEK 3:
-16-06: 		Rewrite scripts, Start writing on chapters (methods)
+16-06: 		Rewrite scripts to use DJPEG, Start writing on chapters (methods)
 17-06:		Modify previous scripts, Create feature extraction scripts. Run scripts. TODO! SPACE IS FULL ON SERVER :(
+			Figuring out the input for sklearn decisiontreeclassifier
+			Finished extraction dqt tables with script
