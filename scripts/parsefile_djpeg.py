@@ -26,16 +26,18 @@ try:
 	# get all dqt rows
 	#dqt_values = re.findall(r'\s{2,4}\d{1,3}\s', data)
 	# so ugly, but can't find another way
-	dqt_values = re.findall(r'\s{9,11}\d{1,3}\s{1,3}\d{1,3}\s{1,3}\d{1,3}\s{1,3}\d{1,3}\s{1,3}\d{1,3}\s{1,3}\d{1,3}\s{1,3}\d{1,3}\s{1,3}\d{1,3}', data)
-	
+	dqt_values = re.findall(r'\d{1,3}\s{1,4}\d{1,3}\s{1,4}\d{1,3}\s{1,4}\d{1,3}\s{1,4}\d{1,3}\s{1,4}\d{1,3}\s{1,4}\d{1,3}\s{1,4}\d{1,3}', data)
 	# only extract & dump if values are found
 	if dqt_values:
 		# extract tables to array
 		dqt1 = []
 		dqt2 = []
+		# extract only first 16 rows
 		for j in range(0,16):
 			#print dqt_values[j]
+			# strip all spaces and sub for comma
 			stripped_string = re.sub(' +', ',', dqt_values[j].lstrip())
+			# map to ints
 			row = map(int, stripped_string.split(","))
 			#row = map(int, dqt_values[j*8:j*8+8])
 			if j < 8:
