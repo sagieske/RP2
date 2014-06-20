@@ -47,9 +47,12 @@ class Create_features(object):
 			camera = re.sub('/images/','',camerainfo[0])
 			identifier = (camera, camerainfo[1])
 			if identifier in self.camera_dict:
-				if self.camera_dict[identifier] == [infotuple[1], infotuple[2]]:
+				if [infotuple[1], infotuple[2]] in self.camera_dict[identifier]:
 					print "TRUE"
+					continue
 				else:
+					print self.camera_dict[identifier]
+					print [infotuple[1], infotuple[2]]
 					print "FALSE"
 			else:
 				print "ADD"
