@@ -48,12 +48,13 @@ class Create_features(object):
 			identifier = (camera, camerainfo[1])
 			if identifier in self.camera_dict:
 				if [infotuple[1], infotuple[2]] in self.camera_dict[identifier]:
-					print "TRUE"
-					continue
+					pass
 				else:
+					print identifier
 					print self.camera_dict[identifier]
 					print [infotuple[1], infotuple[2]]
 					print "FALSE"
+					sys.exit()
 			else:
 				print "ADD"
 				self.camera_dict[identifier] = [infotuple[1], infotuple[2]]
