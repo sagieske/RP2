@@ -73,7 +73,7 @@ class Create_features(object):
 			else:
 				self.camera_dict[identifier] = (dqts,)
 		except:
-			print "problem! %s" %(infotuple[0])
+			print "problem! %s, %s, %s" %(infotuple[0], infotuple[1], infotuple[2])
 
 	def convert_to_features(self):
 		"""
@@ -143,4 +143,4 @@ class Create_features(object):
 		return dqt_features
 
 test = Create_features()
-test.convert_to_features()
+#test.convert_to_features()
