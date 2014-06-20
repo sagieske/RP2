@@ -8,6 +8,9 @@ import pickle
 import re
 import itertools	# for flattening list
 import numpy as np
+from sklearn.ensemble import ExtraTreesClassifier
+import operator
+
 
 class Create_features(object):
 
@@ -16,6 +19,7 @@ class Create_features(object):
 	ITEMS = []
 	camera_dict = {}
 	feature_dict = {}
+	class_to_int_dict = {}
 
 	def __init__(self):
 		self.load_files()
@@ -36,7 +40,7 @@ class Create_features(object):
 
 	def create_dictionary(self, infotuple):
 		"""
-		Extract camera make, model and the dqt	
+		Extract camera make, model and the dqts	
 		"""
 		camerainfo = infotuple[0]
 		try:
@@ -59,16 +63,32 @@ class Create_features(object):
 		"""	
 		featurelist = []
 		classlist = []
-		# do loop
-		featurelist.append()
-		pass
+		# do for every camera in dictionary
+		for key, value in self.camera_dict.iteritems():
+			featurelist.append(self.convert_one(value))
+			classlist.append(self.get_camera_id(key[0]))
+		print len(featurelist)
+		print len(classlist)
+
+	def get_camera_id(self, key):
+		"""
+		Returns ID for camera model in class list.
+		Looks up in table and if not present, creates one by adding 1 to max.
+		"""
+		if self.class_to_int_dict[key]:
+			return self.class_to_int_dict[key]
+		else:
+			# return max number + 1 and add to dictionary
+			camera_id = max(self.class_to_int_dict.iteritems(), key=operator.itemgetter(1))[0] +1
+			self.class_to_int_dict[key] = camera_id
+			return camera_id
+			
 
 	def convert_one(self, dqts):
 		"""
 		Convert quantizationtable to features. A feature is an array of values
 		"""
 		dqt_features = []
-		# perform
 		for index in range(0,len(dqts)):
 			# flatten dqt
 			dqt = list(itertools.chain.from_iterable(dqts[index]))
@@ -87,6 +107,7 @@ class Create_features(object):
 			dqt_features.append(np.var(dqt))	# variance
 			dqt_features.append(np.std(dqt))	# standard deviation
 
+		return dqt_features
 
 test = Create_features()
 test.create_patterns()
