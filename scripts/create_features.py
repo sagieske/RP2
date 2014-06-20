@@ -110,4 +110,4 @@ class Create_features(object):
 		return dqt_features
 
 test = Create_features()
-test.create_patterns()
+test.convert_to_features()
