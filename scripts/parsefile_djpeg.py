@@ -11,7 +11,6 @@ OUTPUTFILE = INPUTFILE + '.djpeg-dqt'
 if os.path.isfile(OUTPUTFILE):
 	sys.exit()
 
-print INPUTFILE
 # extract camera information from title
 camerainfo = re.sub('.JPG.output', '',INPUTFILE).split('_')
 manufacturer = camerainfo[0]
@@ -25,7 +24,9 @@ try:
 	    data=f.read(1600)
 
 	# get all dqt rows
-	dqt_values = re.findall(r'\s{3,4}\d{1,2}', data)
+	#dqt_values = re.findall(r'\s{2,4}\d{1,3}\s', data)
+	# so ugly, but can't find another way
+	dqt_values = re.findall(r'\s{9,11}\d{1,3}\s{1,3}\d{1,3}\s{1,3}\d{1,3}\s{1,3}\d{1,3}\s{1,3}\d{1,3}\s{1,3}\d{1,3}\s{1,3}\d{1,3}\s{1,3}\d{1,3}', data)
 	
 	# only extract & dump if values are found
 	if dqt_values:
@@ -33,7 +34,10 @@ try:
 		dqt1 = []
 		dqt2 = []
 		for j in range(0,16):
-			row = map(int, dqt_values[j*8:j*8+8])
+			#print dqt_values[j]
+			stripped_string = re.sub(' +', ',', dqt_values[j].lstrip())
+			row = map(int, stripped_string.split(","))
+			#row = map(int, dqt_values[j*8:j*8+8])
 			if j < 8:
 				dqt1.append(row)
 			else:
