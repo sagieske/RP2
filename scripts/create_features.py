@@ -39,25 +39,25 @@ class Create_features(object):
 			self.create_dictionary(infotuple)
 
 	def create_dictionary(self, infotuple):
-		"""
-		Extract camera make, model and the dqts	
-		"""
+		""" Extract camera make, model and the dqts """
 		camerainfo = infotuple[0]
 		try:
 			camera = re.sub('/images/','',camerainfo[0])
 			identifier = (camera, camerainfo[1])
+			dqts = [infotuple[1], infotuple[2]]
+			# known make & model
 			if identifier in self.camera_dict:
-				if [infotuple[1], infotuple[2]] in self.camera_dict[identifier]:
+				# value already in dictionary
+				if dqts in self.camera_dict[identifier]:
 					pass
+				# new value, same identifier
 				else:
-					print identifier
-					print self.camera_dict[identifier]
-					print [infotuple[1], infotuple[2]]
-					print "FALSE"
-					sys.exit()
+					value = self.camera_dict[identifier]
+					self.camera_dict[identifier] = value.append((dqts,))
+
+			# new make & model
 			else:
-				print "ADD"
-				self.camera_dict[identifier] = [infotuple[1], infotuple[2]]
+				self.camera_dict[identifier] = (dqts,)
 		except:
 			print "problem!"
 
@@ -67,12 +67,15 @@ class Create_features(object):
 		"""	
 		featurelist = []
 		classlist = []
-		# do for every camera in dictionary
+		# do for every camera make & model in dictionary
 		for key, value in self.camera_dict.iteritems():
-			featurelist.append(self.convert_one(value))
-			classlist.append(self.get_camera_id(key[0]))
+			# for every different dqt for this camera make & model
+			for dqt in value:
+				featurelist.append(self.convert_one(dqt))
+				classlist.append(self.get_camera_id(key[0]))
 		print len(featurelist)
 		print len(classlist)
+
 
 	def get_camera_id(self, key):
 		"""
