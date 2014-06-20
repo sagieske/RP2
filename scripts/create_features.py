@@ -29,14 +29,24 @@ class Create_features(object):
 		Load in all files with specified file pattern. Append infotuple to ITEMS array
 		"""
 		files = glob.glob(self.FILEPATTERN)
+		counter = 0
 		for name in files:
-			infotuple = pickle.load( open( name, "rb" ) )
-			#try:
-			#	camera = re.sub('/images/','',infotuple[0][0])
-			#except:
-			#	print "nooooo %s" %name
-			#self.ITEMS.append(infotuple)
-			self.create_dictionary(infotuple)
+			try:
+				infotuple = pickle.load( open( name, "rb" ) )
+				#try:
+				#	camera = re.sub('/images/','',infotuple[0][0])
+				#except:
+				#	print "nooooo %s" %name
+				#self.ITEMS.append(infotuple)
+				self.create_dictionary(infotuple)
+				counter += 1
+				if counter % 1000 == 0:
+					print counter
+				if counter == 1000:
+					break
+			except:
+				print "problem with file %s" %(name)
+		print "finished dictionary"
 
 	def create_dictionary(self, infotuple):
 		""" Extract camera make, model and the dqts """
@@ -45,7 +55,8 @@ class Create_features(object):
 			camera = re.sub('/images/','',camerainfo[0])
 			identifier = (camera, camerainfo[1])
 			dqts = [infotuple[1], infotuple[2]]
-			# known make & modeli
+			# known make & model
+			print len(infotuple[2])
 			if identifier in self.camera_dict:
 				# value already in dictionary
 				if dqts in self.camera_dict[identifier]:
@@ -53,7 +64,7 @@ class Create_features(object):
 				# new value, same identifier
 				else:
 					value = self.camera_dict[identifier]
-					self.camera_dict[identifier] = value.append((dqts,))
+					self.camera_dict[identifier] = value + (dqts,)
 
 			# new make & model
 			else:
@@ -101,7 +112,7 @@ class Create_features(object):
 			dqt = list(itertools.chain.from_iterable(dqts[index]))
 			dqt_features.extend(dqt)
 			dqt_np = np.array(dqt)
-
+			print dqts[index]
 			# extra features
 			totalsum = sum(dqt)
 			dqt_features.append(totalsum)	# total sum
