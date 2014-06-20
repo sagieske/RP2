@@ -11,6 +11,7 @@ OUTPUTFILE = INPUTFILE + '.djpeg-dqt'
 if os.path.isfile(OUTPUTFILE):
 	sys.exit()
 
+print INPUTFILE
 # extract camera information from title
 camerainfo = re.sub('.JPG.output', '',INPUTFILE).split('_')
 manufacturer = camerainfo[0]

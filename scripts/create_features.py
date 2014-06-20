@@ -42,8 +42,8 @@ class Create_features(object):
 				counter += 1
 				if counter % 1000 == 0:
 					print counter
-				if counter == 1000:
-					break
+				#if counter == 1000:
+				#	break
 			except:
 				print "problem with file %s" %(name)
 		print "finished dictionary"
@@ -54,12 +54,16 @@ class Create_features(object):
 		try:
 			camera = re.sub('/images/','',camerainfo[0])
 			identifier = (camera, camerainfo[1])
+			for j in range(1,3):
+				for i in infotuple[j]:
+					if len(i) != 8:
+						raise Exception("problem for %s" %(infotuple[0]))
 			dqts = [infotuple[1], infotuple[2]]
 			# known make & model
 			if identifier in self.camera_dict:
 				# value already in dictionary
 				if dqts in self.camera_dict[identifier]:
-					print "same dqt"
+					pass
 				# new value, same identifier
 				else:
 					value = self.camera_dict[identifier]
@@ -69,7 +73,7 @@ class Create_features(object):
 			else:
 				self.camera_dict[identifier] = (dqts,)
 		except:
-			print "problem!"
+			print "problem! %s" %(infotuple[0])
 
 	def convert_to_features(self):
 		"""
@@ -78,13 +82,23 @@ class Create_features(object):
 		featurelist = []
 		classlist = []
 		# do for every camera make & model in dictionary
+		counter = 0
+		#counter_total = 0
+		# DEBUG calculate length for each input:
+		#for item in self.camera_dict.values():
+		#	for a in item:
+		#		counter_total +=1
+		#print "> Length camera_dict: %i" %(counter_total) 
+		#%(len(self.camera_dict.values()))
 		for key, value in self.camera_dict.iteritems():
 			# for every different dqt for this camera make & model
 			for dqt in value:
 				featurelist.append(self.convert_one(dqt))
 				classlist.append(self.get_camera_id(key[0]))
-		print len(featurelist)
-		print len(classlist)
+				counter += 1
+				if counter % 100 == 0:
+					print "COUNTER AT: %i" %(counter)
+		print "> Length featurelist: %i \n > Length classlist: %i"  %(len(featurelist),len(classlist))
 
 
 	def get_camera_id(self, key):
@@ -92,13 +106,16 @@ class Create_features(object):
 		Returns ID for camera model in class list.
 		Looks up in table and if not present, creates one by adding 1 to max.
 		"""
-		if self.class_to_int_dict[key]:
+		if self.class_to_int_dict.get(key):
 			return self.class_to_int_dict[key]
 		else:
-			# return max number + 1 and add to dictionary
-			camera_id = max(self.class_to_int_dict.iteritems(), key=operator.itemgetter(1))[0] +1
-			self.class_to_int_dict[key] = camera_id
-			return camera_id
+			if len(self.class_to_int_dict) == 0:
+				return 0
+			else:
+				# return max number + 1 and add to dictionary
+				camera_id = max(self.class_to_int_dict.iteritems(), key=operator.itemgetter(1))[1] +1
+				self.class_to_int_dict[key] = camera_id
+				return camera_id
 			
 
 	def convert_one(self, dqts):
@@ -111,7 +128,6 @@ class Create_features(object):
 			dqt = list(itertools.chain.from_iterable(dqts[index]))
 			dqt_features.extend(dqt)
 			dqt_np = np.array(dqt)
-			print dqts[index]
 			# extra features
 			totalsum = sum(dqt)
 			dqt_features.append(totalsum)	# total sum
