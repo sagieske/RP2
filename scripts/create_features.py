@@ -45,11 +45,11 @@ class Create_features(object):
 			camera = re.sub('/images/','',camerainfo[0])
 			identifier = (camera, camerainfo[1])
 			dqts = [infotuple[1], infotuple[2]]
-			# known make & model
+			# known make & modeli
 			if identifier in self.camera_dict:
 				# value already in dictionary
 				if dqts in self.camera_dict[identifier]:
-					pass
+					print "same dqt"
 				# new value, same identifier
 				else:
 					value = self.camera_dict[identifier]
