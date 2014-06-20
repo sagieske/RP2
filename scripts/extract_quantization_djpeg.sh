@@ -3,6 +3,7 @@
 # Get time as a UNIX timestamp (seconds elapsed since Jan 1, 1970 0:00 UTC)
 T="$(date +%s)"
 COUNTER=0
+#for image in /images/Nikon_D70_0_19761.JPG /images/Nikon_D70s_1_22980.JPG /images/Nikon_D70_1_20761.JPG /images/Praktica_DCZ5.9_2_34586.JPG /images/Nikon_D70s_1_23088.JPG /images/Nikon_D70_1_20891.JPG /images/Nikon_D70_1_20889.JPG /images/Nikon_D70s_0_22085.JPG /images/Nikon_D70_1_20771.JPG /images/Nikon_D70s_0_21983.JPG /images/Nikon_D70s_0_22011.JPG /images/Olympus_mju_1050SW_4_25619.JPG /images/Praktica_DCZ5.9_2_34587.JPG /images/Nikon_D70_0_19665.JPG /images/Nikon_D70s_1_22972.JPG /images/Nikon_D70s_0_21999.JPG /images/Olympus_mju_1050SW_4_25618.JPG /images/Nikon_D70s_0_22083.JPG /images/Nikon_D70_1_20759.JPG /images/Nikon_D70s_0_22005.JPG /images/Nikon_D70_0_19759.JPG /images/Nikon_D70s_1_23090.JPG /images/Nikon_D70_0_19671.JPG /images/Nikon_D70s_1_22986.JPG /images/Nikon_D70s_0_21987.JPG /images/Nikon_D70s_0_22087.JPG /images/Nikon_D70_1_20777.JPG /images/Nikon_D70s_1_22974.JPG
 
 for image in /images/*.JPG
 do
