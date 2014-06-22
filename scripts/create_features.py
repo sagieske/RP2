@@ -186,6 +186,7 @@ class Create_features(object):
 	def train_hashfunction(self, hash_trainingset, class_trainingset):
 		""" Create dictionary of hash functions. Return dictionary"""
 		hashdict = {}
+		print "H> seta hash dict: %i \n" %(len(set(hash_trainingset.values() ) ) )
 		for index in range(0,len(hash_trainingset)):
 			hashvalue = hash_trainingset[index]
 			hashdict[hashvalue] = class_trainingset[index]
