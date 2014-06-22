@@ -124,7 +124,7 @@ class Create_features(object):
 		
 		#h_X_train, h_X_test, h_y_train, h_y_test = cross_validation.train_test_split(h_featurelist, classlist, test_size=0.3, random_state=42)
 		#dt_X_train, dt_X_test, dt_y_train, dt_y_test = cross_validation.train_test_split(dt_featurelist_small, classlist, test_size=0.3, random_state=42)
-		print len(h_X_test) == len(dt_X_test)
+		#print len(h_X_test)
 
 		hashdict = self.train_hashfunction(h_X_train, y_train)
 		dt_clf = self.train_decisiontree(dt_X_train, y_train)
@@ -189,7 +189,7 @@ class Create_features(object):
 		for index in range(0,len(hash_trainingset)):
 			hashvalue = hash_trainingset[index]
 			hashdict[hashvalue] = class_trainingset[index]
-		print "H> length hash dict: %i" %(len(hashdict))
+		print "H> old length hash dict: %i \n H> new length hash dict: %i" %(len(hash_trainingset), len(hashdict))
 		return hashdict 
 
 	def train_decisiontree(self, feature_trainingset, class_trainingset):	
