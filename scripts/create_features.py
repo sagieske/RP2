@@ -102,9 +102,29 @@ class Create_features(object):
 		dt_featurelist_small = self.feature_selection(dt_featurelist, classlist)
 
 		# create train and test sets
-		h_X_train, h_X_test, h_y_train, h_y_test = cross_validation.train_test_split(h_featurelist, classlist, test_size=0.3, random_state=42)
-		dt_X_train, dt_X_test, dt_y_train, dt_y_test = cross_validation.train_test_split(dt_featurelist_small, classlist, test_size=0.3, random_state=42)
-		print h_X_test == dt_X_test
+		split = cross_validation.ShuffleSplit(len(classlist), test_size=.3, random_state=42)
+		for i in split:
+			train, test = i
+
+		h_X_train = []
+		dt_X_train = []
+		y_train = []
+		for index in train:
+			h_X_train.append(h_featurelist[index])
+			dt_X_train.append(dt_featurelist_small[index])
+			y_train.append(classlist[index])	
+
+		h_X_test = []
+		dt_X_test = []
+		y_test = []
+		for index in test:
+			h_X_test.append(h_featurelist[index])
+			dt_X_test.append(dt_featurelist_small[index])
+			y_test.append(classlist[index])		
+		
+		#h_X_train, h_X_test, h_y_train, h_y_test = cross_validation.train_test_split(h_featurelist, classlist, test_size=0.3, random_state=42)
+		#dt_X_train, dt_X_test, dt_y_train, dt_y_test = cross_validation.train_test_split(dt_featurelist_small, classlist, test_size=0.3, random_state=42)
+		print len(h_X_test) == len(dt_X_test)
 
 		hashdict = self.train_hashfunction(h_X_train, h_X_test)
 		dt_clf = self.train_decisiontree(dt_X_train, dt_X_test)
