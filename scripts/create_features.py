@@ -10,7 +10,7 @@ import itertools	# for flattening list
 import numpy as np
 from sklearn.ensemble import ExtraTreesClassifier
 import operator
-
+from sklearn import tree
 
 class Create_features(object):
 
@@ -99,7 +99,20 @@ class Create_features(object):
 				if counter % 100 == 0:
 					print "COUNTER AT: %i" %(counter)
 		print "> Length featurelist: %i \n > Length classlist: %i"  %(len(featurelist),len(classlist))
+		self.feature_selection(featurelist, classlist)
+		print self.class_to_int_dict
 
+	def feature_selection(self, X, y):
+		clf = ExtraTreesClassifier()
+		X_new = clf.fit(X, y).transform(X) 
+		print clf.feature_importances_ 
+		print X_new.shape
+		print y
+		#for i in range(0,10):
+		#	print X[i]
+		#	print y[i]
+		clf2 = tree.DecisionTreeClassifier()
+		clf2 = clf2.fit(X_new, y)
 
 	def get_camera_id(self, key):
 		"""
@@ -110,6 +123,7 @@ class Create_features(object):
 			return self.class_to_int_dict[key]
 		else:
 			if len(self.class_to_int_dict) == 0:
+				self.class_to_int_dict[key] = 0
 				return 0
 			else:
 				# return max number + 1 and add to dictionary
@@ -135,12 +149,18 @@ class Create_features(object):
 			dqt_features.append(sum([r[-i-1] for i, r in enumerate(dqts[index])])) #diagonal sum R -> L
 			dqt_features.append(max(dqt))	# max of all values
 			dqt_features.append(min(dqt))	# min of all values
-			dqt_features.append(np.average(dqt))	# mean of all values
-			dqt_features.append(np.median(dqt))	# median
-			dqt_features.append(np.var(dqt))	# variance
-			dqt_features.append(np.std(dqt))	# standard deviation
+			
+			average = float('%.3f' %(np.average(dqt)))
+			median = float('%.3f' %(np.median(dqt)))
+                        var = float('%.3f' %(np.var(dqt)))
+                        std = float('%.3f' %(np.std(dqt)))
+
+			dqt_features.append(average)	# mean of all values
+			dqt_features.append(median)	# median
+			dqt_features.append(var)	# variance
+			dqt_features.append(std)	# standard deviation
 
 		return dqt_features
 
 test = Create_features()
-#test.convert_to_features()
+test.convert_to_features()
