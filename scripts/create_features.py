@@ -126,8 +126,8 @@ class Create_features(object):
 		#dt_X_train, dt_X_test, dt_y_train, dt_y_test = cross_validation.train_test_split(dt_featurelist_small, classlist, test_size=0.3, random_state=42)
 		print len(h_X_test) == len(dt_X_test)
 
-		hashdict = self.train_hashfunction(h_X_train, h_X_test)
-		dt_clf = self.train_decisiontree(dt_X_train, dt_X_test)
+		hashdict = self.train_hashfunction(h_X_train, y_train)
+		dt_clf = self.train_decisiontree(dt_X_train, y_train)
 
 
 	def get_hash(self, dqtset):
