@@ -85,10 +85,13 @@ class Create_features(object):
 		# Convert dictionary to feature sets
 		h_featurelist, h_classlist = self.create_hash_set()
 		dt_featurelist, dt_classlist = self.create_dt_feature_set()
+		print h_classlist == dt_classlist
 
 		# create train and test sets
 		h_X_train, h_X_test, h_y_train, h_y_test = cross_validation.train_test_split(h_featurelist, h_classlist, test_size=0.3, random_state=42)
 		dt_X_train, dt_X_test, dt_y_train, dt_y_test = cross_validation.train_test_split(dt_featurelist, dt_classlist, test_size=0.3, random_state=42)
+		print h_X_test == dt_X_test
+
 		hashdict = self.train_hashfunction(h_X_train, h_X_test)
 		dt_clf = self.train_decisiontree(dt_X_train, dt_X_test)
 
@@ -130,7 +133,7 @@ class Create_features(object):
 		# feature selection
 		smaller_featurelist = self.feature_selection(featurelist, classlist)
 
-		return smaller_featurelis, classlist
+		return smaller_featurelist, classlist
 
 	def feature_selection(self, X, y):
 		""" Perform feature selection on feature set. Return modified feature set """
