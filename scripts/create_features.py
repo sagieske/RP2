@@ -92,7 +92,7 @@ class Create_features(object):
 			for dqtset in value:
 				classlist.append(self.get_camera_id(key))
 				h_featurelist.append(self.get_hash(dqtset))
-				dt_featurelist.appen(self.create_dt_feature_set(dqtset))
+				dt_featurelist.append(self.create_dt_feature_set(dqtset))
 		
 		#h_featurelist, h_classlist = self.create_hash_set()
 		#dt_featurelist, dt_classlist = self.create_dt_feature_set()
