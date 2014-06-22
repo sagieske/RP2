@@ -91,7 +91,7 @@ class Create_features(object):
 			# for every different dqt for this camera make & model
 			for dqtset in value:
 				classlist.append(self.get_camera_id(key))
-				h_featurelist.append(self.get_has(dqtset))
+				h_featurelist.append(self.get_hash(dqtset))
 				dt_featurelist.appen(self.create_dt_feature_set(dqtset))
 		
 		#h_featurelist, h_classlist = self.create_hash_set()
@@ -110,7 +110,7 @@ class Create_features(object):
 		dt_clf = self.train_decisiontree(dt_X_train, dt_X_test)
 
 
-	def create_hash(self, dqtset):
+	def get_hash(self, dqtset):
 		"""
 		For all items in camera dictionary convert quantizationtable to hashes. Return hashes and their class
 		"""
