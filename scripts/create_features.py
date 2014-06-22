@@ -1,7 +1,8 @@
 """
 TODO:
-- for every item perform feature creation
-- save
+- create test and train data
+- test output on subclasses
+- use labelencoder sklearn?
 """
 import glob
 import pickle
@@ -11,6 +12,10 @@ import numpy as np
 from sklearn.ensemble import ExtraTreesClassifier
 import operator
 from sklearn import tree
+from sklearn.externals.six import StringIO
+import pydot
+from sklearn import cross_validation
+
 
 class Create_features(object):
 
@@ -62,12 +67,12 @@ class Create_features(object):
 			# known make & model
 			if identifier in self.camera_dict:
 				# value already in dictionary
-				if dqts in self.camera_dict[identifier]:
-					pass
+				#if dqts in self.camera_dict[identifier]:
+				#	pass
 				# new value, same identifier
-				else:
-					value = self.camera_dict[identifier]
-					self.camera_dict[identifier] = value + (dqts,)
+				#else:
+				value = self.camera_dict[identifier]
+				self.camera_dict[identifier] = value + (dqts,)
 
 			# new make & model
 			else:
@@ -94,25 +99,46 @@ class Create_features(object):
 			# for every different dqt for this camera make & model
 			for dqt in value:
 				featurelist.append(self.convert_one(dqt))
-				classlist.append(self.get_camera_id(key[0]))
+				classlist.append(self.get_camera_id(key))
 				counter += 1
 				if counter % 100 == 0:
 					print "COUNTER AT: %i" %(counter)
 		print "> Length featurelist: %i \n > Length classlist: %i"  %(len(featurelist),len(classlist))
 		self.feature_selection(featurelist, classlist)
 		print self.class_to_int_dict
+		for key,value in self.camera_dict.iteritems():
+			print "%s: %i" %(key, len(value))
+
 
 	def feature_selection(self, X, y):
 		clf = ExtraTreesClassifier()
 		X_new = clf.fit(X, y).transform(X) 
 		print clf.feature_importances_ 
 		print X_new.shape
-		print y
+		#print y
 		#for i in range(0,10):
 		#	print X[i]
 		#	print y[i]
-		clf2 = tree.DecisionTreeClassifier()
-		clf2 = clf2.fit(X_new, y)
+		#clf2 = tree.DecisionTreeClassifier()
+		#clf2 = clf2.fit(X_new, y)
+
+		train = X_new
+		target = y
+		X_train, X_test, y_train, y_test = cross_validation.train_test_split(train, target, test_size=0.3, random_state=42)
+		clf3 = tree.DecisionTreeClassifier()
+		clf3.fit(X_train, y_train)
+		#clf3.fit(X_new,y)
+
+		print "Accuracy: %0.2f " % clf3.score(X_train, y_train)
+		scores = cross_validation.cross_val_score(clf3, train, target, cv=15)
+		print "Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() / 2)   
+
+		# print	
+		#dot_data = StringIO.StringIO() 
+		#tree.export_graphviz(clf, out_file=dot_data)
+		#graph = pydot.graph_from_dot_data(dot_data.getvalue()) 
+		#graph.write_pdf("tree.pdf") 
+
 
 	def get_camera_id(self, key):
 		"""
@@ -149,16 +175,28 @@ class Create_features(object):
 			dqt_features.append(sum([r[-i-1] for i, r in enumerate(dqts[index])])) #diagonal sum R -> L
 			dqt_features.append(max(dqt))	# max of all values
 			dqt_features.append(min(dqt))	# min of all values
-			
-			average = float('%.3f' %(np.average(dqt)))
+                        dqt_features.extend(np.amin(dqts[index], axis=1).tolist())
+                        dqt_features.extend(np.amin(dqts[index], axis=0).tolist())
+                        dqt_features.extend(np.amax(dqts[index], axis=1).tolist())
+                        dqt_features.extend(np.amax(dqts[index], axis=0).tolist())
+
+			mean = float('%.3f' %(np.mean(dqt)))
 			median = float('%.3f' %(np.median(dqt)))
                         var = float('%.3f' %(np.var(dqt)))
                         std = float('%.3f' %(np.std(dqt)))
 
-			dqt_features.append(average)	# mean of all values
+			dqt_features.append(mean)	# mean of all values
 			dqt_features.append(median)	# median
 			dqt_features.append(var)	# variance
 			dqt_features.append(std)	# standard deviation
+			dqt_features.extend(np.mean(dqts[index], axis=1).tolist())
+			dqt_features.extend(np.mean(dqts[index], axis=0).tolist())
+                        dqt_features.extend(np.median(dqts[index], axis=1).tolist())
+                        dqt_features.extend(np.median(dqts[index], axis=0).tolist())
+                        dqt_features.extend(np.var(dqts[index], axis=1).tolist())
+                        dqt_features.extend(np.var(dqts[index], axis=0).tolist())
+                        dqt_features.extend(np.std(dqts[index], axis=1).tolist())
+                        dqt_features.extend(np.std(dqts[index], axis=0).tolist())
 
 		return dqt_features
 
