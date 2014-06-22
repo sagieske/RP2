@@ -187,7 +187,8 @@ class Create_features(object):
 		""" Create dictionary of hash functions. Return dictionary"""
 		hashdict = {}
 		for index in range(0,len(hash_trainingset)):
-			hashdict[hash_trainingset[index]] = class_trainingset[index]
+			hashvalue = hash_trainingset[index]
+			hashdict[hashvalue] = class_trainingset[index]
 		print "H> length hash dict: %i" %(len(hashdict))
 		return hashdict 
 
