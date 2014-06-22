@@ -83,57 +83,73 @@ class Create_features(object):
 		Convert dqt to feature or hash and their class list. Create train and test sets. Run training and predictions
 		"""
 		# Convert dictionary to feature sets
-		h_featurelist, h_classlist = self.create_hash_set()
-		dt_featurelist, dt_classlist = self.create_dt_feature_set()
-		print h_classlist == dt_classlist
+		# do for every camera make & model in dictionary
+		classlist = []
+		h_featurelist = []
+		dt_featurelist = []
+		for key, value in self.camera_dict.iteritems():
+			# for every different dqt for this camera make & model
+			for dqtset in value:
+				classlist.append(self.get_camera_id(key))
+				h_featurelist.append(self.get_has(dqtset))
+				dt_featurelist.appen(self.create_dt_feature_set(dqtset))
+		
+		#h_featurelist, h_classlist = self.create_hash_set()
+		#dt_featurelist, dt_classlist = self.create_dt_feature_set()
+		#print h_classlist == dt_classlist
+
+		# feature selection dt set
+		dt_featurelist_small = self.feature_selection(dt_featurelist, classlist)
 
 		# create train and test sets
-		h_X_train, h_X_test, h_y_train, h_y_test = cross_validation.train_test_split(h_featurelist, h_classlist, test_size=0.3, random_state=42)
-		dt_X_train, dt_X_test, dt_y_train, dt_y_test = cross_validation.train_test_split(dt_featurelist, dt_classlist, test_size=0.3, random_state=42)
+		h_X_train, h_X_test, h_y_train, h_y_test = cross_validation.train_test_split(h_featurelist, classlist, test_size=0.3, random_state=42)
+		dt_X_train, dt_X_test, dt_y_train, dt_y_test = cross_validation.train_test_split(dt_featurelist_small, classlist, test_size=0.3, random_state=42)
 		print h_X_test == dt_X_test
 
 		hashdict = self.train_hashfunction(h_X_train, h_X_test)
 		dt_clf = self.train_decisiontree(dt_X_train, dt_X_test)
 
 
-	def create_hash_set(self):
+	def create_hash(self, dqtset):
 		"""
 		For all items in camera dictionary convert quantizationtable to hashes. Return hashes and their class
 		"""
-		featurelist = []
-		classlist = []
+		#featurelist = []
+		#classlist = []
 		# do for every camera make & model in dictionary
-		for key, value in self.camera_dict.iteritems():
-			# for every different dqt for this camera make & model
-			for dqt in value:
-				hash_object = hashlib.sha256(pformat(dqt))
-				featurelist.append(hash_object)
-				classlist.append(self.get_camera_id(key))
-		print "HASH> Length featurelist: %i \n > Length classlist: %i"  %(len(featurelist),len(classlist))
-		return featurelist, classlist
+		#for key, value in self.camera_dict.iteritems():
+		#	# for every different dqt for this camera make & model
+		#	for dqt in value:
+		#		hash_object = hashlib.sha256(pformat(dqt))
+		#		featurelist.append(hash_object)
+		#		classlist.append(self.get_camera_id(key))
+		#print "HASH> Length featurelist: %i \n > Length classlist: %i"  %(len(featurelist),len(classlist))
+		#return featurelist, classlist
+		return hashlib.sha256(pformat(dqtset))
 
-	def create_dt_feature_set(self):
+	def create_dt_feature_set(self,dqtset):
 		"""
 		For all items in camera dictionary convert quantizationtable to features. Return feature array and their class
 		"""	
-		featurelist = []
-		classlist = []
+		#featurelist = []
+		#classlist = []
 		# do for every camera make & model in dictionary
-		counter = 0
-		for key, value in self.camera_dict.iteritems():
-			# for every different dqt for this camera make & model
-			for dqt in value:
-				featurelist.append(self.convert_one(dqt))
-				classlist.append(self.get_camera_id(key))
-				counter += 1
-				#if counter % 100 == 0:
-				#	print "COUNTER AT: %i" %(counter)
-		print "DT> Length featurelist: %i \n > Length classlist: %i"  %(len(featurelist),len(classlist))
-
+		#counter = 0
+		#for key, value in self.camera_dict.iteritems():
+		#	# for every different dqt for this camera make & model
+		#	for dqt in value:
+		#		featurelist.append(self.convert_one(dqt))
+		#		classlist.append(self.get_camera_id(key))
+		#		counter += 1
+		#		#if counter % 100 == 0:
+		#		#	print "COUNTER AT: %i" %(counter)
+		#print "DT> Length featurelist: %i \n > Length classlist: %i"  %(len(featurelist),len(classlist))
+		
 		# feature selection
-		smaller_featurelist = self.feature_selection(featurelist, classlist)
+		#smaller_featurelist = self.feature_selection(featurelist, classlist)
 
-		return smaller_featurelist, classlist
+		#return smaller_featurelist, classlist
+		return self.convert_one(dqtset)
 
 	def feature_selection(self, X, y):
 		""" Perform feature selection on feature set. Return modified feature set """
