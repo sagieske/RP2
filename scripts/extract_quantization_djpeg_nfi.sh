@@ -8,27 +8,39 @@ T="$(date +%s)"
 COUNTER=0
 
 # get all filenames with jpg extension
-cd /media/sharon/My\ Book/PRNU\ Compare\ Image\ Database/Database/
-for image in $(find . -name '*.jpg' -exec echo {} \;);
+imagedatabase=/media/sharon/My\ Book/PRNU\ Compare\ Image\ Database/Database/
+for image in $(find $imagedatabase -name '*.jpg'  -exec echo {} \;);
 do
-#echo $image
 (( COUNTER++ ))
+#real_path=$(readlink -e $image)
+#echo $real_path
 # rename file to delete preceeding dot and space for output files
 filename_nospaces=${image// /_}
-filename_withoutdot=`echo $filename_nospaces | cut -c 3-`
-echo $filename_withoutdot
-outputfilename=/home/sharon/Documents/test/$filename_withoutdot.output
+filename_withoutfolders=${filename_nospaces//\//.}
+filename_brackets1=${filename_withoutfolders//\(/}
+filename_brackets2=${filename_brackets1//\)/}
+outputname_ready=`echo $filename_brackets2 | cut -c 2-`
+
+# delete prepending dot for djpeg process
+filename_spaceslinuxstyle=${image// /\\ }
+filename_spacesbrackets1linuxstyle=${filename_spaceslinuxstyle//\(/\\(}
+filename_spacesbrackets2linuxstyle=${filename_spacesbrackets1linuxstyle//\)/\\)}
+
+#echo $filename_spacesbrackets2linuxstyle.output
+
+outputfilename=/home/sharon/Documents/test/$outputname_ready.output
+echo $outputfilename
 finalname=$outputfilename.djpeg-dqt
-#echo $outputfilename
-#if [ ! -f $finalname ]; then
-	#cd /media/sharon/My\ Book/PRNU\ Compare\ Image\ Database/Database/
-#	djpeg -verbose -verbose $filename_withoutdot 2>&1 | cat > $outputfilename
+
+if [ ! -f $finalname ]; then
+	#echo $filename_spacesbrackets2linuxstyle
+	djpeg -verbose -verbose $filename_spacesbrackets2linuxstyle 2>&1 | cat > $outputfilename
 	# wait until finished
-#	wait
-#	python /home/sharon/Documents/SNE/RP2/scripts/parsefile_djpeg_nfi.py $outputfilename
-#	wait
-#	rm $outputfilename
-#fi
+	wait
+	python /home/sharon/Documents/SNE/RP2/scripts/parsefile_djpeg_nfi.py $outputfilename
+	wait
+	#rm $outputfilename
+fi
 
 if [ $(( $COUNTER % 500 )) -eq 0 ] ; then
 	echo $COUNTER
