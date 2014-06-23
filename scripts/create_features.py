@@ -132,7 +132,7 @@ class Create_features(object):
 
 		hashdict = self.train_hashfunction(h_X_train, y_train)
 		dt_clf = self.train_decisiontree(dt_X_train, y_train)
-
+		self.test_hashfunction(h_X_test, y_test, hashdict)
 
 	def get_hash(self, dqtset):
 		"""
@@ -196,6 +196,15 @@ class Create_features(object):
 			hashdict[hashvalue] = class_trainingset[index]
 		print "H> old length hash dict: %i \n H> new length hash dict: %i" %(len(hash_trainingset), len(hashdict))
 		return hashdict 
+
+	def test_hashfunction(self, hash_testset, class_testset, hashdict):
+		"""  """
+		predictions = []
+		for item in hash_testset:
+			predict = hashdict.get(item, -1)
+			predictions.append(predict)
+		diff = sum(1 for i, j in zip(predictions, class_testset) if i != j)
+		print "H>DIFF %i" %(diff)
 
 	def train_decisiontree(self, feature_trainingset, class_trainingset):	
 		""" Train decision tree with training set. Return classifier"""
