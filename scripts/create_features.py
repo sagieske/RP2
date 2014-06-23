@@ -88,14 +88,15 @@ class Create_features(object):
 		classlist = []
 		h_featurelist = []
 		dt_featurelist = []
+		#dqtdict = {}
 		for key, value in self.camera_dict.iteritems():
 			# for every different dqt for this camera make & model
 			for dqtset in value:
-
 				classlist.append(self.get_camera_id(key))
 				h_featurelist.append(self.get_hash(dqtset))
+				#h_featurelist.append(test)
 				dt_featurelist.append(self.create_dt_feature_set(dqtset))
-		
+		#print len(dqtdict.keys())
 		#h_featurelist, h_classlist = self.create_hash_set()
 		#dt_featurelist, dt_classlist = self.create_dt_feature_set()
 		#print h_classlist == dt_classlist
@@ -147,7 +148,7 @@ class Create_features(object):
 		#		classlist.append(self.get_camera_id(key))
 		#print "HASH> Length featurelist: %i \n > Length classlist: %i"  %(len(featurelist),len(classlist))
 		#return featurelist, classlist
-		return hashlib.sha256(pformat(dqtset))
+		return hashlib.sha256(pformat(dqtset)).hexdigest()
 
 	def create_dt_feature_set(self,dqtset):
 		"""
