@@ -26,19 +26,18 @@ filename_spaceslinuxstyle=${image// /\\ }
 filename_spacesbrackets1linuxstyle=${filename_spaceslinuxstyle//\(/\\(}
 filename_spacesbrackets2linuxstyle=${filename_spacesbrackets1linuxstyle//\)/\\)}
 
-#echo $filename_spacesbrackets2linuxstyle.output
+#echo $filename_spacesbrackets2linuxstyle
 
 outputfilename=/home/sharon/Documents/test/$outputname_ready.output
-echo $outputfilename
+#echo $outputfilename
 finalname=$outputfilename.djpeg-dqt
 
 if [ ! -f $finalname ]; then
-	#echo $filename_spacesbrackets2linuxstyle
-	djpeg -verbose -verbose $filename_spacesbrackets2linuxstyle 2>&1 | cat > $outputfilename
+	echo djpeg -verbose -verbose $filename_spacesbrackets2linuxstyle 2>&1 | cat > $outputfilename
 	# wait until finished
-	wait
-	python /home/sharon/Documents/SNE/RP2/scripts/parsefile_djpeg_nfi.py $outputfilename
-	wait
+	#wait
+	#python /home/sharon/Documents/SNE/RP2/scripts/parsefile_djpeg_nfi.py $outputfilename
+	#wait
 	#rm $outputfilename
 fi
 
