@@ -16,18 +16,19 @@ do
 # rename file to delete preceeding dot and space for output files
 filename_nospaces=${image// /_}
 filename_withoutdot=`echo $filename_nospaces | cut -c 3-`
-
+echo $filename_withoutdot
 outputfilename=/home/sharon/Documents/test/$filename_withoutdot.output
 finalname=$outputfilename.djpeg-dqt
-echo $outputfilename
-if [ ! -f $finalname ]; then
-	djpeg -verbose -verbose $image 2>&1 | cat > $outputfilename
+#echo $outputfilename
+#if [ ! -f $finalname ]; then
+	#cd /media/sharon/My\ Book/PRNU\ Compare\ Image\ Database/Database/
+#	djpeg -verbose -verbose $filename_withoutdot 2>&1 | cat > $outputfilename
 	# wait until finished
-	wait
-	python parsefile_djpeg_nfi.py $outputfilename
-	wait
-	rm $outputfilename
-fi
+#	wait
+#	python /home/sharon/Documents/SNE/RP2/scripts/parsefile_djpeg_nfi.py $outputfilename
+#	wait
+#	rm $outputfilename
+#fi
 
 if [ $(( $COUNTER % 500 )) -eq 0 ] ; then
 	echo $COUNTER
