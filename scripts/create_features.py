@@ -200,7 +200,7 @@ class Create_features(object):
 		predictions = []
 		for item in hash_testset:
 			predict = hashdict.get(item, -1)
-			preditions.append(predict)
+			predictions.append(predict)
 		diff = sum(1 for i, j in zip(predictions, class_testset) if i != j)
 		print "Precision/Recall HASH"
 		sklearn.metrics.precision_score(x,z)
