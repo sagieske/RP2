@@ -78,6 +78,7 @@ class Create_features(object):
 			print "problem! %s, %s, %s" %(infotuple[0], infotuple[1], infotuple[2])
 
 
+
 	def run(self):
 		"""
 		Convert dqt to feature or hash and their class list. Create train and test sets. Run training and predictions
@@ -90,6 +91,7 @@ class Create_features(object):
 		for key, value in self.camera_dict.iteritems():
 			# for every different dqt for this camera make & model
 			for dqtset in value:
+
 				classlist.append(self.get_camera_id(key))
 				h_featurelist.append(self.get_hash(dqtset))
 				dt_featurelist.append(self.create_dt_feature_set(dqtset))
@@ -186,12 +188,24 @@ class Create_features(object):
 	def train_hashfunction(self, hash_trainingset, class_trainingset):
 		""" Create dictionary of hash functions. Return dictionary"""
 		hashdict = {}
-		print "H> seta hash dict: %i \n" %(len(set(hash_trainingset) ) )
 		for index in range(0,len(hash_trainingset)):
 			hashvalue = hash_trainingset[index]
 			hashdict[hashvalue] = class_trainingset[index]
 		print "H> old length hash dict: %i \n H> new length hash dict: %i" %(len(hash_trainingset), len(hashdict))
 		return hashdict 
+
+	def test_hashfunction(self, hash_testset, class_testset, hashdict):
+		"""  """
+		predictions = []
+		for item in hash_testset:
+			predict = hashdict.get(item, -1)
+			preditions.append(predict)
+		diff = sum(1 for i, j in zip(predictions, class_testset) if i != j)
+		print "Precision/Recall HASH"
+		sklearn.metrics.precision_score(x,z)
+		print sklearn.metrics.precision_score(class_testset, predictions)
+		print sklearn.metrics.recall_score(class_testset, predictions)
+		return predictions	
 
 	def train_decisiontree(self, feature_trainingset, class_trainingset):	
 		""" Train decision tree with training set. Return classifier"""
@@ -205,6 +219,13 @@ class Create_features(object):
 		#print "Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() / 2)   
 
 
+	def test_decisiontree(self, dt_testset, dt_class_testset, clf):
+		predictions = clf.predict(dt_testset)
+		print "Precision/Recall DT"
+		print sklearn.metrics.precision_score(dt_class_testset, predictions)
+		print sklearn.metrics.recall_score(dt_class_testset, predictions)
+		return predictions
+		
 
 	def get_camera_id(self, key):
 		"""
