@@ -9,6 +9,7 @@ import pickle
 import re
 import itertools	# for flattening list
 import numpy as np
+import sklearn
 from sklearn.ensemble import ExtraTreesClassifier
 import operator
 from sklearn import tree
@@ -17,6 +18,7 @@ import pydot
 from sklearn import cross_validation
 from pprint import pformat 
 import hashlib
+import time
 
 
 
@@ -24,8 +26,8 @@ class Create_features(object):
 
 	#STARTPATH = '/images/'
 	STARTPATH = '/home/sharon/Documents/test/'
-	FILEPATTERN = self.STARTPATH + '*.output.djpeg-dqt'
-	PICKLEFILE = self.STARTPATH + 'dictionary.pickle'
+	FILEPATTERN = STARTPATH + '*.output.djpeg-dqt'
+	PICKLEFILE = STARTPATH + 'dictionary.pickle'
 	ITEMS = []
 	camera_dict = {}
 	feature_dict = {}
@@ -41,10 +43,12 @@ class Create_features(object):
 		"""
 		# load camera_dict from file
 		if load:
+			print "Loading dictionary from file.."
 			self.camera_dict = pickle.load( open( self.PICKLEFILE, "rb" ) )
 		else:
 			files = glob.glob(self.FILEPATTERN)
 			counter = 0
+			print "Creating dictionary.."
 			for name in files:
 				try:
 					infotuple = pickle.load( open( name, "rb" ) )
@@ -52,15 +56,15 @@ class Create_features(object):
 					counter += 1
 					if counter % 1000 == 0:
 						print counter
-					#if counter == 1000:
-					#	break
 				except:
 					print "problem with file %s" %(name)
 			print "finished dictionary"
 
 		# dump to file
 		if dump:
-			pickle.dump( self.camera_dict, open( self.PICKLEFILE, "wb" ) ).
+			print "Dumping dictionary to file.."
+			pickle.dump( self.camera_dict, open( self.PICKLEFILE, "wb" ) )
+
 
 	def create_dictionary(self, infotuple):
 		""" Extract camera make, model and the dqts """
@@ -100,20 +104,24 @@ class Create_features(object):
 		h_featurelist = []
 		dt_featurelist = []
 		#dqtdict = {}
+		print "Creating feature and class lists.."
 		for key, value in self.camera_dict.iteritems():
 			# for every different dqt for this camera make & model
 			for dqtset in value:
 				classlist.append(self.get_camera_id(key))
 				h_featurelist.append(self.get_hash(dqtset))
 				dt_featurelist.append(self.create_dt_feature_set(dqtset))
+		print len(h_featurelist)
 
 		# feature selection dt set
 		dt_featurelist_small = self.feature_selection(dt_featurelist, classlist)
 		print "DT> new shape:"
 		print dt_featurelist_small.shape
 
+
+		print "Creating train and test sets.."
 		# create indices for train and test sets
-		split = cross_validation.ShuffleSplit(len(classlist), test_size=.3, random_state=42)
+		split = cross_validation.ShuffleSplit(len(classlist), test_size=.3, random_state=13)
 		for i in split:
 			train, test = i
 
@@ -139,12 +147,14 @@ class Create_features(object):
 		#print len(h_X_test)
 
 		# training
+		print "Start training.."
 		hashdict = self.train_hashfunction(h_X_train, y_train)
 		dt_clf = self.train_decisiontree(dt_X_train, y_train)
 
 		# fit
+		print "Start prediction.."
 		predictions_hash = self.test_hashfunction(h_X_test, y_test, hashdict)
-		predictions_dt = self.test_decisiontree(dt_X_test, dt_test, dt_clf)
+		predictions_dt = self.test_decisiontree(dt_X_test, y_test, dt_clf)
 
 	def get_hash(self, dqtset):
 		"""
@@ -166,15 +176,20 @@ class Create_features(object):
 
 	def train_hashfunction(self, hash_trainingset, class_trainingset):
 		""" Create dictionary of hash functions. Return dictionary"""
+		print "> Training hash function.."
+		now = time.time()
 		hashdict = {}
 		for index in range(0,len(hash_trainingset)):
 			hashvalue = hash_trainingset[index]
 			hashdict[hashvalue] = class_trainingset[index]
 		print "H> old length hash dict: %i \n H> new length hash dict: %i" %(len(hash_trainingset), len(hashdict))
+		print "..... Elapsed time: %.5f " %(time.time() - now)
 		return hashdict 
 
 	def test_hashfunction(self, hash_testset, class_testset, hashdict):
-		"""  """
+		""" Test hash functionwith test set. Calculate precision, recall"""
+		now = time.time()
+		print "> Testing hash function.."
 		predictions = []
 		for item in hash_testset:
 			# return -1 when unknown
@@ -182,17 +197,21 @@ class Create_features(object):
 			predictions.append(predict)
 		# number of differences:
 		diff = sum(1 for i, j in zip(predictions, class_testset) if i != j)
-		print "H> Precision/Recall:"
-		sklearn.metrics.precision_score(x,z)
+		print "H> Precision"
 		print sklearn.metrics.precision_score(class_testset, predictions)
+		print "H> Recall"
 		print sklearn.metrics.recall_score(class_testset, predictions)
+		print "..... Elapsed time: %.5f " %(time.time() - now)
 		return predictions	
 
 	def train_decisiontree(self, feature_trainingset, class_trainingset):	
 		""" Train decision tree with training set. Return classifier"""
+		now = time.time()
+		print "> Training decision tree.."
 		# fit classifier
 		clf3 = tree.DecisionTreeClassifier()
 		clf3.fit(feature_trainingset, class_trainingset)
+		print "..... Elapsed time: %.5f " %(time.time() - now)
 		return clf3
 
 		#print "Accuracy: %0.2f " % clf3.score(X_train, y_train)
@@ -201,10 +220,15 @@ class Create_features(object):
 
 
 	def test_decisiontree(self, dt_testset, dt_class_testset, clf):
+		""" Test decision tree with test set. Calculate precision, recall"""
+		now = time.time()
+		print "> Testing decision tree function.."
 		predictions = clf.predict(dt_testset)
-		print "DT> Precision/Recall:"
+		print "DT> Precision:"
 		print sklearn.metrics.precision_score(dt_class_testset, predictions)
+		print "DT> Recall:"
 		print sklearn.metrics.recall_score(dt_class_testset, predictions)
+		print "..... Elapsed time: %.5f " %(time.time() - now)
 		return predictions
 		
 
@@ -239,15 +263,15 @@ class Create_features(object):
 			# extra features
 			totalsum = sum(dqt)
 			dqt_features.append(totalsum)	# total sum
-			dqt_features.append(sum([r[i] fotr i, r in enumerate(dqts[index])]))	#diagonal sum L-> R 
+			dqt_features.append(sum([r[i] for i, r in enumerate(dqts[index])]))	#diagonal sum L-> R 
 			dqt_features.append(sum([r[-i-1] for i, r in enumerate(dqts[index])])) #diagonal sum R -> L
 			dqt_features.append(max(dqt))	# max of all values
 			dqt_features.append(min(dqt))	# min of all values
 
 			mean = float('%.3f' %(np.mean(dqt)))
 			median = float('%.3f' %(np.median(dqt)))
-            var = float('%.3f' %(np.var(dqt)))
-            std = float('%.3f' %(np.std(dqt)))
+			var = float('%.3f' %(np.var(dqt)))
+			std = float('%.3f' %(np.std(dqt)))
 
 			dqt_features.append(mean)	# mean of all values
 			dqt_features.append(median)	# median
@@ -256,15 +280,14 @@ class Create_features(object):
 
 			# axis=0 : over columns, axis=1 : over rows
 			for i in range(0,2):
-		        dqt_features.extend(np.amin(dqts[index], axis=i).tolist()) 
-		        dqt_features.extend(np.amax(dqts[index], axis=i).tolist()) 
+				dqt_features.extend(np.amin(dqts[index], axis=i).tolist()) 
+				dqt_features.extend(np.amax(dqts[index], axis=i).tolist()) 
 				dqt_features.extend(np.mean(dqts[index], axis=i).tolist())
-		        dqt_features.extend(np.median(dqts[index], axis=i).tolist())
-		        dqt_features.extend(np.var(dqts[index], axis=i).tolist())
-		        dqt_features.extend(np.std(dqts[index], axis=i).tolist())
+				dqt_features.extend(np.median(dqts[index], axis=i).tolist())
+				dqt_features.extend(np.var(dqts[index], axis=i).tolist())
+				dqt_features.extend(np.std(dqts[index], axis=i).tolist())
 
 		return dqt_features
 
-test = Create_features(dump=True)
-#test.create_dt_feature_set()
+test = Create_features(dump=False, load=True)
 test.run()
