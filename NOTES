@@ -14,6 +14,11 @@ djpeg -verbose -verbose IMG_6472.JPG 2>&1 | cat > testing1
 
 
 ################
+JPEG QUANTIZATION
+################
+ - does not work for PRNU_Compare_Image_Database/Database/Samsung_NX1000_-camera_1-/*. It only contains 1? quantization table
+
+################
 TODO
 ################
  - implement sklearn decision tree. 

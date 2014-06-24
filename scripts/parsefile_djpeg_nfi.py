@@ -52,7 +52,7 @@ try:
 	else:
 		print "no DQT found for file %s" %(INPUTFILE)
 except: 
-	print "no such file"
+	print "no such file: %s" %(INPUTFILE)
 
 
 

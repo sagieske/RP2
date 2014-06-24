@@ -12,11 +12,13 @@ if os.path.isfile(OUTPUTFILE):
 	sys.exit()
 
 # extract camera information from title
-camerainfo = re.sub('.JPG.output', '',INPUTFILE).split('_')
+filename_camera = INPUTFILE.split('/')[-1]
+camerainfo = re.sub('.JPG.output', '',filename_camera).split('_')
 manufacturer = camerainfo[0]
 cameramodel = camerainfo[1]
 deviceid = camerainfo[2]
 uniqueID = camerainfo[3]
+camerainfo = (manufacturer, cameramodel, deviceid, uniqueID)
 
 # read file
 try:
