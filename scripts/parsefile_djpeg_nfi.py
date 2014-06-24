@@ -14,13 +14,13 @@ if os.path.isfile(OUTPUTFILE):
 ### EXAMPLE /home/sharon/Documents/test/media.sharon.My_Book.PRNU_Compare_Image_Database.Database.Samsung_ST30.Special_images.Facebook_(standard_compression).Reference.02.04_526234_103259413159326_707335452_n.jpg.output
 # extract camera information from title
 total_filename_camera = re.sub('.jpg.output', '',INPUTFILE).split('/')
-print "TOTAL!!! >> %s" %(total_filename_camera)
 sub_filename_camera = total_filename_camera[5].split('.')
 camera_type = sub_filename_camera[5]
 manufacturer = camera_type.split('_')[0]
 cameramodel = '-'.join(camera_type.split('_')[1:])
 folderid = '-'.join(sub_filename_camera [6:])
 camerainfo = (manufacturer, cameramodel, folderid)
+
 # read file
 try:
 	with open(INPUTFILE) as f:
