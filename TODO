@@ -1,4 +1,5 @@
 CODE:
+- KFOLD for recall, precision
 - figure out benchmarking
 - retrieve dqts from site?
 - figure out where decision tree goes wrong
