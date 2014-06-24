@@ -19,55 +19,66 @@ from pprint import pformat
 import hashlib
 
 
+
 class Create_features(object):
 
-	FILEPATTERN = '/images/*.output.djpeg-dqt'
-	#FILEPATTERN = '/tmp/*'
+	#STARTPATH = '/images/'
+	STARTPATH = '/home/sharon/Documents/test/'
+	FILEPATTERN = self.STARTPATH + '*.output.djpeg-dqt'
+	PICKLEFILE = self.STARTPATH + 'dictionary.pickle'
 	ITEMS = []
 	camera_dict = {}
 	feature_dict = {}
 	class_to_int_dict = {}
 
-	def __init__(self):
-		self.load_files()
+	def __init__(self, load=False, dump=False):
+		""" Load all files to dictionary. Can be loaded and/or dumped from/to pickle files"""
+		self.load_files(load, dump)
 
-	def load_files(self):
+	def load_files(self, load,dump):
 		"""
 		Load in all files with specified file pattern. Append infotuple to ITEMS array
 		"""
-		files = glob.glob(self.FILEPATTERN)
-		counter = 0
-		for name in files:
-			try:
-				infotuple = pickle.load( open( name, "rb" ) )
-				self.create_dictionary(infotuple)
-				counter += 1
-				if counter % 1000 == 0:
-					print counter
-				#if counter == 1000:
-				#	break
-			except:
-				print "problem with file %s" %(name)
-		print "finished dictionary"
+		# load camera_dict from file
+		if load:
+			self.camera_dict = pickle.load( open( self.PICKLEFILE, "rb" ) )
+		else:
+			files = glob.glob(self.FILEPATTERN)
+			counter = 0
+			for name in files:
+				try:
+					infotuple = pickle.load( open( name, "rb" ) )
+					self.create_dictionary(infotuple)
+					counter += 1
+					if counter % 1000 == 0:
+						print counter
+					#if counter == 1000:
+					#	break
+				except:
+					print "problem with file %s" %(name)
+			print "finished dictionary"
+
+		# dump to file
+		if dump:
+			pickle.dump( self.camera_dict, open( self.PICKLEFILE, "wb" ) ).
 
 	def create_dictionary(self, infotuple):
 		""" Extract camera make, model and the dqts """
 		camerainfo = infotuple[0]
 		try:
-			camera = re.sub('/images/','',camerainfo[0])
-			identifier = (camera, camerainfo[1])
+			#camera = camerainfo[0]
+			#camera = re.sub(self.STARTPATH,'',camerainfo[0])
+
+			# identifier is camera make and model
+			identifier = (camerainfo[0], camerainfo[1])
+			# check dqt for correctness
 			for j in range(1,3):
 				for i in infotuple[j]:
 					if len(i) != 8:
 						raise Exception("problem for %s" %(infotuple[0]))
 			dqts = [infotuple[1], infotuple[2]]
-			# known make & model
+			# known make & model, append
 			if identifier in self.camera_dict:
-				# value already in dictionary
-				#if dqts in self.camera_dict[identifier]:
-				#	pass
-				# new value, same identifier
-				#else:
 				value = self.camera_dict[identifier]
 				self.camera_dict[identifier] = value + (dqts,)
 
@@ -94,21 +105,19 @@ class Create_features(object):
 			for dqtset in value:
 				classlist.append(self.get_camera_id(key))
 				h_featurelist.append(self.get_hash(dqtset))
-				#h_featurelist.append(test)
 				dt_featurelist.append(self.create_dt_feature_set(dqtset))
-		#print len(dqtdict.keys())
-		#h_featurelist, h_classlist = self.create_hash_set()
-		#dt_featurelist, dt_classlist = self.create_dt_feature_set()
-		#print h_classlist == dt_classlist
 
 		# feature selection dt set
 		dt_featurelist_small = self.feature_selection(dt_featurelist, classlist)
+		print "DT> new shape:"
+		print dt_featurelist_small.shape
 
-		# create train and test sets
+		# create indices for train and test sets
 		split = cross_validation.ShuffleSplit(len(classlist), test_size=.3, random_state=42)
 		for i in split:
 			train, test = i
 
+		# create train and test sets
 		h_X_train = []
 		dt_X_train = []
 		y_train = []
@@ -129,49 +138,24 @@ class Create_features(object):
 		#dt_X_train, dt_X_test, dt_y_train, dt_y_test = cross_validation.train_test_split(dt_featurelist_small, classlist, test_size=0.3, random_state=42)
 		#print len(h_X_test)
 
+		# training
 		hashdict = self.train_hashfunction(h_X_train, y_train)
 		dt_clf = self.train_decisiontree(dt_X_train, y_train)
-		self.test_hashfunction(h_X_test, y_test, hashdict)
+
+		# fit
+		predictions_hash = self.test_hashfunction(h_X_test, y_test, hashdict)
+		predictions_dt = self.test_decisiontree(dt_X_test, dt_test, dt_clf)
 
 	def get_hash(self, dqtset):
 		"""
 		For all items in camera dictionary convert quantizationtable to hashes. Return hashes and their class
 		"""
-		#featurelist = []
-		#classlist = []
-		# do for every camera make & model in dictionary
-		#for key, value in self.camera_dict.iteritems():
-		#	# for every different dqt for this camera make & model
-		#	for dqt in value:
-		#		hash_object = hashlib.sha256(pformat(dqt))
-		#		featurelist.append(hash_object)
-		#		classlist.append(self.get_camera_id(key))
-		#print "HASH> Length featurelist: %i \n > Length classlist: %i"  %(len(featurelist),len(classlist))
-		#return featurelist, classlist
 		return hashlib.sha256(pformat(dqtset)).hexdigest()
 
 	def create_dt_feature_set(self,dqtset):
 		"""
 		For all items in camera dictionary convert quantizationtable to features. Return feature array and their class
 		"""	
-		#featurelist = []
-		#classlist = []
-		# do for every camera make & model in dictionary
-		#counter = 0
-		#for key, value in self.camera_dict.iteritems():
-		#	# for every different dqt for this camera make & model
-		#	for dqt in value:
-		#		featurelist.append(self.convert_one(dqt))
-		#		classlist.append(self.get_camera_id(key))
-		#		counter += 1
-		#		#if counter % 100 == 0:
-		#		#	print "COUNTER AT: %i" %(counter)
-		#print "DT> Length featurelist: %i \n > Length classlist: %i"  %(len(featurelist),len(classlist))
-		
-		# feature selection
-		#smaller_featurelist = self.feature_selection(featurelist, classlist)
-
-		#return smaller_featurelist, classlist
 		return self.convert_one(dqtset)
 
 	def feature_selection(self, X, y):
@@ -179,12 +163,6 @@ class Create_features(object):
 		clf = ExtraTreesClassifier()
 		X_new = clf.fit(X, y).transform(X) 
 		return X_new
-		#print clf.feature_importances_ 
-		#print X_new.shape
-		#print y
-		#for i in range(0,10):
-		#	print X[i]
-		#	print y[i]
 
 	def train_hashfunction(self, hash_trainingset, class_trainingset):
 		""" Create dictionary of hash functions. Return dictionary"""
@@ -199,10 +177,12 @@ class Create_features(object):
 		"""  """
 		predictions = []
 		for item in hash_testset:
+			# return -1 when unknown
 			predict = hashdict.get(item, -1)
 			predictions.append(predict)
+		# number of differences:
 		diff = sum(1 for i, j in zip(predictions, class_testset) if i != j)
-		print "Precision/Recall HASH"
+		print "H> Precision/Recall:"
 		sklearn.metrics.precision_score(x,z)
 		print sklearn.metrics.precision_score(class_testset, predictions)
 		print sklearn.metrics.recall_score(class_testset, predictions)
@@ -222,7 +202,7 @@ class Create_features(object):
 
 	def test_decisiontree(self, dt_testset, dt_class_testset, clf):
 		predictions = clf.predict(dt_testset)
-		print "Precision/Recall DT"
+		print "DT> Precision/Recall:"
 		print sklearn.metrics.precision_score(dt_class_testset, predictions)
 		print sklearn.metrics.recall_score(dt_class_testset, predictions)
 		return predictions
@@ -259,35 +239,32 @@ class Create_features(object):
 			# extra features
 			totalsum = sum(dqt)
 			dqt_features.append(totalsum)	# total sum
-			dqt_features.append(sum([r[i] for i, r in enumerate(dqts[index])]))	#diagonal sum L-> R 
+			dqt_features.append(sum([r[i] fotr i, r in enumerate(dqts[index])]))	#diagonal sum L-> R 
 			dqt_features.append(sum([r[-i-1] for i, r in enumerate(dqts[index])])) #diagonal sum R -> L
 			dqt_features.append(max(dqt))	# max of all values
 			dqt_features.append(min(dqt))	# min of all values
-                        dqt_features.extend(np.amin(dqts[index], axis=1).tolist())
-                        dqt_features.extend(np.amin(dqts[index], axis=0).tolist())
-                        dqt_features.extend(np.amax(dqts[index], axis=1).tolist())
-                        dqt_features.extend(np.amax(dqts[index], axis=0).tolist())
 
 			mean = float('%.3f' %(np.mean(dqt)))
 			median = float('%.3f' %(np.median(dqt)))
-                        var = float('%.3f' %(np.var(dqt)))
-                        std = float('%.3f' %(np.std(dqt)))
+            var = float('%.3f' %(np.var(dqt)))
+            std = float('%.3f' %(np.std(dqt)))
 
 			dqt_features.append(mean)	# mean of all values
 			dqt_features.append(median)	# median
 			dqt_features.append(var)	# variance
 			dqt_features.append(std)	# standard deviation
-			dqt_features.extend(np.mean(dqts[index], axis=1).tolist())
-			dqt_features.extend(np.mean(dqts[index], axis=0).tolist())
-                        dqt_features.extend(np.median(dqts[index], axis=1).tolist())
-                        dqt_features.extend(np.median(dqts[index], axis=0).tolist())
-                        dqt_features.extend(np.var(dqts[index], axis=1).tolist())
-                        dqt_features.extend(np.var(dqts[index], axis=0).tolist())
-                        dqt_features.extend(np.std(dqts[index], axis=1).tolist())
-                        dqt_features.extend(np.std(dqts[index], axis=0).tolist())
+
+			# axis=0 : over columns, axis=1 : over rows
+			for i in range(0,2):
+		        dqt_features.extend(np.amin(dqts[index], axis=i).tolist()) 
+		        dqt_features.extend(np.amax(dqts[index], axis=i).tolist()) 
+				dqt_features.extend(np.mean(dqts[index], axis=i).tolist())
+		        dqt_features.extend(np.median(dqts[index], axis=i).tolist())
+		        dqt_features.extend(np.var(dqts[index], axis=i).tolist())
+		        dqt_features.extend(np.std(dqts[index], axis=i).tolist())
 
 		return dqt_features
 
-test = Create_features()
+test = Create_features(dump=True)
 #test.create_dt_feature_set()
 test.run()
