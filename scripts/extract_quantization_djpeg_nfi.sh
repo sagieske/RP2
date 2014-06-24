@@ -13,20 +13,22 @@ for image in $(find $imagedatabase -name '*.jpg'  -exec echo {} \;);
 do
 (( COUNTER++ ))
 
-# rename file to process brackets
-filename_brackets1=${image//\(/}
-filename_brackets2=${filename_brackets1//\)/}
+# delete brackets and spaces
+#find . -depth -name "* *" -execdir rename 's/ /_/g' "{}" \;
+#find . -depth -name "*(*" -execdir rename 's/\(/-/g' "{}" \;
+#find . -depth -name "*)*" -execdir rename 's/\)/-/g' "{}" \;
+
 
 # delete / and preceeding dot, append to output folder to create output file.
-filename_withoutfolders=${filename_brackets2//\//.}
+filename_withoutfolders=${image//\//.}
 outputname_ready=`echo $filename_withoutfolders | cut -c 2-`
 outputfilename=/home/sharon/Documents/test/$outputname_ready.output
 
-# if already processed with python:
+# if already processed with python this file is present:
 finalname=$outputfilename.djpeg-dqt
 
 if [ ! -f $finalname ]; then
-	djpeg -verbose -verbose $filename_brackets2 2>&1 | cat > $outputfilename
+	djpeg -verbose -verbose $image 2>&1 | cat > $outputfilename
 	# wait until finished
 	wait
 	python /home/sharon/Documents/SNE/RP2/scripts/parsefile_djpeg_nfi.py $outputfilename
