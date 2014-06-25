@@ -1,0 +1,26 @@
+CODE:
+- KFOLD for recall, precision
+- figure out benchmarking
+- retrieve dqts from site?
+- figure out where decision tree goes wrong
+- create decision tree image? 
+- create decision tree rule set?
+
+DONE:
+- convert all input to features 	DONE
+- convert classes to int			DONE
+- figure out PCA / ICA / Feature selection for pre run	DONE feature selection
+	- Todo PCA or ICA??
+- this all vs hashing?
+	- incorporate hashes			DONE
+
+CHAPTER: 
+- write chapter METHOD
+	- write JPEG compression
+	- write decision tree algorithm
+- write chapter EXPERIMENTAL SETUP
+(later on)
+- write chapter RESULTS
+- write chapter CONCLUSION
+- write abstract
+? write acknowledgements

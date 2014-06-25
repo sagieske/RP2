@@ -3,4 +3,4 @@ djpeg
 python
 numpy
 sklearn
-
+python-scipy

@@ -15,3 +15,8 @@ WEEK 3:
 17-06:		Modify previous scripts, Create feature extraction scripts. Run scripts. TODO! SPACE IS FULL ON SERVER :(
 			Figuring out the input for sklearn decisiontreeclassifier
 			Finished extraction dqt tables with script
+20-06:		Incorporate decision tree learning. Works but some problems with few files
+21-06:		Debug extraction of quantization table. Debug decision tree learning
+22-06:		Create executables. Incorporate statistics
+23-06:		Work at location NFI. Modify scripts to use external hard drive, goddamn spaces and brackets! still does not work
+24-06:		Rewrite files without spaces and brackets. Extraction quantization tables from external hard drive done.
