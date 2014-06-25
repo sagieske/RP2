@@ -28,23 +28,35 @@ class Create_features(object):
 	STARTPATH = '/home/sharon/Documents/test/'
 	FILEPATTERN = STARTPATH + '*.output.djpeg-dqt'
 	PICKLEFILE = STARTPATH + 'dictionary.pickle'
+	PICKLE_PATTERN = STARTPATH + '*.pickle'
 	ITEMS = []
 	camera_dict = {}
 	feature_dict = {}
 	class_to_int_dict = {}
 
-	def __init__(self, load=False, dump=False):
+	def __init__(self, load=False, dump=False, multiload=False):
 		""" Load all files to dictionary. Can be loaded and/or dumped from/to pickle files"""
-		self.load_files(load, dump)
+		if multiload:
+			load = True
+		self.load_files(load, dump, multiload)
 
-	def load_files(self, load,dump):
+	def load_files(self, load, dump, multiload):
 		"""
 		Load in all files with specified file pattern. Append infotuple to ITEMS array
 		"""
 		# load camera_dict from file
 		if load:
 			print "Loading dictionary from file.."
-			self.camera_dict = pickle.load( open( self.PICKLEFILE, "rb" ) )
+			if multiload:
+				print "helloooo"
+				print self.PICKLE_PATTERN
+				pickle_files = glob.glob(self.PICKLE_PATTERN)
+				print pickle_files
+				for filename in pickle_files:
+					loadeddict = pickle.load( open( filename, "rb" ) )
+					self.camera_dict = self.merge_dictionaries(self.camera_dict, loadeddict)
+			else:
+				self.camera_dict = pickle.load( open( self.PICKLEFILE, "rb" ) )
 		else:
 			files = glob.glob(self.FILEPATTERN)
 			counter = 0
@@ -64,6 +76,8 @@ class Create_features(object):
 		if dump:
 			print "Dumping dictionary to file.."
 			pickle.dump( self.camera_dict, open( self.PICKLEFILE, "wb" ) )
+		for key,value in self.camera_dict.iteritems():
+			print "%s : %i" %(key, len(value))
 
 
 	def create_dictionary(self, infotuple):
@@ -71,10 +85,10 @@ class Create_features(object):
 		camerainfo = infotuple[0]
 		try:
 			#camera = camerainfo[0]
-			#camera = re.sub(self.STARTPATH,'',camerainfo[0])
-
+			identifier = self.get_identifier(camerainfo)
 			# identifier is camera make and model
-			identifier = (camerainfo[0], camerainfo[1])
+			#identifier = camerainfo
+			#identifier = (camerainfo[0], camerainfo[1])
 			# check dqt for correctness
 			for j in range(1,3):
 				for i in infotuple[j]:
@@ -92,7 +106,46 @@ class Create_features(object):
 		except:
 			print "problem! %s, %s, %s" %(infotuple[0], infotuple[1], infotuple[2])
 
+	def get_identifier(self, camerainfo):
+		""" Extract camera make and model. Needed due to other subfolders in database"""
+		sub1 = 'Dresden_Image_Database-'
+		sub2 = 'fotos-'
+		sub3 = 'Scanner'
+		if any(sub2 in x for x in camerainfo):
+			camerainfolist = self.retrieve_identifier_dresdenfolder(camerainfo, sub2)
+		elif any(sub1 in x for x in camerainfo):
+			camerainfolist = self.retrieve_identifier_dresdenfolder(camerainfo, sub1)
 
+		elif any(sub3 in x for x in camerainfo):
+			info = camerainfo[2]
+			camerainfolist = info.split('-')[0].split('_')
+		else:
+			camerainfolist = camerainfo[0:2]		
+
+		manufacturer = camerainfolist[0]
+		cameramodel = ''.join(camerainfolist[1:])
+		if '--camera-1-' in cameramodel:
+			cameramodel = re.sub('--camera-1-', '', cameramodel)
+		return (manufacturer, cameramodel)
+			
+
+	def retrieve_identifier_dresdenfolder(self, camerainfo, substring):
+		""" Retrieve camera make and model from dresden style folders"""
+		# get correct tuple and extract everythin after substring
+		info = [s for s in camerainfo if substring in s][0]
+		camerainfo_string = info.split(substring,1)[1]
+		# split to get correct list
+		info_split = camerainfo_string.split('-')
+		camerainfolist = info_split[0].split('_')
+		return camerainfolist
+
+
+	def merge_dictionaries(self, dict1, dict2):
+		""" Merge values of dictionaries """
+		keys = set(dict1).union(dict2)
+		default = ()
+		mergedict = dict((k, dict1.get(k, default) + dict2.get(k, default)) for k in keys)
+		return mergedict
 
 	def run(self):
 		"""
@@ -289,5 +342,5 @@ class Create_features(object):
 
 		return dqt_features
 
-test = Create_features(dump=False, load=True)
-test.run()
+test = Create_features(multiload=True, dump=False, load=False)
+#test.run()
