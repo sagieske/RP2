@@ -14,6 +14,7 @@ import operator
 from sklearn import tree
 from sklearn.externals.six import StringIO
 import pydot
+import sklearn
 from sklearn import cross_validation
 from pprint import pformat 
 import hashlib
