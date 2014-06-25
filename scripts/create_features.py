@@ -342,5 +342,5 @@ class Create_features(object):
 
 		return dqt_features
 
-test = Create_features(multiload=True, dump=False, load=False)
-#test.run()
+test = Create_features(multiload=False, dump=False, load=True)
+test.run()
