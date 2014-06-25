@@ -25,10 +25,12 @@ import time
 
 class Create_features(object):
 
-	#STARTPATH = '/images/'
-	STARTPATH = '/home/sharon/Documents/test/'
+	# COMMENT FOR NFI
+	STARTPATH = '/images/'
+	#UNCOMMENT FOR NFI
+	#STARTPATH = '/home/sharon/Documents/test/'
 	FILEPATTERN = STARTPATH + '*.output.djpeg-dqt'
-	PICKLEFILE = STARTPATH + 'dictionary.pickle'
+	PICKLEFILE = STARTPATH + 'server-dictionary.pickle'
 	PICKLE_PATTERN = STARTPATH + '*.pickle'
 	ITEMS = []
 	camera_dict = {}
@@ -49,10 +51,7 @@ class Create_features(object):
 		if load:
 			print "Loading dictionary from file.."
 			if multiload:
-				print "helloooo"
-				print self.PICKLE_PATTERN
 				pickle_files = glob.glob(self.PICKLE_PATTERN)
-				print pickle_files
 				for filename in pickle_files:
 					loadeddict = pickle.load( open( filename, "rb" ) )
 					self.camera_dict = self.merge_dictionaries(self.camera_dict, loadeddict)
@@ -85,10 +84,15 @@ class Create_features(object):
 		""" Extract camera make, model and the dqts """
 		camerainfo = infotuple[0]
 		try:
-			#camera = camerainfo[0]
-			identifier = self.get_identifier(camerainfo)
+			# UNCOMMENT FOR NFI	
+			#identifier = self.get_identifier(camerainfo)
+			
 			# identifier is camera make and model
-			#identifier = camerainfo
+			# COMMENT FOR NFI
+			cameramake = re.sub(self.STARTPATH, '', camerainfo[0])
+			identifier = (cameramake, camerainfo[1])
+			
+			#UNCOMMENT FOR NFI
 			#identifier = (camerainfo[0], camerainfo[1])
 			# check dqt for correctness
 			for j in range(1,3):
@@ -343,5 +347,5 @@ class Create_features(object):
 
 		return dqt_features
 
-test = Create_features(multiload=True, dump=False, load=False)
+test = Create_features(multiload=False, dump=True, load=False)
 #test.run()
