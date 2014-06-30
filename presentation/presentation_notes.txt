@@ -1,0 +1,7 @@
+NOTES:
+
+- hash database is easier to build, decision tree needs more examples (see folds)
+- hash database can not handle small differences in tables, decision tree can
+- can you update a decision tree easily?
+- todo: timing
+
