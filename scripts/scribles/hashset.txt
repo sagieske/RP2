@@ -1,0 +1,148 @@
+Loading dictionary from file..
+('Kodak', 'M1063') : 2458
+('Ricoh', 'GX100') : 1283
+('Panasonic', 'DMC-FZ50') : 962
+('PS', 'Vita') : 220
+('Olympus', 'mju') : 1052
+('Sony', 'DSC-H50') : 593
+('Agfa', 'DC-504') : 262
+('Rollei', 'RCP-7325XS') : 607
+('Panasonic', 'Lumix-FZ45') : 356
+('Samsung', 'ST30') : 340
+('FujiFilm', 'FinePixJ50') : 647
+('Praktica', 'DCZ5.9') : 1039
+('Nikon', 'D200') : 831
+('Samsung', 'Digimax-S500') : 1060
+('Casio', 'EXILIM-EX-FC100') : 15
+('Nikon', 'D70') : 405
+('Canon', 'Ixus55') : 242
+('Casio', 'EX-Z150') : 946
+('Samsung', 'Galaxy-S3-mini') : 1280
+('Logitech', 'QuickCam-Communicate-STX') : 4059
+('Nikon', 'D70s') : 409
+('Motorola', 'V360') : 4060
+('Samsung', 'L74wide') : 705
+('Agfa', 'Sensor530s') : 406
+('Epson', 'StylusSX205') : 31
+('Samsung', 'NV15') : 663
+('Agfa', 'Sensor505-x') : 209
+('Canon', 'Ixus70') : 585
+('Samsung', 'NX1000') : 350
+('Blackberry', 'Curve-9300') : 1080
+('Nikon', 'CoolPixS710') : 993
+('Pentax', 'OptioW60') : 239
+('Sony', 'DSC-W170') : 422
+('Canon', 'Powershot-A430') : 10326
+('Pentax', 'OptioA40') : 715
+('Canon', 'PowerShotA640') : 188
+('Agfa', 'DC-830i') : 414
+('Agfa', 'DC-733s') : 329
+('Blackberry', 'Curve-9360') : 2669
+('Canon', 'Powershot-A630') : 1458
+('Sony', 'DSC-T77') : 758
+PS : 1
+Pentax : 2
+Motorola : 1
+Epson : 1
+Rollei : 1
+Samsung : 6
+Blackberry : 2
+Logitech : 1
+Canon : 5
+Casio : 2
+Olympus : 1
+Kodak : 1
+Nikon : 4
+Ricoh : 1
+FujiFilm : 1
+Praktica : 1
+Sony : 3
+Agfa : 5
+Panasonic : 2
+TOTAL: 45666
+Creating feature and class lists..
+KEY VALUE = make
+DT> old shape: (45666, 64) 
+number of unique hashes: 1016
+>>>> shape feature selection:
+(45666, 54)
+DT> new shape:
+(45666, 54)
+Creating train and test sets..
+Start training..
+> Training hash function..
+H> old length hash dict: 36532 
+ H> new length hash dict: 933
+..... Elapsed time HASH train: 0.00797 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.63813 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.00428 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.06313 
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 944
+..... Elapsed time HASH train: 0.00801 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.54743 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.00431 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.06273 
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 958
+..... Elapsed time HASH train: 0.00796 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.64845 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.00406 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.06143 
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 943
+..... Elapsed time HASH train: 0.00796 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.50232 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.00442 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.06323 
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 945
+..... Elapsed time HASH train: 0.00803 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.50884 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.00390 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.06270 
+
+HASH ALGORITHM:
+0:	0.7966	0.6758	0.6738
+1:	0.7613	0.6823	0.6779
+2:	0.8060	0.6813	0.6801
+3:	0.8034	0.6779	0.6756
+4:	0.7889	0.6771	0.6748
+Average:	 0.7912 	 0.6789	0.6764
+
+
+DT ALGORITHM:
+0:	0.9015	0.8901	0.8902
+1:	0.8978	0.8869	0.8869
+2:	0.9036	0.8913	0.8913
+3:	0.8990	0.8888	0.8887
+4:	0.9052	0.8917	0.8915
+Average:	 0.9014 	 0.8897	0.8897

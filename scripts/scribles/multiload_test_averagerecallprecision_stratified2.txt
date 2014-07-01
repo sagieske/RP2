@@ -1,0 +1,130 @@
+Loading dictionary from file..
+('Kodak', 'M1063') : 2458
+('Ricoh', 'GX100') : 1283
+('Panasonic', 'DMC-FZ50') : 962
+('PS', 'Vita') : 220
+('Olympus', 'mju') : 1052
+('Sony', 'DSC-H50') : 593
+('Agfa', 'DC-504') : 262
+('Rollei', 'RCP-7325XS') : 607
+('Panasonic', 'Lumix-FZ45') : 356
+('Samsung', 'ST30') : 340
+('FujiFilm', 'FinePixJ50') : 647
+('Praktica', 'DCZ5.9') : 1039
+('Nikon', 'D200') : 831
+('Samsung', 'Digimax-S500') : 1060
+('Casio', 'EXILIM-EX-FC100') : 15
+('Nikon', 'D70') : 405
+('Canon', 'Ixus55') : 242
+('Casio', 'EX-Z150') : 946
+('Samsung', 'Galaxy-S3-mini') : 1280
+('Logitech', 'QuickCam-Communicate-STX') : 4059
+('Nikon', 'D70s') : 409
+('Motorola', 'V360') : 4060
+('Samsung', 'L74wide') : 705
+('Agfa', 'Sensor530s') : 406
+('Epson', 'StylusSX205') : 31
+('Samsung', 'NV15') : 663
+('Agfa', 'Sensor505-x') : 209
+('Canon', 'Ixus70') : 585
+('Samsung', 'NX1000') : 350
+('Blackberry', 'Curve-9300') : 1080
+('Nikon', 'CoolPixS710') : 993
+('Pentax', 'OptioW60') : 239
+('Sony', 'DSC-W170') : 422
+('Canon', 'Powershot-A430') : 10326
+('Pentax', 'OptioA40') : 715
+('Canon', 'PowerShotA640') : 188
+('Agfa', 'DC-830i') : 414
+('Agfa', 'DC-733s') : 329
+('Blackberry', 'Curve-9360') : 2669
+('Canon', 'Powershot-A630') : 1458
+('Sony', 'DSC-T77') : 758
+TOTAL: 45666
+Creating feature and class lists..
+45666
+DT> new shape:
+(45666, 95)
+Creating train and test sets..
+Start training..
+> Training hash function..
+H> old length hash dict: 36532 
+ H> new length hash dict: 933
+..... Elapsed time: 0.01050 
+DT> Training decision tree..
+..... Elapsed time: 2.89878 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00496 
+DT> Testing decision tree function..
+..... Elapsed time: 0.11048 
+HASH precision: 0.7348 	 recall: 0.7048
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 944
+..... Elapsed time: 0.00672 
+DT> Training decision tree..
+..... Elapsed time: 2.86914 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00409 
+DT> Testing decision tree function..
+..... Elapsed time: 0.10758 
+HASH precision: 0.6570 	 recall: 0.7070
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 958
+..... Elapsed time: 0.00635 
+DT> Training decision tree..
+..... Elapsed time: 2.85650 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00427 
+DT> Testing decision tree function..
+..... Elapsed time: 0.10749 
+HASH precision: 0.6543 	 recall: 0.7086
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 943
+..... Elapsed time: 0.00636 
+DT> Training decision tree..
+..... Elapsed time: 2.86035 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00408 
+DT> Testing decision tree function..
+..... Elapsed time: 0.10733 
+HASH precision: 0.6497 	 recall: 0.7083
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 945
+..... Elapsed time: 0.00648 
+DT> Training decision tree..
+..... Elapsed time: 2.83397 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00407 
+DT> Testing decision tree function..
+..... Elapsed time: 0.10724 
+HASH precision: 0.6604 	 recall: 0.7037
+
+HASH ALGORITHM:
+0:	0.7348	0.7048
+1:	0.6570	0.7070
+2:	0.6543	0.7086
+3:	0.6497	0.7083
+4:	0.6604	0.7037
+Average:	 0.6712 	 0.7065
+
+
+DT ALGORITHM:
+0:	0.9022	0.8907
+1:	0.8980	0.8878
+2:	0.9032	0.8917
+3:	0.9016	0.8901
+4:	0.9070	0.8937
+Average:	 0.9024 	 0.8908

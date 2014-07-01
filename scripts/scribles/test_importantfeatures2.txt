@@ -1,0 +1,201 @@
+Loading dictionary from file..
+('Kodak', 'M1063') : 2458
+('Ricoh', 'GX100') : 1283
+('Panasonic', 'DMC-FZ50') : 962
+('PS', 'Vita') : 220
+('Olympus', 'mju') : 1052
+('Sony', 'DSC-H50') : 593
+('Agfa', 'DC-504') : 262
+('Rollei', 'RCP-7325XS') : 607
+('Panasonic', 'Lumix-FZ45') : 356
+('Samsung', 'ST30') : 340
+('FujiFilm', 'FinePixJ50') : 647
+('Praktica', 'DCZ5.9') : 1039
+('Nikon', 'D200') : 831
+('Samsung', 'Digimax-S500') : 1060
+('Casio', 'EXILIM-EX-FC100') : 15
+('Nikon', 'D70') : 405
+('Canon', 'Ixus55') : 242
+('Casio', 'EX-Z150') : 946
+('Samsung', 'Galaxy-S3-mini') : 1280
+('Logitech', 'QuickCam-Communicate-STX') : 4059
+('Nikon', 'D70s') : 409
+('Motorola', 'V360') : 4060
+('Samsung', 'L74wide') : 705
+('Agfa', 'Sensor530s') : 406
+('Epson', 'StylusSX205') : 31
+('Samsung', 'NV15') : 663
+('Agfa', 'Sensor505-x') : 209
+('Canon', 'Ixus70') : 585
+('Samsung', 'NX1000') : 350
+('Blackberry', 'Curve-9300') : 1080
+('Nikon', 'CoolPixS710') : 993
+('Pentax', 'OptioW60') : 239
+('Sony', 'DSC-W170') : 422
+('Canon', 'Powershot-A430') : 10326
+('Pentax', 'OptioA40') : 715
+('Canon', 'PowerShotA640') : 188
+('Agfa', 'DC-830i') : 414
+('Agfa', 'DC-733s') : 329
+('Blackberry', 'Curve-9360') : 2669
+('Canon', 'Powershot-A630') : 1458
+('Sony', 'DSC-T77') : 758
+PS : 1
+Pentax : 2
+Motorola : 1
+Epson : 1
+Rollei : 1
+Samsung : 6
+Blackberry : 2
+Logitech : 1
+Canon : 5
+Casio : 2
+Olympus : 1
+Kodak : 1
+Nikon : 4
+Ricoh : 1
+FujiFilm : 1
+Praktica : 1
+Sony : 3
+Agfa : 5
+Panasonic : 2
+TOTAL: 45666
+Creating feature and class lists..
+KEY VALUE = cameramodel
+DT> old shape: (45666, 64) 
+>>>> shape feature selection:
+(45666, 89)
+3.02215448487
+IMPORTANT FEATURES
+DQT1:
+['0.20', '0.14', '0.04', '0.04', '0.19', '0.27', '0.22', '0.23']
+['0.02', '0.04', '0.06', '0.22', '0.01', '0.48', '1.64', '0.42']
+['0.06', '0.02', '0.01', '0.00', '0.62', '0.20', '0.05', '0.20']
+['0.32', '0.02', '1.23', '0.72', '0.08', '0.58', '0.02', '0.10']
+['0.21', '0.04', '0.03', '0.84', '0.22', '0.57', '0.03', '0.17']
+['0.06', '0.09', '0.09', '0.27', '0.02', '0.87', '0.40', '0.01']
+['0.01', '0.28', '0.14', '0.07', '0.03', '0.68', '0.20', '0.04']
+['0.04', '0.27', '0.25', '0.03', '0.21', '0.28', '0.19', '1.58']
+rest DQT1:
+	 Totalsum: 0.09, diagonalsum: 0.07, diagonalsum: 0.10, max: 0.66, min: 0.59
+	 Mean: 0.11, median: 0.01, var: 0.20, std: 0.08
+axis: 0
+	Min: ['0.44', '0.08', '0.21', '0.12', '0.01', '0.23', '0.34', '0.67'] 
+	 Max: ['0.20', '0.02', '0.30', '0.53', '0.23', '2.06', '0.25', '0.04'] 
+	 Mean: ['0.04', '0.33', '0.32', '0.14', '0.10', '0.19', '0.06'] 
+	 Median: ['0.18', '0.12', '0.12', '0.03', '0.24', '0.01', '0.94', '0.79'] 
+	 Var: ['0.20', '0.25', '0.33', '0.04', '0.29', '0.15', '0.26', '0.36'] 
+	 Std: ['0.13', '2.41', '0.02', '0.18', '0.10', '0.44', '0.21', '0.12']
+axis: 1
+	Min: ['1.84', '0.13', '0.14', '0.75', '0.39', '1.21', '0.12', '0.15'] 
+	 Max: ['0.05', '1.70', '0.22', '0.12', '0.97', '0.14', '0.13', '0.17'] 
+	 Mean: ['1.02', '0.02', '0.38', '0.55', '0.10', '0.11', '0.26'] 
+	 Median: ['1.12', '0.26', '0.40', '0.06', '0.51', '0.06', '0.35', '0.35'] 
+	 Var: ['0.06', '0.28', '0.34', '0.04', '0.13', '0.46', '0.48', '0.79'] 
+	 Std: ['0.11']
+DQT2:
+['0.25', '0.13', '0.04', '0.03', '0.39', '0.25', '0.02', '0.15']
+['0.04', '0.02', '0.00', '1.08', '0.05', '0.05', '0.01', '0.00']
+['0.97', '0.50', '0.04', '1.31', '0.00', '0.47', '0.16', '0.00']
+['0.01', '0.03', '0.02', '0.01', '1.70', '0.03', '0.32', '0.00']
+['0.88', '0.00', '0.09', '0.17', '2.15', '0.00', '0.00', '0.06']
+['1.51', '0.05', '0.00', '0.00', '0.01', '0.03', '0.01', '0.29']
+['0.08', '0.00', '0.00', '0.00', '0.01', '0.00', '0.00', '0.00']
+['0.03', '0.17', '0.00', '0.53', '0.08', '0.61', '0.01', '0.00']
+rest DQT2:
+	 Totalsum: 0.52, diagonalsum: 0.03, diagonalsum: 0.00, max: 1.30, min: 0.19
+	 Mean: 0.05, median: 0.02, var: 0.24, std: 0.07
+axis: 0
+	Min: ['0.20', '0.05', '0.39', '0.40', '0.00', '0.10', '0.03', '0.19'] 
+	 Max: ['0.00', '0.79', '0.01', '0.01', '0.01', '0.36', '0.03', '0.15'] 
+	 Mean: ['0.20', '0.25', '0.07', '1.82', '0.18', '0.00', '0.01'] 
+	 Median: ['0.01', '0.11', '0.06', '0.07', '0.97', '0.01', '0.09', '0.00'] 
+	 Var: ['0.00', '0.24', '0.18', '0.03', '0.96', '1.09', '0.12', '0.00'] 
+	 Std: ['0.13', '0.25', '0.05', '1.25', '0.66', '0.00', '0.73', '0.00']
+axis: 1
+	Min: ['0.52', '0.00', '0.00', '0.02', '0.09', '0.11', '0.08', '0.02'] 
+	 Max: ['0.09', '1.98', '2.14', '0.31', '0.02', '0.05', '0.01', '0.00'] 
+	 Mean: ['0.38', '0.09', '0.09', '0.00', '0.00', '0.01', '0.00'] 
+	 Median: ['0.15', '0.07', '0.15', '0.26', '0.08', '2.22', '0.02', '0.00'] 
+	 Var: ['0.01', '0.33', '0.21', '0.14', '3.02', '0.79', '0.01', '0.00'] 
+	 Std: ['0.00']
+DT> new shape:
+(45666, 89)
+Creating train and test sets..
+Start training..
+> Training hash function..
+H> old length hash dict: 36532 
+ H> new length hash dict: 933
+..... Elapsed time: 0.01058 
+DT> Training decision tree..
+..... Elapsed time: 3.00328 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00524 
+DT> Testing decision tree function..
+..... Elapsed time: 0.10416 
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 944
+..... Elapsed time: 0.00640 
+DT> Training decision tree..
+..... Elapsed time: 2.97245 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00400 
+DT> Testing decision tree function..
+..... Elapsed time: 0.10314 
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 958
+..... Elapsed time: 0.00634 
+DT> Training decision tree..
+..... Elapsed time: 3.04477 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00386 
+DT> Testing decision tree function..
+..... Elapsed time: 0.10124 
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 943
+..... Elapsed time: 0.00641 
+DT> Training decision tree..
+..... Elapsed time: 2.92968 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00401 
+DT> Testing decision tree function..
+..... Elapsed time: 0.10349 
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 945
+..... Elapsed time: 0.00642 
+DT> Training decision tree..
+..... Elapsed time: 3.01346 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00395 
+DT> Testing decision tree function..
+..... Elapsed time: 0.10127 
+
+HASH ALGORITHM:
+0:	0.7363	0.7047	0.6886
+1:	0.6576	0.7067	0.6804
+2:	0.6511	0.7085	0.6821
+3:	0.6508	0.7084	0.6820
+4:	0.6598	0.7029	0.6763
+Average:	 0.6711 	 0.7063	0.6819
+
+
+DT ALGORITHM:
+0:	0.9020	0.8906	0.8908
+1:	0.8974	0.8871	0.8871
+2:	0.9039	0.8923	0.8922
+3:	0.9021	0.8904	0.8906
+4:	0.9056	0.8926	0.8926
+Average:	 0.9022 	 0.8906	0.8907

@@ -1,0 +1,351 @@
+Loading dictionary from file..
+('Kodak', 'M1063') : 2458
+('Ricoh', 'GX100') : 1283
+('Panasonic', 'DMC-FZ50') : 962
+('PS', 'Vita') : 220
+('Olympus', 'mju') : 1052
+('Sony', 'DSC-H50') : 593
+('Agfa', 'DC-504') : 262
+('Rollei', 'RCP-7325XS') : 607
+('Panasonic', 'Lumix-FZ45') : 356
+('Samsung', 'ST30') : 340
+('FujiFilm', 'FinePixJ50') : 647
+('Praktica', 'DCZ5.9') : 1039
+('Nikon', 'D200') : 831
+('Samsung', 'Digimax-S500') : 1060
+('Casio', 'EXILIM-EX-FC100') : 15
+('Nikon', 'D70') : 405
+('Canon', 'Ixus55') : 242
+('Casio', 'EX-Z150') : 946
+('Samsung', 'Galaxy-S3-mini') : 1280
+('Logitech', 'QuickCam-Communicate-STX') : 4059
+('Nikon', 'D70s') : 409
+('Motorola', 'V360') : 4060
+('Samsung', 'L74wide') : 705
+('Agfa', 'Sensor530s') : 406
+('Epson', 'StylusSX205') : 31
+('Samsung', 'NV15') : 663
+('Agfa', 'Sensor505-x') : 209
+('Canon', 'Ixus70') : 585
+('Samsung', 'NX1000') : 350
+('Blackberry', 'Curve-9300') : 1080
+('Nikon', 'CoolPixS710') : 993
+('Pentax', 'OptioW60') : 239
+('Sony', 'DSC-W170') : 422
+('Canon', 'Powershot-A430') : 10326
+('Pentax', 'OptioA40') : 715
+('Canon', 'PowerShotA640') : 188
+('Agfa', 'DC-830i') : 414
+('Agfa', 'DC-733s') : 329
+('Blackberry', 'Curve-9360') : 2669
+('Canon', 'Powershot-A630') : 1458
+('Sony', 'DSC-T77') : 758
+PS : 1
+Pentax : 2
+Motorola : 1
+Epson : 1
+Rollei : 1
+Samsung : 6
+Blackberry : 2
+Logitech : 1
+Canon : 5
+Casio : 2
+Olympus : 1
+Kodak : 1
+Nikon : 4
+Ricoh : 1
+FujiFilm : 1
+Praktica : 1
+Sony : 3
+Agfa : 5
+Panasonic : 2
+TOTAL: 45666
+Creating feature and class lists..
+DT> old shape: (45666, 64) 
+>>>> shape feature selection:
+(45666, 98)
+[  7.93036853e-04   4.17670651e-04   1.19122717e-04   2.13423716e-03
+   5.52214716e-06   1.62470149e-03   4.01228304e-04   7.91552987e-03
+   1.93273104e-04   5.33850891e-04   6.02841534e-04   8.78003985e-03
+   1.35627009e-03   8.91297807e-03   8.91077719e-03   5.61745132e-04
+   6.89437835e-04   1.02467228e-03   2.52488952e-03   1.87664499e-04
+   7.87514148e-03   1.29684662e-03   1.70877420e-04   4.14355537e-04
+   1.61131122e-03   1.23316240e-04   1.57154622e-03   5.09791107e-04
+   1.98956997e-03   9.16324156e-03   8.80757060e-03   1.99168523e-04
+   1.03685989e-02   5.54743325e-04   3.42209520e-04   3.74030302e-03
+   4.22367529e-03   5.21358366e-03   1.00452617e-02   6.12635017e-04
+   1.14185362e-03   3.64591511e-03   1.91940177e-03   1.10994782e-03
+   1.22734443e-03   1.67153812e-03   1.61541805e-03   3.53675181e-03
+   2.80413754e-03   1.84402081e-03   8.21281476e-04   7.90266730e-03
+   5.67092801e-05   1.75133906e-03   5.69257419e-03   2.17347483e-02
+   1.03644425e-02   2.41781576e-03   5.70329416e-03   5.52834764e-04
+   9.74239425e-04   1.97928063e-04   1.02163616e-03   3.63475147e-04
+   1.12820699e-03   1.63479846e-03   8.83353515e-04   1.58605098e-03
+   1.73845649e-03   1.35134357e-03   2.13341336e-03   2.52495711e-03
+   1.92532459e-02   7.59239978e-04   5.02602137e-05   1.29852841e-04
+   1.49230828e-04   6.43366459e-03   2.07760926e-03   7.40106514e-04
+   6.21921500e-03   6.96124130e-03   5.77267800e-05   2.41433608e-03
+   3.25664661e-05   1.03386257e-03   3.46009879e-03   2.79871573e-03
+   1.25395126e-04   4.74704788e-04   2.20226246e-03   4.00627061e-03
+   4.32849169e-04   4.89725937e-03   6.77745083e-03   3.37468044e-03
+   3.03500269e-03   9.20162149e-04   2.52006371e-03   3.93572759e-04
+   3.77316071e-03   2.30264834e-04   2.18263961e-03   8.42678721e-04
+   6.45175263e-04   4.05238649e-04   1.34267211e-03   1.77423000e-03
+   1.46322599e-03   1.94277932e-03   3.00402920e-03   2.56110115e-03
+   2.61335037e-02   8.68908490e-03   1.95698153e-02   3.84723503e-04
+   3.88294552e-03   7.74794047e-04   8.28896604e-04   3.10135439e-03
+   4.91419349e-03   1.65059297e-03   8.57246285e-03   2.50792413e-05
+   1.10531779e-02   1.28391396e-02   5.27560913e-03   9.54878996e-03
+   2.35411027e-03   3.04329867e-03   1.43593843e-02   1.42427935e-04
+   5.04439416e-04   1.69417497e-03   5.93524081e-04   2.25246393e-03
+   1.27055898e-04   2.31027831e-03   5.75595652e-04   1.25800270e-03
+   2.55472742e-03   1.31992484e-03   3.36815354e-03   4.80402759e-03
+   2.60130038e-03   7.04938529e-04   5.23660549e-04   1.04362564e-03
+   6.13386829e-04   3.26403971e-04   8.87175362e-04   5.29409920e-03
+   2.46835371e-03   1.80976822e-03   2.87385045e-03   1.43145574e-04
+   1.30607762e-03   8.38833957e-04   1.28880531e-02   7.56285415e-04
+   2.46917451e-02   7.67236604e-03   8.83443183e-03   3.06827090e-04
+   5.80794663e-03   1.20435013e-03   3.24372772e-03   1.70793202e-03
+   3.45131084e-03   5.62130172e-03   2.11227868e-03   2.94734664e-04
+   1.57699541e-03   1.32236728e-03   7.92558158e-03   9.32704932e-03
+   0.00000000e+00   7.56935597e-04   3.23042950e-03   3.46721980e-03
+   4.05774116e-04   1.66197420e-03   3.20849580e-05   8.30505464e-03
+   5.47285806e-03   1.70065894e-03   4.88322391e-03   1.30584568e-04
+   1.75831528e-03   7.23460698e-05   2.88691735e-06   5.47365630e-04
+   5.49209908e-03   5.40099678e-04   1.58729319e-04   6.69736937e-05
+   4.78983701e-05   2.80804254e-03   2.04594473e-02   3.12792365e-03
+   8.30848848e-06   2.52604151e-03   3.72207610e-05   1.81912409e-02
+   2.14879158e-04   1.23844351e-03   8.95470826e-05   1.99264984e-03
+   5.89215034e-06   6.88998833e-05   3.96854126e-03   3.09836689e-03
+   9.52713815e-06   1.69295581e-03   3.55465138e-03   1.91547703e-03
+   7.95079648e-04   0.00000000e+00   7.19408665e-06   1.02195114e-05
+   3.49251116e-04   1.34448239e-04   6.02564602e-05   2.53683013e-04
+   2.63397351e-03   1.52880788e-05   6.88907013e-03   3.42896109e-05
+   4.13884694e-03   5.32161554e-05   1.81809225e-05   7.09131307e-05
+   6.89086500e-05   3.05555085e-03   4.99238994e-03   5.97812370e-04
+   1.49910022e-04   2.59219392e-03   5.96246838e-04   7.74459488e-05
+   4.51199350e-04   6.66950003e-04   4.09778741e-03   7.91719142e-04
+   1.65049583e-04   4.48356882e-04   1.02419425e-02   1.63434061e-04
+   2.59104755e-03   1.06266779e-04   3.18347866e-03   4.30670709e-03
+   4.67240358e-05   2.54189730e-04   2.12846194e-04   1.25231535e-02
+   9.07041654e-06   2.20649121e-02   1.02290907e-03   1.05742100e-03
+   1.60886091e-04   6.49727202e-03   1.08133616e-03   7.24943321e-05
+   1.91185242e-05   4.63465179e-03   3.28694023e-04   5.63904526e-04
+   9.74607006e-06   1.27077431e-02   5.36348383e-04   6.37701943e-03
+   1.07836176e-02   8.76122924e-06   6.91531084e-04   1.10181255e-03
+   3.44963296e-03   5.21337193e-04   9.79782310e-04   4.00823551e-04
+   1.77980193e-04   3.23376783e-05   2.28679933e-03   1.85390379e-03
+   5.23348035e-03   9.91259276e-03   6.25332479e-03   2.26308314e-03
+   8.44992938e-03   8.93444829e-04   9.98111538e-04   3.82808370e-04
+   4.54923135e-03   1.03207977e-03   5.08525498e-04   4.96020427e-05
+   7.49051278e-05   7.00413242e-04   1.04121822e-02   3.16937554e-05
+   5.73869892e-03   2.96378666e-04   5.31202075e-06   1.79220626e-04
+   1.15295260e-06   8.77214436e-06   2.60906712e-03   7.66683902e-03
+   1.37368760e-03   2.18561103e-03   2.49736588e-04   1.06153818e-03
+   8.54859726e-05   1.31204346e-04   1.46086699e-03   1.37275977e-02
+   1.59391606e-02   1.52015683e-04   3.13842562e-05   1.13902636e-03
+   8.72402226e-05   1.89092838e-04   2.68001974e-04   3.06223623e-04
+   1.57627235e-03   2.56250252e-04   2.54987735e-05   0.00000000e+00
+   0.00000000e+00   9.40733852e-05   6.69752502e-04   5.55587654e-03
+   7.74573155e-04   2.13378478e-02   2.16755766e-02   1.44713829e-04
+   7.35736012e-05   0.00000000e+00]
+DT> new shape:
+(45666, 98)
+Creating train and test sets..
+Start training..
+> Training hash function..
+H> old length hash dict: 41099 
+ H> new length hash dict: 974
+..... Elapsed time: 0.01177 
+DT> Training decision tree..
+..... Elapsed time: 3.84284 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00280 
+DT> Testing decision tree function..
+..... Elapsed time: 0.06424 
+METRICS FSCORE HASH
+(0.72208641512937344, 0.70067878257061533, 0.68513110304972658, None)
+METRICS FSCORE DECISION TREE
+(0.90424379072610162, 0.89139478870155464, 0.8916084339813809, None)
+HASH precision: 0.7221 	 recall: 0.7007
+Start training..
+> Training hash function..
+H> old length hash dict: 41099 
+ H> new length hash dict: 982
+..... Elapsed time: 0.00707 
+DT> Training decision tree..
+..... Elapsed time: 3.82170 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00251 
+DT> Testing decision tree function..
+..... Elapsed time: 0.06392 
+METRICS FSCORE HASH
+(0.66031289615833055, 0.70812349463542812, 0.68165766895550306, None)
+METRICS FSCORE DECISION TREE
+(0.89931958038150583, 0.89029997810378803, 0.88991939594995528, None)
+HASH precision: 0.6603 	 recall: 0.7081
+Start training..
+> Training hash function..
+H> old length hash dict: 41099 
+ H> new length hash dict: 983
+..... Elapsed time: 0.00711 
+DT> Training decision tree..
+..... Elapsed time: 3.86860 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00237 
+DT> Testing decision tree function..
+..... Elapsed time: 0.06298 
+METRICS FSCORE HASH
+(0.65569510670717401, 0.70768557039632141, 0.68075065173585925, None)
+METRICS FSCORE DECISION TREE
+(0.90604678323734944, 0.89446025837530108, 0.89406787474708815, None)
+HASH precision: 0.6557 	 recall: 0.7077
+Start training..
+> Training hash function..
+H> old length hash dict: 41099 
+ H> new length hash dict: 979
+..... Elapsed time: 0.00712 
+DT> Training decision tree..
+..... Elapsed time: 3.78600 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00245 
+DT> Testing decision tree function..
+..... Elapsed time: 0.06344 
+METRICS FSCORE HASH
+(0.64702523222430375, 0.70286840376614845, 0.67613020281968139, None)
+METRICS FSCORE DECISION TREE
+(0.90432467122274052, 0.89270856141887456, 0.89290506405876635, None)
+HASH precision: 0.6470 	 recall: 0.7029
+Start training..
+> Training hash function..
+H> old length hash dict: 41099 
+ H> new length hash dict: 981
+..... Elapsed time: 0.00716 
+DT> Training decision tree..
+..... Elapsed time: 3.80875 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00238 
+DT> Testing decision tree function..
+..... Elapsed time: 0.06288 
+METRICS FSCORE HASH
+(0.6584633860069049, 0.70177359316838184, 0.675227600235627, None)
+METRICS FSCORE DECISION TREE
+(0.90190891794698158, 0.88920516750602141, 0.88901036851693482, None)
+HASH precision: 0.6585 	 recall: 0.7018
+Start training..
+> Training hash function..
+H> old length hash dict: 41099 
+ H> new length hash dict: 977
+..... Elapsed time: 0.00708 
+DT> Training decision tree..
+..... Elapsed time: 3.78967 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00252 
+DT> Testing decision tree function..
+..... Elapsed time: 0.06306 
+METRICS FSCORE HASH
+(0.66060898102330867, 0.7068097219181082, 0.67952029699848715, None)
+METRICS FSCORE DECISION TREE
+(0.90407379660467124, 0.89205167506021454, 0.89195062626935684, None)
+HASH precision: 0.6606 	 recall: 0.7068
+Start training..
+> Training hash function..
+H> old length hash dict: 41100 
+ H> new length hash dict: 983
+..... Elapsed time: 0.00709 
+DT> Training decision tree..
+..... Elapsed time: 3.85321 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00237 
+DT> Testing decision tree function..
+..... Elapsed time: 0.06256 
+METRICS FSCORE HASH
+(0.64544389660782553, 0.70477441962330267, 0.67854073024114592, None)
+METRICS FSCORE DECISION TREE
+(0.89954818169480422, 0.88655278142794569, 0.88657717273112369, None)
+HASH precision: 0.6454 	 recall: 0.7048
+Start training..
+> Training hash function..
+H> old length hash dict: 41100 
+ H> new length hash dict: 995
+..... Elapsed time: 0.00711 
+DT> Training decision tree..
+..... Elapsed time: 3.83220 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00251 
+DT> Testing decision tree function..
+..... Elapsed time: 0.06369 
+METRICS FSCORE HASH
+(0.66001428509027416, 0.70652650021901009, 0.68030889333235645, None)
+METRICS FSCORE DECISION TREE
+(0.90041811402229266, 0.88830486202365311, 0.88837776009470204, None)
+HASH precision: 0.6600 	 recall: 0.7065
+Start training..
+> Training hash function..
+H> old length hash dict: 41100 
+ H> new length hash dict: 984
+..... Elapsed time: 0.00718 
+DT> Training decision tree..
+..... Elapsed time: 3.80587 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00235 
+DT> Testing decision tree function..
+..... Elapsed time: 0.06270 
+METRICS FSCORE HASH
+(0.65173987893416463, 0.70849759088918085, 0.68208533680730743, None)
+METRICS FSCORE DECISION TREE
+(0.90070118673043942, 0.88939991239597016, 0.88945742877153089, None)
+HASH precision: 0.6517 	 recall: 0.7085
+Start training..
+> Training hash function..
+H> old length hash dict: 41100 
+ H> new length hash dict: 983
+..... Elapsed time: 0.00717 
+DT> Training decision tree..
+..... Elapsed time: 3.78742 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time: 0.00249 
+DT> Testing decision tree function..
+..... Elapsed time: 0.06249 
+METRICS FSCORE HASH
+(0.64821836436193159, 0.70521243977222947, 0.67849357464614024, None)
+METRICS FSCORE DECISION TREE
+(0.90971447652549831, 0.89640823477879983, 0.89666455351653829, None)
+HASH precision: 0.6482 	 recall: 0.7052
+
+HASH ALGORITHM:
+0:	0.7221	0.7007
+1:	0.6603	0.7081
+2:	0.6557	0.7077
+3:	0.6470	0.7029
+4:	0.6585	0.7018
+5:	0.6606	0.7068
+6:	0.6454	0.7048
+7:	0.6600	0.7065
+8:	0.6517	0.7085
+9:	0.6482	0.7052
+Average:	 0.6610 	 0.7053
+
+
+DT ALGORITHM:
+0:	0.9042	0.8914
+1:	0.8993	0.8903
+2:	0.9060	0.8945
+3:	0.9043	0.8927
+4:	0.9019	0.8892
+5:	0.9041	0.8921
+6:	0.8995	0.8866
+7:	0.9004	0.8883
+8:	0.9007	0.8894
+9:	0.9097	0.8964
+Average:	 0.9030 	 0.8911

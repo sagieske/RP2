@@ -1,0 +1,363 @@
+Loading dictionary from file..
+('Kodak', 'M1063') : 2458
+('Ricoh', 'GX100') : 1283
+('Panasonic', 'DMC-FZ50') : 962
+('PS', 'Vita') : 220
+('Olympus', 'mju') : 1052
+('Sony', 'DSC-H50') : 593
+('Agfa', 'DC-504') : 262
+('Rollei', 'RCP-7325XS') : 607
+('Panasonic', 'Lumix-FZ45') : 356
+('Samsung', 'ST30') : 340
+('FujiFilm', 'FinePixJ50') : 647
+('Praktica', 'DCZ5.9') : 1039
+('Nikon', 'D200') : 831
+('Samsung', 'Digimax-S500') : 1060
+('Casio', 'EXILIM-EX-FC100') : 15
+('Nikon', 'D70') : 405
+('Canon', 'Ixus55') : 242
+('Casio', 'EX-Z150') : 946
+('Samsung', 'Galaxy-S3-mini') : 1280
+('Logitech', 'QuickCam-Communicate-STX') : 4059
+('Nikon', 'D70s') : 409
+('Motorola', 'V360') : 4060
+('Samsung', 'L74wide') : 705
+('Agfa', 'Sensor530s') : 406
+('Epson', 'StylusSX205') : 31
+('Samsung', 'NV15') : 663
+('Agfa', 'Sensor505-x') : 209
+('Canon', 'Ixus70') : 585
+('Samsung', 'NX1000') : 350
+('Blackberry', 'Curve-9300') : 1080
+('Nikon', 'CoolPixS710') : 993
+('Pentax', 'OptioW60') : 239
+('Sony', 'DSC-W170') : 422
+('Canon', 'Powershot-A430') : 10326
+('Pentax', 'OptioA40') : 715
+('Canon', 'PowerShotA640') : 188
+('Agfa', 'DC-830i') : 414
+('Agfa', 'DC-733s') : 329
+('Blackberry', 'Curve-9360') : 2669
+('Canon', 'Powershot-A630') : 1458
+('Sony', 'DSC-T77') : 758
+PS : 1
+Pentax : 2
+Motorola : 1
+Epson : 1
+Rollei : 1
+Samsung : 6
+Blackberry : 2
+Logitech : 1
+Canon : 5
+Casio : 2
+Olympus : 1
+Kodak : 1
+Nikon : 4
+Ricoh : 1
+FujiFilm : 1
+Praktica : 1
+Sony : 3
+Agfa : 5
+Panasonic : 2
+TOTAL: 45666
+Creating feature and class lists..
+KEY VALUE = cameramodel
+DT> old shape: (45666, 64) 
+number of unique hashes: 1016
+>>>> shape feature selection:
+(45666, 55)
+DT> new shape:
+(45666, 55)
+Creating train and test sets..
+Start training..
+> Training hash function..
+H> old length hash dict: 36532 
+ H> new length hash dict: 938
+..... Elapsed time HASH train: 0.02096 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.63203 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01836 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.06468 
+{1: 489, 2: 242, 3: 191, 4: 44, 5: 210, 6: 119, 7: 52, 8: 122, 9: 71, 10: 68, 11: 129, 12: 188, 13: 160, 14: 212, 15: 3, 16: 73, 17: 49, 18: 189, 19: 256, 20: 812, 21: 73, 22: 812, 23: 121, 24: 81, 25: 6, 26: 132, 27: 16, 28: 117, 29: 70, 30: 216, 31: 179, 32: 46, 33: 84, 34: 2053, 35: 143, 36: 38, 37: 74, 38: 57, 39: 533, 40: 292, 41: 152}
+correct: 491 & wrong: 489, precision: 0.5010
+correct: 257 & wrong: 242, precision: 0.5150
+correct: 41 & wrong: 16, precision: 0.7193
+correct: 44 & wrong: 44, precision: 0.5000
+correct: 210 & wrong: 210, precision: 0.5000
+correct: 119 & wrong: 119, precision: 0.5000
+correct: 70 & wrong: 70, precision: 0.5000
+correct: 122 & wrong: 122, precision: 0.5000
+correct: 71 & wrong: 71, precision: 0.5000
+correct: 68 & wrong: 68, precision: 0.5000
+correct: 129 & wrong: 129, precision: 0.5000
+correct: 208 & wrong: 188, precision: 0.5253
+correct: 166 & wrong: 160, precision: 0.5092
+correct: 212 & wrong: 212, precision: 0.5000
+correct: 3 & wrong: 3, precision: 0.5000
+correct: 81 & wrong: 73, precision: 0.5260
+correct: 49 & wrong: 49, precision: 0.5000
+correct: 189 & wrong: 189, precision: 0.5000
+correct: 256 & wrong: 256, precision: 0.5000
+correct: 216 & wrong: 216, precision: 0.5000
+correct: 82 & wrong: 73, precision: 0.5290
+correct: 812 & wrong: 812, precision: 0.5000
+correct: 141 & wrong: 121, precision: 0.5382
+correct: 81 & wrong: 81, precision: 0.5000
+correct: 6 & wrong: 6, precision: 0.5000
+correct: 133 & wrong: 132, precision: 0.5019
+correct: 192 & wrong: 191, precision: 0.5013
+correct: 117 & wrong: 117, precision: 0.5000
+correct: 52 & wrong: 52, precision: 0.5000
+correct: 83 & wrong: 74, precision: 0.5287
+correct: 812 & wrong: 812, precision: 0.5000
+correct: 48 & wrong: 46, precision: 0.5106
+correct: 84 & wrong: 84, precision: 0.5000
+correct: 2065 & wrong: 2053, precision: 0.5015
+correct: 143 & wrong: 143, precision: 0.5000
+correct: 38 & wrong: 38, precision: 0.5000
+correct: 199 & wrong: 179, precision: 0.5265
+correct: 66 & wrong: 57, precision: 0.5366
+correct: 533 & wrong: 533, precision: 0.5000
+correct: 292 & wrong: 292, precision: 0.5000
+correct: 152 & wrong: 152, precision: 0.5000
+AVERAGE: 0.511463
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 950
+..... Elapsed time HASH train: 0.02058 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.64731 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01757 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.06461 
+{1: 489, 2: 242, 3: 191, 4: 44, 5: 208, 6: 119, 7: 52, 8: 122, 9: 71, 10: 68, 11: 127, 12: 182, 13: 164, 14: 210, 15: 3, 16: 73, 17: 49, 18: 189, 19: 256, 20: 812, 21: 72, 22: 812, 23: 130, 24: 82, 25: 6, 26: 130, 27: 18, 28: 117, 29: 70, 30: 216, 31: 174, 32: 46, 33: 84, 34: 2056, 35: 143, 36: 38, 37: 78, 38: 55, 39: 534, 40: 292, 41: 151}
+correct: 492 & wrong: 489, precision: 0.5015
+correct: 256 & wrong: 242, precision: 0.5141
+correct: 42 & wrong: 18, precision: 0.7000
+correct: 44 & wrong: 44, precision: 0.5000
+correct: 210 & wrong: 208, precision: 0.5024
+correct: 119 & wrong: 119, precision: 0.5000
+correct: 70 & wrong: 70, precision: 0.5000
+correct: 122 & wrong: 122, precision: 0.5000
+correct: 71 & wrong: 71, precision: 0.5000
+correct: 68 & wrong: 68, precision: 0.5000
+correct: 129 & wrong: 127, precision: 0.5039
+correct: 208 & wrong: 182, precision: 0.5333
+correct: 166 & wrong: 164, precision: 0.5030
+correct: 212 & wrong: 210, precision: 0.5024
+correct: 3 & wrong: 3, precision: 0.5000
+correct: 81 & wrong: 73, precision: 0.5260
+correct: 49 & wrong: 49, precision: 0.5000
+correct: 189 & wrong: 189, precision: 0.5000
+correct: 256 & wrong: 256, precision: 0.5000
+correct: 216 & wrong: 216, precision: 0.5000
+correct: 81 & wrong: 72, precision: 0.5294
+correct: 812 & wrong: 812, precision: 0.5000
+correct: 141 & wrong: 130, precision: 0.5203
+correct: 82 & wrong: 82, precision: 0.5000
+correct: 6 & wrong: 6, precision: 0.5000
+correct: 132 & wrong: 130, precision: 0.5038
+correct: 193 & wrong: 191, precision: 0.5026
+correct: 117 & wrong: 117, precision: 0.5000
+correct: 52 & wrong: 52, precision: 0.5000
+correct: 83 & wrong: 78, precision: 0.5155
+correct: 812 & wrong: 812, precision: 0.5000
+correct: 48 & wrong: 46, precision: 0.5106
+correct: 84 & wrong: 84, precision: 0.5000
+correct: 2065 & wrong: 2056, precision: 0.5011
+correct: 143 & wrong: 143, precision: 0.5000
+correct: 38 & wrong: 38, precision: 0.5000
+correct: 199 & wrong: 174, precision: 0.5335
+correct: 65 & wrong: 55, precision: 0.5417
+correct: 534 & wrong: 534, precision: 0.5000
+correct: 292 & wrong: 292, precision: 0.5000
+correct: 151 & wrong: 151, precision: 0.5000
+AVERAGE: 0.510857
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 950
+..... Elapsed time HASH train: 0.02062 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.65475 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01745 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.06488 
+{1: 490, 2: 241, 3: 192, 4: 44, 5: 210, 6: 118, 7: 52, 8: 121, 9: 72, 10: 68, 11: 129, 12: 188, 13: 161, 14: 212, 15: 3, 16: 73, 17: 48, 18: 190, 19: 256, 20: 811, 21: 73, 22: 812, 23: 127, 24: 81, 25: 7, 26: 132, 27: 18, 28: 117, 29: 70, 30: 216, 31: 171, 32: 46, 33: 83, 34: 2054, 35: 143, 36: 38, 37: 75, 38: 58, 39: 534, 40: 292, 41: 151}
+correct: 492 & wrong: 490, precision: 0.5010
+correct: 256 & wrong: 241, precision: 0.5151
+correct: 42 & wrong: 18, precision: 0.7000
+correct: 44 & wrong: 44, precision: 0.5000
+correct: 210 & wrong: 210, precision: 0.5000
+correct: 119 & wrong: 118, precision: 0.5021
+correct: 70 & wrong: 70, precision: 0.5000
+correct: 121 & wrong: 121, precision: 0.5000
+correct: 72 & wrong: 72, precision: 0.5000
+correct: 68 & wrong: 68, precision: 0.5000
+correct: 129 & wrong: 129, precision: 0.5000
+correct: 208 & wrong: 188, precision: 0.5253
+correct: 166 & wrong: 161, precision: 0.5076
+correct: 212 & wrong: 212, precision: 0.5000
+correct: 3 & wrong: 3, precision: 0.5000
+correct: 81 & wrong: 73, precision: 0.5260
+correct: 48 & wrong: 48, precision: 0.5000
+correct: 190 & wrong: 190, precision: 0.5000
+correct: 256 & wrong: 256, precision: 0.5000
+correct: 216 & wrong: 216, precision: 0.5000
+correct: 82 & wrong: 73, precision: 0.5290
+correct: 812 & wrong: 812, precision: 0.5000
+correct: 141 & wrong: 127, precision: 0.5261
+correct: 81 & wrong: 81, precision: 0.5000
+correct: 7 & wrong: 7, precision: 0.5000
+correct: 132 & wrong: 132, precision: 0.5000
+correct: 193 & wrong: 192, precision: 0.5013
+correct: 117 & wrong: 117, precision: 0.5000
+correct: 52 & wrong: 52, precision: 0.5000
+correct: 82 & wrong: 75, precision: 0.5223
+correct: 811 & wrong: 811, precision: 0.5000
+correct: 47 & wrong: 46, precision: 0.5054
+correct: 85 & wrong: 83, precision: 0.5060
+correct: 2065 & wrong: 2054, precision: 0.5013
+correct: 143 & wrong: 143, precision: 0.5000
+correct: 38 & wrong: 38, precision: 0.5000
+correct: 199 & wrong: 171, precision: 0.5378
+correct: 66 & wrong: 58, precision: 0.5323
+correct: 534 & wrong: 534, precision: 0.5000
+correct: 292 & wrong: 292, precision: 0.5000
+correct: 151 & wrong: 151, precision: 0.5000
+AVERAGE: 0.510697
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 949
+..... Elapsed time HASH train: 0.02063 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.63069 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01838 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.06567 
+{1: 490, 2: 246, 3: 189, 4: 44, 5: 211, 6: 118, 7: 53, 8: 121, 9: 71, 10: 68, 11: 130, 12: 184, 13: 159, 14: 210, 15: 3, 16: 74, 17: 48, 18: 189, 19: 256, 20: 812, 21: 75, 22: 812, 23: 131, 24: 81, 25: 6, 26: 132, 27: 19, 28: 117, 29: 70, 30: 216, 31: 176, 32: 43, 33: 85, 34: 2050, 35: 143, 36: 37, 37: 74, 38: 61, 39: 534, 40: 291, 41: 152}
+correct: 491 & wrong: 490, precision: 0.5005
+correct: 257 & wrong: 246, precision: 0.5109
+correct: 42 & wrong: 19, precision: 0.6885
+correct: 44 & wrong: 44, precision: 0.5000
+correct: 211 & wrong: 211, precision: 0.5000
+correct: 118 & wrong: 118, precision: 0.5000
+correct: 70 & wrong: 70, precision: 0.5000
+correct: 121 & wrong: 121, precision: 0.5000
+correct: 71 & wrong: 71, precision: 0.5000
+correct: 68 & wrong: 68, precision: 0.5000
+correct: 130 & wrong: 130, precision: 0.5000
+correct: 208 & wrong: 184, precision: 0.5306
+correct: 166 & wrong: 159, precision: 0.5108
+correct: 212 & wrong: 210, precision: 0.5024
+correct: 3 & wrong: 3, precision: 0.5000
+correct: 81 & wrong: 74, precision: 0.5226
+correct: 48 & wrong: 48, precision: 0.5000
+correct: 189 & wrong: 189, precision: 0.5000
+correct: 256 & wrong: 256, precision: 0.5000
+correct: 216 & wrong: 216, precision: 0.5000
+correct: 82 & wrong: 75, precision: 0.5223
+correct: 812 & wrong: 812, precision: 0.5000
+correct: 141 & wrong: 131, precision: 0.5184
+correct: 81 & wrong: 81, precision: 0.5000
+correct: 6 & wrong: 6, precision: 0.5000
+correct: 133 & wrong: 132, precision: 0.5019
+correct: 192 & wrong: 189, precision: 0.5039
+correct: 117 & wrong: 117, precision: 0.5000
+correct: 53 & wrong: 53, precision: 0.5000
+correct: 83 & wrong: 74, precision: 0.5287
+correct: 812 & wrong: 812, precision: 0.5000
+correct: 48 & wrong: 43, precision: 0.5275
+correct: 85 & wrong: 85, precision: 0.5000
+correct: 2065 & wrong: 2050, precision: 0.5018
+correct: 143 & wrong: 143, precision: 0.5000
+correct: 37 & wrong: 37, precision: 0.5000
+correct: 198 & wrong: 176, precision: 0.5294
+correct: 66 & wrong: 61, precision: 0.5197
+correct: 534 & wrong: 534, precision: 0.5000
+correct: 291 & wrong: 291, precision: 0.5000
+correct: 152 & wrong: 152, precision: 0.5000
+AVERAGE: 0.510240
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 930
+..... Elapsed time HASH train: 0.02070 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.63250 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01770 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.06494 
+{1: 488, 2: 245, 3: 191, 4: 44, 5: 210, 6: 118, 7: 53, 8: 121, 9: 71, 10: 68, 11: 130, 12: 189, 13: 160, 14: 212, 15: 3, 16: 75, 17: 48, 18: 189, 19: 256, 20: 812, 21: 74, 22: 812, 23: 128, 24: 81, 25: 6, 26: 132, 27: 20, 28: 117, 29: 70, 30: 216, 31: 176, 32: 45, 33: 84, 34: 2046, 35: 143, 36: 37, 37: 75, 38: 58, 39: 534, 40: 291, 41: 150}
+correct: 491 & wrong: 488, precision: 0.5015
+correct: 257 & wrong: 245, precision: 0.5120
+correct: 42 & wrong: 20, precision: 0.6774
+correct: 44 & wrong: 44, precision: 0.5000
+correct: 211 & wrong: 210, precision: 0.5012
+correct: 118 & wrong: 118, precision: 0.5000
+correct: 70 & wrong: 70, precision: 0.5000
+correct: 121 & wrong: 121, precision: 0.5000
+correct: 71 & wrong: 71, precision: 0.5000
+correct: 68 & wrong: 68, precision: 0.5000
+correct: 130 & wrong: 130, precision: 0.5000
+correct: 207 & wrong: 189, precision: 0.5227
+correct: 167 & wrong: 160, precision: 0.5107
+correct: 212 & wrong: 212, precision: 0.5000
+correct: 3 & wrong: 3, precision: 0.5000
+correct: 81 & wrong: 75, precision: 0.5192
+correct: 48 & wrong: 48, precision: 0.5000
+correct: 189 & wrong: 189, precision: 0.5000
+correct: 256 & wrong: 256, precision: 0.5000
+correct: 216 & wrong: 216, precision: 0.5000
+correct: 82 & wrong: 74, precision: 0.5256
+correct: 812 & wrong: 812, precision: 0.5000
+correct: 141 & wrong: 128, precision: 0.5242
+correct: 81 & wrong: 81, precision: 0.5000
+correct: 6 & wrong: 6, precision: 0.5000
+correct: 133 & wrong: 132, precision: 0.5019
+correct: 192 & wrong: 191, precision: 0.5013
+correct: 117 & wrong: 117, precision: 0.5000
+correct: 53 & wrong: 53, precision: 0.5000
+correct: 83 & wrong: 75, precision: 0.5253
+correct: 812 & wrong: 812, precision: 0.5000
+correct: 48 & wrong: 45, precision: 0.5161
+correct: 84 & wrong: 84, precision: 0.5000
+correct: 2066 & wrong: 2046, precision: 0.5024
+correct: 143 & wrong: 143, precision: 0.5000
+correct: 37 & wrong: 37, precision: 0.5000
+correct: 198 & wrong: 176, precision: 0.5294
+correct: 66 & wrong: 58, precision: 0.5323
+correct: 534 & wrong: 534, precision: 0.5000
+correct: 291 & wrong: 291, precision: 0.5000
+correct: 152 & wrong: 150, precision: 0.5033
+AVERAGE: 0.509917
+
+HASH ALGORITHM:
+0:	0.5115	0.9825	0.8297
+1:	0.5109	0.9828	0.8295
+2:	0.5107	0.9830	0.8296
+3:	0.5102	0.9836	0.8296
+4:	0.5099	0.9831	0.8292
+Average:	 0.5106 	 0.9830	0.8295
+
+
+DT ALGORITHM:
+0:	0.7762	0.8161	0.8008
+1:	0.7772	0.8185	0.8036
+2:	0.7626	0.8167	0.7994
+3:	0.7798	0.8176	0.8033
+4:	0.7813	0.8198	0.8064
+Average:	 0.7754 	 0.8177	0.8027

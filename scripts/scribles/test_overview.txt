@@ -1,0 +1,251 @@
+Loading dictionary from file..
+('Kodak', 'M1063') : 2458
+('Ricoh', 'GX100') : 1283
+('Panasonic', 'DMC-FZ50') : 962
+('PS', 'Vita') : 220
+('Olympus', 'mju') : 1052
+('Sony', 'DSC-H50') : 593
+('Agfa', 'DC-504') : 262
+('Rollei', 'RCP-7325XS') : 607
+('Panasonic', 'Lumix-FZ45') : 356
+('Samsung', 'ST30') : 340
+('FujiFilm', 'FinePixJ50') : 647
+('Praktica', 'DCZ5.9') : 1039
+('Nikon', 'D200') : 831
+('Samsung', 'Digimax-S500') : 1060
+('Casio', 'EXILIM-EX-FC100') : 15
+('Nikon', 'D70') : 405
+('Canon', 'Ixus55') : 242
+('Casio', 'EX-Z150') : 946
+('Samsung', 'Galaxy-S3-mini') : 1280
+('Logitech', 'QuickCam-Communicate-STX') : 4059
+('Nikon', 'D70s') : 409
+('Motorola', 'V360') : 4060
+('Samsung', 'L74wide') : 705
+('Agfa', 'Sensor530s') : 406
+('Epson', 'StylusSX205') : 31
+('Samsung', 'NV15') : 663
+('Agfa', 'Sensor505-x') : 209
+('Canon', 'Ixus70') : 585
+('Samsung', 'NX1000') : 350
+('Blackberry', 'Curve-9300') : 1080
+('Nikon', 'CoolPixS710') : 993
+('Pentax', 'OptioW60') : 239
+('Sony', 'DSC-W170') : 422
+('Canon', 'Powershot-A430') : 10326
+('Pentax', 'OptioA40') : 715
+('Canon', 'PowerShotA640') : 188
+('Agfa', 'DC-830i') : 414
+('Agfa', 'DC-733s') : 329
+('Blackberry', 'Curve-9360') : 2669
+('Canon', 'Powershot-A630') : 1458
+('Sony', 'DSC-T77') : 758
+PS : 1
+Pentax : 2
+Motorola : 1
+Epson : 1
+Rollei : 1
+Samsung : 6
+Blackberry : 2
+Logitech : 1
+Canon : 5
+Casio : 2
+Olympus : 1
+Kodak : 1
+Nikon : 4
+Ricoh : 1
+FujiFilm : 1
+Praktica : 1
+Sony : 3
+Agfa : 5
+Panasonic : 2
+TOTAL: 45666
+Creating feature and class lists..
+KEY VALUE = make
+DT> old shape: (45666, 64) 
+number of unique hashes: 1016
+>>>> shape feature selection:
+(45666, 48)
+DT> new shape:
+(45666, 48)
+Creating train and test sets..
+Start training..
+> Training hash function..
+H> old length hash dict: 36532 
+ H> new length hash dict: 933
+..... Elapsed time HASH train: 0.01961 
+> Training DUMB hash function..
+H> old length hash dict: 36532 
+ H> new length hash dict: 933
+..... Elapsed time DUMB HASH train: 0.00784 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.31104 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01353 
+H> Testing DUMB hash function..
+..... Elapsed time DUMBHASH test: 0.00458 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.05476 
+WEIGHTED: 0.504123
+overview
+(array([ 0.        ,  0.98594378,  0.88686131,  0.94554455,  1.        ,
+        0.48442907,  0.49541284,  0.85714286,  0.50413223,  0.77356021,
+        0.79503106,  0.5       ,  0.81195079,  1.        ,  1.        ,
+        0.99631902,  1.        ,  1.        ,  0.99734043,  1.        ]), array([ 0.        ,  1.        ,  0.94552529,  0.72623574,  1.        ,
+        0.66350711,  0.61016949,  0.77777778,  1.        ,  0.67235495,
+        0.98461538,  0.38164251,  0.875     ,  0.98958333,  0.9703125 ,
+        1.        ,  1.        ,  1.        ,  1.        ,  0.7539267 ]), array([ 0.        ,  0.99715678,  0.93317972,  0.761563  ,  1.        ,
+        0.61782877,  0.58315335,  0.79245283,  0.83561644,  0.69042056,
+        0.93979442,  0.40060852,  0.8616188 ,  0.99164927,  0.97610814,
+        0.99926163,  1.        ,  1.        ,  0.99946695,  0.79295154]), array([   1,  491,  257,  263,   44,  211,  354,  324,  122,  879,  130,
+        207,  528,  192, 2560,  812,  812,    6,  750,  191]))
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 944
+..... Elapsed time HASH train: 0.01953 
+> Training DUMB hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 944
+..... Elapsed time DUMB HASH train: 0.00796 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.27779 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01405 
+H> Testing DUMB hash function..
+..... Elapsed time DUMBHASH test: 0.00422 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.05468 
+WEIGHTED: 0.503922
+overview
+(array([ 0.98790323,  0.89338235,  0.89719626,  1.        ,  0.4964539 ,
+        0.48769575,  0.84459459,  0.50840336,  0.77455048,  0.7875    ,
+        0.43010753,  0.78571429,  1.        ,  0.99839615,  0.99631902,
+        1.        ,  0.85714286,  0.99734043,  0.97260274]), array([ 0.99593496,  0.94921875,  0.72727273,  1.        ,  0.66666667,
+        0.61408451,  0.77160494,  1.        ,  0.63636364,  0.97674419,
+        0.38461538,  0.83333333,  0.984375  ,  0.97265625,  1.        ,
+        1.        ,  1.        ,  1.        ,  0.74736842]), array([ 0.99431818,  0.9375    ,  0.75590551,  1.        ,  0.62388592,
+        0.58382432,  0.78517588,  0.83795014,  0.65991044,  0.93195266,
+        0.39292731,  0.82335329,  0.98746082,  0.9776975 ,  0.99926163,
+        1.        ,  0.96774194,  0.99946695,  0.78366446]), array([ 492,  256,  264,   44,  210,  355,  324,  121,  880,  129,  208,
+        528,  192, 2560,  812,  812,    6,  750,  190]))
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 958
+..... Elapsed time HASH train: 0.01919 
+> Training DUMB hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 958
+..... Elapsed time DUMB HASH train: 0.00777 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.32127 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01372 
+H> Testing DUMB hash function..
+..... Elapsed time DUMBHASH test: 0.00395 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.05496 
+WEIGHTED: 0.503611
+overview
+(array([ 0.98993964,  0.90076336,  0.96      ,  1.        ,  0.4983165 ,
+        0.51605505,  0.86046512,  0.49576271,  0.79353933,  0.77108434,
+        0.46327684,  0.76949153,  1.        ,  1.        ,  0.99876847,
+        1.        ,  0.875     ,  0.99601064,  0.97959184]), array([ 1.        ,  0.921875  ,  0.72727273,  1.        ,  0.7047619 ,
+        0.63380282,  0.79938272,  0.96694215,  0.64204545,  0.99224806,
+        0.39423077,  0.85984848,  0.97916667,  0.975     ,  1.        ,
+        1.        ,  1.        ,  1.        ,  0.7539267 ]), array([ 0.9979716 ,  0.91757387,  0.76433121,  1.        ,  0.65083553,
+        0.60614224,  0.81089543,  0.8125    ,  0.66753308,  0.93841642,
+        0.40634291,  0.84011843,  0.9832636 ,  0.9798995 ,  0.99975345,
+        1.        ,  0.97222222,  0.99919957,  0.79034029]), array([ 492,  256,  264,   44,  210,  355,  324,  121,  880,  129,  208,
+        528,  192, 2560,  811,  812,    7,  749,  191]))
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 943
+..... Elapsed time HASH train: 0.01905 
+> Training DUMB hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 943
+..... Elapsed time DUMB HASH train: 0.00776 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.26343 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01389 
+H> Testing DUMB hash function..
+..... Elapsed time DUMBHASH test: 0.00391 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.05498 
+WEIGHTED: 0.504198
+overview
+(array([ 0.978     ,  0.90384615,  0.93236715,  1.        ,  0.47923323,
+        0.48931116,  0.87375415,  0.51271186,  0.77822045,  0.7826087 ,
+        0.46857143,  0.80874317,  1.        ,  1.        ,  0.99631902,
+        1.        ,  0.85714286,  1.        ,  1.        ]), array([ 0.99592668,  0.91439689,  0.73106061,  1.        ,  0.71428571,
+        0.58028169,  0.8117284 ,  1.        ,  0.66590909,  0.97674419,
+        0.39423077,  0.84250474,  0.98445596,  0.9738179 ,  1.        ,
+        1.        ,  1.        ,  1.        ,  0.76963351]), array([ 0.99228896,  0.91226708,  0.76405384,  1.        ,  0.65047702,
+        0.55947854,  0.82341891,  0.84027778,  0.68570091,  0.93057607,
+        0.40714995,  0.83552879,  0.98752599,  0.97894406,  0.99926163,
+        1.        ,  0.96774194,  1.        ,  0.80680571]), array([ 491,  257,  264,   44,  210,  355,  324,  121,  880,  129,  208,
+        527,  193, 2559,  812,  812,    6,  750,  191]))
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 945
+..... Elapsed time HASH train: 0.01882 
+> Training DUMB hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 945
+..... Elapsed time DUMB HASH train: 0.00779 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.32717 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01386 
+H> Testing DUMB hash function..
+..... Elapsed time DUMBHASH test: 0.00385 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.05585 
+WEIGHTED: 0.503657
+overview
+(array([ 0.98582996,  0.88278388,  0.72108844,  1.        ,  0.47868852,
+        0.47982063,  0.89051095,  0.51694915,  0.87341772,  0.81761006,
+        0.4822335 ,  0.8042328 ,  0.9895288 ,  1.        ,  0.99876999,
+        1.        ,  1.        ,  0.99601594,  0.97333333]), array([ 0.99185336,  0.93774319,  0.80608365,  1.        ,  0.69194313,
+        0.60451977,  0.75308642,  1.        ,  0.62798635,  1.        ,
+        0.45673077,  0.86527514,  0.984375  ,  0.97148437,  1.        ,
+        1.        ,  1.        ,  1.        ,  0.76439791]), array([ 0.9906428 ,  0.92621061,  0.78751857,  1.        ,  0.63533507,
+        0.57465091,  0.77707006,  0.84254144,  0.66538091,  0.95729013,
+        0.46161322,  0.85233645,  0.98540146,  0.97705665,  0.99975376,
+        1.        ,  1.        ,  0.99920064,  0.79868709]), array([ 491,  257,  263,   44,  211,  354,  324,  122,  879,  130,  208,
+        527,  192, 2560,  812,  812,    6,  750,  191]))
+
+HASH ALGORITHM:
+0:	0.5041	0.9846	0.8269
+1:	0.5039	0.9855	0.8274
+2:	0.5036	0.9865	0.8278
+3:	0.5042	0.9840	0.8267
+4:	0.5037	0.9864	0.8277
+Average:	 0.5039 	 0.9854	0.8273
+
+DUMB HASH ALGORITHM:
+0:	0.7967	0.6755	0.6734
+1:	0.7593	0.6824	0.6780
+2:	0.8068	0.6817	0.6804
+3:	0.8019	0.6774	0.6753
+4:	0.7923	0.6781	0.6758
+Average:	 0.7914 	 0.6790	0.6766
+
+
+DT ALGORITHM:
+0:	0.9038	0.8930	0.8929
+1:	0.8981	0.8874	0.8874
+2:	0.9039	0.8923	0.8921
+3:	0.9034	0.8921	0.8922
+4:	0.9063	0.8918	0.8917
+Average:	 0.9031 	 0.8913	0.8913

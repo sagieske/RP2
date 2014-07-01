@@ -1,0 +1,256 @@
+Loading dictionary from file..
+('Kodak', 'M1063') : 2458
+('Ricoh', 'GX100') : 1283
+('Panasonic', 'DMC-FZ50') : 962
+('PS', 'Vita') : 220
+('Olympus', 'mju') : 1052
+('Sony', 'DSC-H50') : 593
+('Agfa', 'DC-504') : 262
+('Rollei', 'RCP-7325XS') : 607
+('Panasonic', 'Lumix-FZ45') : 356
+('Samsung', 'ST30') : 340
+('FujiFilm', 'FinePixJ50') : 647
+('Praktica', 'DCZ5.9') : 1039
+('Nikon', 'D200') : 831
+('Samsung', 'Digimax-S500') : 1060
+('Casio', 'EXILIM-EX-FC100') : 15
+('Nikon', 'D70') : 405
+('Canon', 'Ixus55') : 242
+('Casio', 'EX-Z150') : 946
+('Samsung', 'Galaxy-S3-mini') : 1280
+('Logitech', 'QuickCam-Communicate-STX') : 4059
+('Nikon', 'D70s') : 409
+('Motorola', 'V360') : 4060
+('Samsung', 'L74wide') : 705
+('Agfa', 'Sensor530s') : 406
+('Epson', 'StylusSX205') : 31
+('Samsung', 'NV15') : 663
+('Agfa', 'Sensor505-x') : 209
+('Canon', 'Ixus70') : 585
+('Samsung', 'NX1000') : 350
+('Blackberry', 'Curve-9300') : 1080
+('Nikon', 'CoolPixS710') : 993
+('Pentax', 'OptioW60') : 239
+('Sony', 'DSC-W170') : 422
+('Canon', 'Powershot-A430') : 10326
+('Pentax', 'OptioA40') : 715
+('Canon', 'PowerShotA640') : 188
+('Agfa', 'DC-830i') : 414
+('Agfa', 'DC-733s') : 329
+('Blackberry', 'Curve-9360') : 2669
+('Canon', 'Powershot-A630') : 1458
+('Sony', 'DSC-T77') : 758
+PS : 1
+Pentax : 2
+Motorola : 1
+Epson : 1
+Rollei : 1
+Samsung : 6
+Blackberry : 2
+Logitech : 1
+Canon : 5
+Casio : 2
+Olympus : 1
+Kodak : 1
+Nikon : 4
+Ricoh : 1
+FujiFilm : 1
+Praktica : 1
+Sony : 3
+Agfa : 5
+Panasonic : 2
+TOTAL: 45666
+Creating feature and class lists..
+KEY VALUE = make
+DT> old shape: (45666, 64) 
+number of unique hashes: 1016
+>>>> shape feature selection:
+(45666, 52)
+DT> new shape:
+(45666, 52)
+Creating train and test sets..
+Start training..
+> Training hash function..
+H> old length hash dict: 36532 
+ H> new length hash dict: 933
+..... Elapsed time HASH train: 0.01960 
+> Training DUMB hash function..
+H> old length hash dict: 36532 
+ H> new length hash dict: 933
+..... Elapsed time DUMB HASH train: 0.00791 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.54849 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01665 
+H> Testing DUMB hash function..
+..... Elapsed time DUMBHASH test: 0.00515 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.06292 
+{'PS': 4, 'Pentax': 19, 'Motorola': 16, 'Epson': 17, 'Rollei': 8, 'Samsung': 9, 'Blackberry': 18, 'Logitech': 15, 'Canon': 14, 'Casio': 13, 'Olympus': 5, 'Kodak': 1, 'Nikon': 12, 'Ricoh': 2, 'FujiFilm': 10, 'Praktica': 11, 'Sony': 6, 'Agfa': 7, 'Panasonic': 3}
+WEIGHTED: 0.504123
+overview
+(array([ 0.        ,  0.98396794,  0.88602941,  0.955     ,  1.        ,
+        0.48442907,  0.49545455,  0.83277592,  0.50413223,  0.78120805,
+        0.79503106,  0.46892655,  0.79928952,  1.        ,  1.        ,
+        0.99631902,  1.        ,  1.        ,  0.99734043,  1.        ]), array([ 0.        ,  1.        ,  0.93774319,  0.72623574,  1.        ,
+        0.66350711,  0.61581921,  0.76851852,  1.        ,  0.66211604,
+        0.98461538,  0.40096618,  0.85227273,  0.98958333,  0.9703125 ,
+        1.        ,  1.        ,  1.        ,  1.        ,  0.7539267 ]), array([ 0.        ,  0.99675193,  0.92692308,  0.76277955,  1.        ,
+        0.61782877,  0.58728448,  0.78056426,  0.83561644,  0.68293828,
+        0.93979442,  0.41293532,  0.8411215 ,  0.99164927,  0.97610814,
+        0.99926163,  1.        ,  1.        ,  0.99946695,  0.79295154]), array([   1,  491,  257,  263,   44,  211,  354,  324,  122,  879,  130,
+        207,  528,  192, 2560,  812,  812,    6,  750,  191]))
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 944
+..... Elapsed time HASH train: 0.01934 
+> Training DUMB hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 944
+..... Elapsed time DUMB HASH train: 0.00810 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.43536 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01370 
+H> Testing DUMB hash function..
+..... Elapsed time DUMBHASH test: 0.00415 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.06186 
+{'PS': 4, 'Pentax': 19, 'Motorola': 16, 'Epson': 17, 'Rollei': 8, 'Samsung': 9, 'Blackberry': 18, 'Logitech': 15, 'Canon': 14, 'Casio': 13, 'Olympus': 5, 'Kodak': 1, 'Nikon': 12, 'Ricoh': 2, 'FujiFilm': 10, 'Praktica': 11, 'Sony': 6, 'Agfa': 7, 'Panasonic': 3}
+WEIGHTED: 0.503922
+overview
+(array([ 0.98790323,  0.89338235,  0.93170732,  1.        ,  0.4964539 ,
+        0.49111111,  0.84899329,  0.50840336,  0.76171352,  0.7875    ,
+        0.4180791 ,  0.78688525,  1.        ,  0.99879663,  0.99631902,
+        1.        ,  0.66666667,  0.99734043,  0.97931034]), array([ 0.99593496,  0.94921875,  0.72348485,  1.        ,  0.66666667,
+        0.62253521,  0.7808642 ,  1.        ,  0.64659091,  0.97674419,
+        0.35576923,  0.81818182,  0.984375  ,  0.97265625,  1.        ,
+        1.        ,  1.        ,  1.        ,  0.74736842]), array([ 0.99431818,  0.9375    ,  0.75733545,  1.        ,  0.62388592,
+        0.59090909,  0.793601  ,  0.83795014,  0.66674479,  0.93195266,
+        0.3666997 ,  0.81172492,  0.98746082,  0.97777429,  0.99926163,
+        1.        ,  0.90909091,  0.99946695,  0.78453039]), array([ 492,  256,  264,   44,  210,  355,  324,  121,  880,  129,  208,
+        528,  192, 2560,  812,  812,    6,  750,  190]))
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 958
+..... Elapsed time HASH train: 0.01918 
+> Training DUMB hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 958
+..... Elapsed time DUMB HASH train: 0.00782 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.40929 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01399 
+H> Testing DUMB hash function..
+..... Elapsed time DUMBHASH test: 0.00402 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.05946 
+{'PS': 4, 'Pentax': 19, 'Motorola': 16, 'Epson': 17, 'Rollei': 8, 'Samsung': 9, 'Blackberry': 18, 'Logitech': 15, 'Canon': 14, 'Casio': 13, 'Olympus': 5, 'Kodak': 1, 'Nikon': 12, 'Ricoh': 2, 'FujiFilm': 10, 'Praktica': 11, 'Sony': 6, 'Agfa': 7, 'Panasonic': 3}
+WEIGHTED: 0.503611
+overview
+(array([ 0.98993964,  0.90076336,  0.97959184,  1.        ,  0.4983165 ,
+        0.51473923,  0.85666667,  0.49576271,  0.78991597,  0.77575758,
+        0.43093923,  0.76541096,  1.        ,  0.99959952,  0.99876847,
+        1.        ,  0.875     ,  0.99601064,  0.97959184]), array([ 1.        ,  0.921875  ,  0.72727273,  1.        ,  0.7047619 ,
+        0.63943662,  0.79320988,  0.96694215,  0.64090909,  0.99224806,
+        0.375     ,  0.84659091,  0.97916667,  0.975     ,  1.        ,
+        1.        ,  1.        ,  1.        ,  0.7539267 ]), array([ 0.9979716 ,  0.91757387,  0.76677316,  1.        ,  0.65083553,
+        0.60988716,  0.80513784,  0.8125    ,  0.66603684,  0.93979442,
+        0.38499506,  0.82900593,  0.9832636 ,  0.97982256,  0.99975345,
+        1.        ,  0.97222222,  0.99919957,  0.79034029]), array([ 492,  256,  264,   44,  210,  355,  324,  121,  880,  129,  208,
+        528,  192, 2560,  811,  812,    7,  749,  191]))
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 943
+..... Elapsed time HASH train: 0.01942 
+> Training DUMB hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 943
+..... Elapsed time DUMB HASH train: 0.00790 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.42574 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01399 
+H> Testing DUMB hash function..
+..... Elapsed time DUMBHASH test: 0.00402 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.05946 
+{'PS': 4, 'Pentax': 19, 'Motorola': 16, 'Epson': 17, 'Rollei': 8, 'Samsung': 9, 'Blackberry': 18, 'Logitech': 15, 'Canon': 14, 'Casio': 13, 'Olympus': 5, 'Kodak': 1, 'Nikon': 12, 'Ricoh': 2, 'FujiFilm': 10, 'Praktica': 11, 'Sony': 6, 'Agfa': 7, 'Panasonic': 3}
+WEIGHTED: 0.504198
+overview
+(array([ 0.98192771,  0.90458015,  0.96517413,  1.        ,  0.47923323,
+        0.4893617 ,  0.86622074,  0.51271186,  0.76675258,  0.7826087 ,
+        0.44654088,  0.80474453,  1.        ,  1.        ,  0.99631902,
+        1.        ,  0.85714286,  1.        ,  1.        ]), array([ 0.99592668,  0.92217899,  0.73484848,  1.        ,  0.71428571,
+        0.58309859,  0.79938272,  1.        ,  0.67613636,  0.97674419,
+        0.34134615,  0.83681214,  0.98445596,  0.9738179 ,  1.        ,
+        1.        ,  1.        ,  1.        ,  0.76963351]), array([ 0.99309504,  0.91860465,  0.7716786 ,  1.        ,  0.65047702,
+        0.56158437,  0.81191223,  0.84027778,  0.69250466,  0.93057607,
+        0.35822402,  0.83019578,  0.98752599,  0.97894406,  0.99926163,
+        1.        ,  0.96774194,  1.        ,  0.80680571]), array([ 491,  257,  264,   44,  210,  355,  324,  121,  880,  129,  208,
+        527,  193, 2559,  812,  812,    6,  750,  191]))
+Start training..
+> Training hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 945
+..... Elapsed time HASH train: 0.01947 
+> Training DUMB hash function..
+H> old length hash dict: 36533 
+ H> new length hash dict: 945
+..... Elapsed time DUMB HASH train: 0.00785 
+DT> Training decision tree..
+..... Elapsed time DT train: 1.41080 
+Start prediction..
+H> Testing hash function..
+..... Elapsed time HASH test: 0.01383 
+H> Testing DUMB hash function..
+..... Elapsed time DUMBHASH test: 0.00384 
+DT> Testing decision tree function..
+..... Elapsed time DT test: 0.05956 
+{'PS': 4, 'Pentax': 19, 'Motorola': 16, 'Epson': 17, 'Rollei': 8, 'Samsung': 9, 'Blackberry': 18, 'Logitech': 15, 'Canon': 14, 'Casio': 13, 'Olympus': 5, 'Kodak': 1, 'Nikon': 12, 'Ricoh': 2, 'FujiFilm': 10, 'Praktica': 11, 'Sony': 6, 'Agfa': 7, 'Panasonic': 3}
+WEIGHTED: 0.503657
+overview
+(array([ 0.99387755,  0.88447653,  0.73103448,  1.        ,  0.47868852,
+        0.48526077,  0.88489209,  0.51694915,  0.87207488,  0.81761006,
+        0.50877193,  0.79018613,  1.        ,  1.        ,  0.99876999,
+        1.        ,  1.        ,  0.99601594,  0.97333333]), array([ 0.99185336,  0.95330739,  0.80608365,  1.        ,  0.69194313,
+        0.60451977,  0.75925926,  1.        ,  0.63594994,  1.        ,
+        0.41826923,  0.88614801,  0.984375  ,  0.97148437,  1.        ,
+        1.        ,  1.        ,  1.        ,  0.76439791]), array([ 0.99225754,  0.93869732,  0.78986587,  1.        ,  0.63533507,
+        0.57619817,  0.78144854,  0.84254144,  0.67235987,  0.95729013,
+        0.4336989 ,  0.86513524,  0.98746082,  0.97705665,  0.99975376,
+        1.        ,  1.        ,  0.99920064,  0.79868709]), array([ 491,  257,  263,   44,  211,  354,  324,  122,  879,  130,  208,
+        527,  192, 2560,  812,  812,    6,  750,  191]))
+
+HASH ALGORITHM:
+0:	0.5041	0.9845	0.8269
+1:	0.5039	0.9853	0.8273
+2:	0.5036	0.9864	0.8277
+3:	0.5042	0.9843	0.8269
+4:	0.5037	0.9865	0.8278
+Average:	 0.5039 	 0.9854	0.8273
+
+DUMB HASH ALGORITHM:
+0:	0.7967	0.6756	0.6735
+1:	0.7600	0.6819	0.6775
+2:	0.8065	0.6819	0.6807
+3:	0.8037	0.6780	0.6757
+4:	0.7914	0.6774	0.6749
+Average:	 0.7917 	 0.6790	0.6765
+
+
+DT ALGORITHM:
+0:	0.9025	0.8909	0.8910
+1:	0.8981	0.8874	0.8874
+2:	0.9029	0.8909	0.8908
+3:	0.9025	0.8916	0.8916
+4:	0.9069	0.8936	0.8933
+Average:	 0.9026 	 0.8909	0.8908
