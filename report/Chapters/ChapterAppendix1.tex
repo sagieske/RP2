@@ -1,97 +1,42 @@
 % Appendix X
 
-\chapter{Appendix Pseudocode}\label{ch:appendix}
-This appendix contains the pseudocode of the activity extraction algorithms.
+\chapter{Appendix X}\label{ch:appendix}
+This appendix contains X
 %----------------------------------------------------------------------------------------
-\renewcommand{\algorithmicrequire}{\textbf{Parameters:}}
-\renewcommand{\algorithmicensure}{\textbf{Procedure:}}
+\begin{table}[h]
+\scalebox{0.7}{
+\begin{tabular}{|l| l| l | l | l | l| l| }
+\hline
+\textbf{Make} & \textbf{Model} & \textbf{\# Pictures} & & \textbf{Make} & \textbf{Model} & \textbf{\# Pictures}\\
+\hline
+Agfa &  DC-504 &  262 & & Nikon &  D70 &  405\\
+Agfa &  DC-733s &  329 & & Nikon &  D70s &  409\\
+Agfa &  DC-830i &  414 & & Olympus &  mju &  1052\\
+Agfa &  Sensor505-x &  209 & & Panasonic &  DMC-FZ50 &  962\\
+Agfa &  Sensor530s &  406 & &  Panasonic &  Lumix-FZ45 &  356\\
+Blackberry &  Curve-9300 &  1080 & & Pentax &  OptioA40 &  715\\
+Blackberry &  Curve-9360 &  2669 & & Pentax &  OptioW60 &  239\\
+Canon &  Ixus55 &  242 & &  Praktica &  DCZ5.9 &  1039\\
+Canon &  Ixus70 &  585 & & PS &  Vita &  220\\
+Canon &  Powershot-A430 &  10326 & & Ricoh &  GX100 &  1283\\
+Canon &  Powershot-A630 &  1458 & & Rollei &  RCP-7325XS &  607\\
+Canon &  PowerShot-A640 &  188 & & Samsung &  Digimax-S500 &  1060\\
+Casio &  EX-Z150 &  946 & & Samsung &  Galaxy-S3-mini &  1280\\
+Casio &  EXILIM-EX-FC100 &  15 & & Samsung &  L74wide &  705\\
+Epson &  StylusSX205 &  31  & & Samsung &  NV15 &  663\\
+FujiFilm &  FinePixJ50 &  647  & & Samsung &  NX1000 &  350\\
+Kodak &  M1063 &  2458 & & Samsung &  ST30 &  340\\
+Logitech &  QuickCam-Communicate-STX &  4059 & & Sony &  DSC-H50 &  593\\
+Motorola &  V360 &  4060 & & Sony &  DSC-T77 &  758\\
+Nikon &  CoolPixS710 &  993 & & Sony &  DSC-W170 &  422\\
+Nikon &  D200 &  831 & & & & \\
 
-\section{Latent Dirichlet Allocation}
-\begin{algorithm}
-\begin{algorithmic} 
-\REQUIRE ~\\
-\hspace{\algorithmicindent} $\alpha$: ~~~~as parameter of Dirichlet prior on per-document topic distributions\\ 
-\hspace{\algorithmicindent}	$\beta$: ~~~~as parameter of Dirichlet prior on per-topic word distribution \\ 
-\hspace{\algorithmicindent}	$\theta _i$:~~~~ is the topic distribution for document $i$ \\ 
-\hspace{\algorithmicindent}	$\phi _k$: ~~~is the word distribution for topic $k$ \\
-\hspace{\algorithmicindent}	$t_{i,j}$: ~~~is the topic for the jth word in document $i$\\
-\hspace{\algorithmicindent}	$w_{i,j}$: ~is the $j$th word in document $i$.\\
-\hrulefill
-\ENSURE ~\\
-\FORALL{document $i$ in corpus $D$}
-	\STATE 1. Choose $\theta _i \sim Dirichlet distribution of \alpha$ 
-	\STATE 2. Choose $phi _k  \sim Dirichlet distribution of \beta$ 
-	3. \FORALL {$w_{i,j}$ in document $i$}
-		\STATE 1. Choose topic $t_{i,j} \sim Multinomial(\theta _i)$
-		\STATE 2. Choose word $w_{i,j} \sim Multinomial(\phi _{t_i})$
-
-	\ENDFOR 
-\ENDFOR
-\end{algorithmic}
-\caption[Algorithm 1]{Latent Dirichlet Allocation}
-\label{alg:lda}
-\end{algorithm}
-
-
-\begin{algorithm}
-\begin{algorithmic} 
-\REQUIRE ~\\
-\hspace{\algorithmicindent} $CP$: ~~~~~~ as set of corpora: corpus $C$ and backgroundcorpus $B$\\ 
-\hspace{\algorithmicindent}	$N_{cp}$: ~~~~~ as total word count in corpus $cp$\\
-\hspace{\algorithmicindent}	$w_{cp}p$: ~~~ word in corpus $cp$\\
-
-\hrulefill
-\ENSURE ~\\
-\FORALL{word $w$ in corpus $C$}
-	\STATE $freq_{c}$  = frequency of  $w_C$
-	\STATE $freq_{b}$  = frequency of  $w_B$
-	\FORALL{corpus $cp$ in corpora $CP$}
-		\STATE Expected value $E_i = count_{cp}p* sum(freq_{i})/ sum(N_{i})$ for $i \in N$
-	\ENDFOR
-	\STATE $ LLR_{w}= 2 * sum(freq_{i} * ln(freq_{i}/E_i) $ for $i \in N$ and $cp \in CP$
- 
-\ENDFOR
-\end{algorithmic}
-\caption[Algorithm 2]{Log-likelihood ratio}
-\label{alg:llr}
-\end{algorithm}
-
-\section{POS tag approach}
-
-
-\begin{algorithm}
-\begin{algorithmic} 
-\REQUIRE ~\\
-\hspace{\algorithmicindent} $C$: ~~~~~~~~ as set of corpora containing $N$ messages $m$ \\ 
-\hspace{\algorithmicindent} $POS$: ~~~ as set of all $pos_{s}$ for all messages $m$\\
-\hspace{\algorithmicindent} $P$: ~~~~~~~~ as set of all $part_{m}$ for all messages $m$\\
-
-\hspace{\algorithmicindent}	$w_{time}$: ~~~ as time frame word\\
-\hspace{\algorithmicindent}	$part_{m}$: ~~ as part of $m$ containing $w_{time}$\\
-\hspace{\algorithmicindent}	$pos_{s}$: ~~~~ as POS tag sequence with size $s$\\
-\hspace{\algorithmicindent}	$s$: ~~~~~~~~~~ as size of specified $n$-gram\\
+\hline
 
 
 
-\hrulefill
-\ENSURE ~\\
-\FORALL{message $m$ in corpus $C$}
-		\STATE Extract $part_{m}$
-		\STATE Identify $pos_{s}$ of  $part_{m}$
-		\STATE Extract all $n$-grams from $pos_{s}$
-\ENDFOR \\
-\STATE Get frequency of all { $pos_{s}$} in $POS$
-\STATE Sort $POS$ with highest frequency first \\
-\FORALL{$part_{m}$ in $P$}
-		\STATE Get $pos_{s}$ of $part_{m}$ 
-		\FORALL{$pos$ in $POS$}
-				\IF{$pos$ == $pos_{s}$}
-				\RETURN corresponding $w$'s to $pos_{s}$ of $part_{m}$ 
-				\ENDIF
-		\ENDFOR
-		\RETURN $part_{m}$
-\ENDFOR
-\end{algorithmic}
-\caption[Algorithm 3]{POS tag approach}
-\label{alg:pos}
-\end{algorithm}
+\end{tabular}
+}
+\label{tab:makemodel}
+\caption{Camera make and model of image database}
+\end{table}
