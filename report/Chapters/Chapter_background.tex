@@ -8,7 +8,7 @@ In the following sections several techniques are described that are used in this
 
 %----------------------------------------------------------------------------------------
 
-\section{JPEG Quantization Tables}
+\section{JPEG Quantization Tables}\label{sec:dqt}
 JPEG quantization tables are created during the JPEG compression phase. In this section a description is given of the JPEG compression method.
 %and the creation of the JPEG quantization tables.
 
@@ -20,7 +20,6 @@ In the second step the image is split into blocks of 8 $\times$ 8 pixels. For ea
 
 In the last step of JPEG compression entropy encoding is used, which arranges the image components in a "zigzag" order after which it employs a run-length encoding (RLE) algorithm. This algorithm stores sequences of data as a single data value and count, rather than as the original run. It then inserts length coding zeros and uses Huffman coding.
 
-
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.4]{Images/JPEG_quantization2.jpg}
@@ -31,6 +30,11 @@ In the last step of JPEG compression entropy encoding is used, which arranges th
 %\end{center}
 
 \end{figure}
+
+The JPEG image is saved with a JPEG File Interchange Format (JFIF) which contains several headers. These headers consist of markers and their associated information and are used for compatibility. For example, JPEG does not define the color space that is to be used for the image. JFIF has a marker in which the color space in use can be defined. The JPEG quantization tables are also stored in these headers.
+
+
+
 \section{Decision Tree Learning}
 
 Decision tree learning is a supervised machine learning algorithm. It aims to construct the best decision tree model from class-labelled training. It is a predictive modelling approach as its goal is to create models to predict a value of a target based on input variables which are the target attributes.
@@ -46,3 +50,15 @@ In this research the decision tree learning algorithm is chosen mainly because i
 
 
 
+\iffalse
+In order to optimize search through JPEG quantization tables the search space needs to be decreased. This reduction in search space can be performed by creating a decision tree model. This model maps observations about an item (specific features of the quantization table) to conclusions about the item's target value (camera model). Decision tree learning is used, which is the construction of a decision tree from class-labelled training tuples, to identify important parameters and their position in the decision tree model. The matching with the use of decision tree model parameters and the matching between full JPEG quantization tables are both benchmarked for time to see whether the search time is accelerated.
+
+The following steps are taken:
+\begin{enumerate}
+\item Gather dataset of JPEG quantization tables. Dataset of pictures and their JPEG quantization table and for JPEG quantization for camera models are needed.
+\item Create numerous possible parameters to identify these tables. Rewrite JPEG quantization table as collection of these parameter values.
+\item Create training and test set for decision tree learning.
+\item Perform decision tree learning to create decision tree model
+\item Perform benchmarks: matching with the decision tree model parameters and matching full JPEG quantization tables
+\end{enumerate}
+\fi
