@@ -6,8 +6,56 @@
 
 In this chapter the results of this research will be discussed. %\autoref{sec:res_activity} shows the results of the activity classification. In \autoref{sec:res_extraction} the results of the two different activity extraction methods are described and finally, in \autoref{sec:res_ranking}, the results for ranking popular activities are shown.
 
+\section{Dataset}
+The dataset which is used in this research consists of 45,666 images. These images are retrieved from the Dresden Image Database \cite{Gloe:2010aa} and an image database from the Netherlands Forensic Institute. This dataset has images from 19 different camera makes and a total of 41 different camera models. The camera make and models are listed in \autoref{tab:makemodel} together with the number of pictures made with these cameras. Next to regular digital cameras there are also images from other types of cameras included in the dataset, such as images taken by smartphones (e.g. Blackberry), a webcam (e.g. Logitech), scanners (Epson) and a Playstation device (PS Vita). 
+
+In total there are 1,016 unique JPEG quantization tables retrieved from the images. In \autoref{tab:dqt_count} the number of unique JPEG quantization tables per camera model are shown. As can be derived, there are JPEG quantization tables that are found for more than one camera model. There are 398 quantization tables found in images with different camera models. 
+
+\section{Feature Selection}
+added extra features. Total of [[X]] features. However adding extra features did not have impact on performance.
+Total of 50 important features Identifiable parameters: 50 out of 128
+. Show importance in table?
+
+\section{Decision Tree Learning}
+603 nodes, depth of 26
+
+\subsection{Comparison against hash database}
+\begin{table}
+\begin{tabular}{| c| c| c| c|}
+\hline
+Algorithm & Precision & Recall & F2-score\\
+\hline
+Hash (1-1) & 79 \% & 68 \% & 68 \%\\
+Hash (1-n) & 50 \% & 99 \% & 83 \%\\
+Decision tree & 90 \% & 89 \% & 89 \% \\
+\hline
+\end{tabular}
+\caption{Camera Make Identification}
+\end{table}
+
+%1300 tables which have mutliple possibilities and thereby increasing the search space for fuurther research
+\begin{table}
+
+\begin{tabular}{| c| c| c| c|}
+\hline
+Algorithm & Precision & Recall & F2-score\\
+\hline
+Hash (1-1) & 54 \% & 39 \% & 37 \%\\
+Hash (1-n) & 50 \% & 98 \% & 83 \%\\
+Decision tree & 78 \% & 82 \% & 80 \% \\
+\hline
+\end{tabular}
+\caption{Camera Model Identification}
+
+\end{table}
+
+\section{Discussion}
+
+Since a decision tree uses a one-to-one mapping of a JPEG quantization table to a camera make/model it will not perform perfectly on tables that occur at multiple camera make/models. The classifier makes a choice to which camera make/model this table is mapped. 
 
 %----------------------------------------------------------------------------------------
+
+
 \iffalse
 \section{Activity Classification}\label{sec:res_activity}
 Firstly,we explore the inter-annotator agreement of our two annotors for the classification task. The Cohen kappa is tested on 149 manual classifications resulting in fairly mediocre value ($\kappa$ = 0.51). After assesing classification rules described in \autoref{sec:data}, which are described below, the agreement rises substantially and obtain a Cohen kappe score where $\kappa$ = 0.87. This shows that initial annotation of messages containing a future activities is initially hard, but can be improved by setting these boundaries.

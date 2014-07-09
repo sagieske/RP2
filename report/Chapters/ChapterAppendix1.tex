@@ -1,8 +1,9 @@
 % Appendix X
 
-\chapter{Appendix X}\label{ch:appendix}
-This appendix contains X
+\chapter{Appendix A}\label{ch:appendix}
+This appendix contains information on the image database, such as the number of images per camera model and the number of JPEG quantization tables found.
 %----------------------------------------------------------------------------------------
+\section{Camera make and model of image database}
 \begin{table}[h]
 \scalebox{0.7}{
 \begin{tabular}{|l| l| l | l | l | l| l| }
@@ -37,6 +38,47 @@ Nikon &  D200 &  831 & & & & \\
 
 \end{tabular}
 }
-\label{tab:makemodel}
 \caption{Camera make and model of image database}
+
+\label{tab:makemodel}
+\end{table}
+\pagebreak
+\section{Number of Unique Quantization Tables per Camera Model}
+
+\begin{table}[h]
+\scalebox{0.7}{
+\begin{tabular}{|l| l| l | l | l | l| l| }
+\hline
+\textbf{Make} & \textbf{Model} & \textbf{\# Unique Tables} & & \textbf{Make} & \textbf{Model} & \textbf{\# Unique Tables}\\
+\hline
+Agfa &  DC-504 &  3 & & Nikon &  D70 &  97\\
+Agfa &  DC-733s &  329 & & Nikon &  D70s &  102\\
+Agfa &  DC-830i &  87 & & Olympus &  mju &  14\\
+Agfa &  Sensor505-x &  143 & & Panasonic &  DMC-FZ50 &  37\\
+Agfa &  Sensor530s &  3 & &  Panasonic &  Lumix-FZ45 &  2\\
+Blackberry &  Curve-9300 &  1 & & Pentax &  OptioA40 &  3\\
+Blackberry &  Curve-9360 &  2 & & Pentax &  OptioW60 &  24\\
+Canon &  Ixus55 &  3 & &  Praktica &  DCZ5.9 &  210\\
+Canon &  Ixus70 &  3 & & PS &  Vita &  1\\
+Canon &  Powershot-A430 &  75 & & Ricoh &  GX100 &  156\\
+Canon &  Powershot-A630 &  1 & & Rollei &  RCP-7325XS &  3\\
+Canon &  PowerShot-A640 &  1 & & Samsung &  Digimax-S500 &  22\\
+Casio &  EX-Z150 &  10 & & Samsung &  Galaxy-S3-mini &  1\\
+Casio &  EXILIM-EX-FC100 &  1 & & Samsung &  L74wide &  146\\
+Epson &  StylusSX205 &  1  & & Samsung &  NV15 &  18\\
+FujiFilm &  FinePixJ50 &  4  & & Samsung &  NX1000 &  4\\
+Kodak &  M1063 &  53 & & Samsung &  ST30 &  2\\
+Logitech &  QuickCam-Communicate-STX &  1 & & Sony &  DSC-H50 &  11\\
+Motorola &  V360 &  6 & & Sony &  DSC-T77 &  19\\
+Nikon &  CoolPixS710 &  247 & & Sony &  DSC-W170 &  10\\
+Nikon &  D200 &  45 & & & & \\
+
+\hline
+
+
+
+\end{tabular}
+}
+\caption{Number of Unique Quantization Tables per Camera Model}
+\label{tab:dqt_count}
 \end{table}

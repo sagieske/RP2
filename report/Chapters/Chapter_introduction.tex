@@ -4,7 +4,7 @@
 
 \label{ch:name} % For referencing the chapter elsewhere, use \autoref{ch:name} 
 
-
+This chapter gives an introduction for the research on search optimization for JPEG quantization tables. The motivation for this research is explained and the research question on which is focused is stated. This chapter also describes related work for this research.
 %----------------------------------------------------------------------------------------
 
 \section{Motivation}
@@ -14,17 +14,33 @@ Taking pictures is very easy and popular in this digital age. The demand for dig
 Due to this popularity, digital images are often recovered in forensic investigation. For example, in child pornography cases many digital images are present and are important evidence for the investigation. In such a case it can be very important to identify the origin of images to a specific camera or identify images that come from a common source. This can be done by uncovering traces on pictures that are distinguishable for camera models. One of these traces is the JPEG quantization table, which is specified as a set of 8 $\times$ 8 (integer) values. Separate quantization tables are employed for luminance and chrominance data, where some implementations include two chrominance quantization tables for chrominance-red and chrominance-blue. 
 
 In order to match JPEG quantization tables a comparison between 128 values, or 192 when two chrominance quantization tables are present, is made. With over a dozen different camera brands, each developing different models over the years, the number of camera models (and consequently the number of JPEG quantization tables) to be matched against is significantly high. The matching of large databases of images against these camera models will be time costly as for every matching 128 or more integer comparisons are made. This matching process needs to be minimized since time is often limited in forensic investigations. This research will focus on optimizing search through the image databases regarding JPEG quantization tables.
+
+As camera identification can be seen as a pattern recognition problem\cite{luo2007survey}, machine learning algorithms can be applied to create predictive models for camera identification. These algorithms are able to handle large datasets and can be used to optimize search for patterns in datasets. A machine learning algorithm that is easy to interpret and to implement in other search systems is the decision tree learning algorithm. In this research a decision tree learning algorithm is applied for optimizing search through the image databases regarding JPEG quantization tables.
+
 %-----------------------------------------------
 
 \section{Focus of research}
-The research question on which is focused is set as: \textit{`How can searching through JPEG quantization tables be optimized?}
+The research question on which is focused is set as: \textit{`Can searching through JPEG quantization tables be optimized with the use of decision tree learning?}
 
 In order to answer the research question, this research will focus on the following subquestions:
 \begin{enumerate}
-\item What are identifiable parameters of JPEG quantization tables?
-\item How can we quickly decrease the search space for JPEG quantization table matches?
+\item Can identifiable parameters be found in JPEG quantization tables?
+\item What is the performance of decision tree learning with JPEG quantization tables?
 \end{enumerate}
 In the following chapters the answers to these questions will be given.
+
+
+\section{Related Work}
+
+Research on digital image forensics is a growing field. It focuses on two main interests, namely source identification and forgery detection. Van Lanh et al. \cite{van2007survey} created a survey on digital camera forensics, which describes several techniques in these two fields. Their survey shows the use of intrinsic features of camera hardware and software for camera identification and concludes that hardware features give more reliable and better result. To distinguish between cameras of the same model imperfections of camera the use of hardware features seems to be the best method. Methods for forgery detection also rely on hardware-dependent characteristics but show lower accuracy rates compared to camera identification methods. In another survey, Weiqi et al. \cite{luo2007survey} describe methods for passive technology for digital image forensics. They state that in most cases passive forensics can be converted to a problem of pattern recognition.
+
+In forgery detection methods to identify JPEG quantization tables are often used. In research by Kornblum\cite{kornblum2008using} quantization tables used by several image software are identified. A software library called Calvin is developed to identify those images who cannot
+be guaranteed to have been created by a real camera. Research by Farid\cite{4773149} shows a technique for detecting tampering in low-quality JPEG images by identifying a cumulative effect of quantization.
+
+JPEG quantization tables can also be used for source identification. Farid has performed research\cite{farid1}\cite{farid2008digital} on source identification with the use of JPEG quantization tables. This research states that a sort of camera signature is embedded within each JPEG image due to the used JPEG quantization tables since they differ between manufacturers. Although the JPEG quantization is not perfectly unique, the majority of cases where the same tables are found it is cameras from the same manufacturer that share the same quantization table. It states that (the use of JPEG quantization tables) ``\textit{is reasonably effective at narrowing the source of an image to a single camera make and model or to a small set of possible cameras.}" (p. 3)
+
+There exist several projects where JPEG quantization tables are used as camera signatures. For example, the JPEGsnoop\footnote{http://www.impulseadventure.com/photo/jpeg-snoop.html} project reports a huge amount of information to expose hidden information in images. Another project is the (discontinued) commercial FourMatch\footnote{http://www.fourandsix.com/fourmatch}, which was focused on forgery detection. These projects compare the camera signature found for an image with a database of camera signatures to identify the camera make and model. These projects are not focused on matching large sets of images against a large camera database. In contrast, this research hopes to contribute by creating a decision tree model in order to decrease the search space for large datasets and which can easily be combined further with other (more accurate) source identification techniques. 
+
 \iffalse
 \section{Challenges}\label{challenges}
 
@@ -34,7 +50,7 @@ There are different challenges in the task of activity prediction using Twitter 
 \item[Short texts] Twitter messages contain only 140 characters or less which results in sparse data for text classification.
 \item[Informal style] Twitter is used in an informal matter to express oneself in few words. Twitter messages have an informal structure; words are abbreviated or omitted creating messages which are often not grammatically correct. Due to this informal style, Natural Language Processing (NLP) tools perform extremely poor.
 \item[Changing vocabulary] As a result of the informal style Twitter messages contain a significant amount of slang. A constantly changing vocabulary is used for the creation of these messages. A dynamic program has to be designed to accommodate these changes.
-\item[Activity extraction] Even though Twitter messages have a small size, users often try to comment as much as possible in these messages which results in short messages containing multiple activities. Also, due to the informal language, important verbs which indicate an activity are ommitted.
+\item[Activity extraction] Even though Twitter messages have a small size, users often try to comment as much as possible in these messages which results in short messages containing multiple activities. Also, due to the informal language, important verbs which indicate an activity are omitted.
 \item[Time-awareness] Twitter messages can contain activities which happen in different time frames. Due to the short text size and the informal style only few temporal words are used. This results in difficulties in identifying time frames of activities.
 \end{description}
 
