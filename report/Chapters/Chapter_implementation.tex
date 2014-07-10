@@ -2,10 +2,10 @@
 \chapter{Experimental Setup} % Chapter title
 \label{ch:impl} % For referencing the chapter elsewhere, use \autoref{ch:name} 
 %----------------------------------------------------------------------------------------
-In this chapter an overview is given of the approach to use decision tree learning for optimizing search in JPEG quantization models. It describes the several steps and their implementations in this research. 
+In this chapter an overview is given of the approach to use decision tree learning for optimizing search in JPEG quantization tables. It describes the several steps and their implementations in this research. 
 
 \section{Dataset}
-The dataset which is used in this research consists of 45,666 images. These images are retrieved from the Dresden Image Database \cite{Gloe:2010aa} and an image database from the Netherlands Forensic Institute. This dataset has images from 19 different camera makes and a total of 41 different camera models. The camera make and models are listed in \autoref{tab:makemodel} together with the number of pictures made with these cameras. Next to regular digital cameras there are also images from other types of cameras included in the dataset, such as images taken by smartphones (e.g. Blackberry), a webcam (e.g. Logitech), scanners (Epson) and a Playstation device (PS Vita). 
+The dataset that is used in this research consists of 45,666 images. These images are retrieved from the Dresden Image Database \cite{Gloe:2010aa} and an image database from the Netherlands Forensic Institute. This dataset has images from 19 different camera makes and a total of 41 different camera models. The camera make and models are listed in \autoref{tab:makemodel} together with the number of pictures made with these cameras. Next to regular digital cameras there are also images from other types of cameras included in the dataset, such as images taken by smartphones (e.g. Blackberry), a webcam (e.g. Logitech), scanners (Epson) and a Playstation device (PS Vita). 
 
 \section{Approach}
 
@@ -22,16 +22,30 @@ The following steps are taken:
 \item Evaluate classifications
 \item Compare against method using hash database
 \end{enumerate}
-
+Steps 3 to 5 are performed for the prediction of the camera make and repeated for the prediction of the camera model.
 
 \subsection{Extraction of JPEG quantization tables}
 As described in \autoref{sec:dqt} the JPEG quantization tables are used during JPEG compression and relate to the compression ratio of an image. These tables are saved in JFIF headers and can be extracted from the JPEG file. In this research the \textit{djpeg} \footnote{http://linux.about.com/library/cmd/blcmdl1\_djpeg.htm} tool is used. This tool receives an image as input and can output the JPEG quantization tables. These tables are then retrieved with the use of a python script. The camera make and models are retrieved from the filenames and are stored together with their JPEG quantization tables for further processing.
 
-\subsection{Feature selection}
+\subsection{Feature selection}\label{sec:featselect}
+The decision tree learning algorithm needs attributes of a target as input. The JPEG quantization tables are converted to a feature set which contain all its variables. For example, in the feature set the attribute `row 1, column 1, luminance' has the value of the variable at the conjunction of the first row and the first column from the luminance quantization table. 
+
+As the variables in JPEG quantization tables are somewhat correlated, the hypothesis is made that statistical features of these tables can have an influence on the prediction model. Therefore, extra statistical attributes are added to the feature set. The following values are calculated for each table, for each row and for each column and then added to the feature set: sum, minimum value, maximum value, mean, median, variance, standard deviation.
+
+The assumption is made that not all attributes are evenly important and that it can contain redundant or irrelevant data. Therefore, feature selection is performed. This selects a subset of relevant features. A tree-based estimators is used to compute feature importances which in turn discards irrelevant features. For this selection the python Scikit Learn \cite{scikit-learn} module for tree based feature selection is used.
+
+The decision tree learning algorithm is performed with feature selections on two feature sets: on the set of features that only contains the original attributes from the JPEG quantization table and on the set of features that also contains the extra statistical attributes. This is done in order to analyse if the extra statistical attributes help to create a more accurate decision tree.
 
 \subsection{Decision tree learning}
+In this research the decision tree learning algorithm is used to create a predictive model. The method of decision tree learning is explained in \autoref{sec:dt}. 
+The decision tree learning algorithm is a supervised learning algorithm and consist of two stages: training and validation. The dataset is split into a training set and validation set, which contain the feature sets and their corresponding labels. During the training stage, the decision tree learning algorithm is given the complete training set. It then creates a decision tree based on this set. In the validation stage, this decision tree is evaluated with a validation set. The decision tree receives the feature sets as input and predicts the corresponding labels. These predications are then compared with the actual labels found in the validation set. 
+
+For the implementation of the decision tree learning algorithm the python Scikit Learn \cite{scikit-learn} module for decision tree classifiers is used. This implementation uses a CART\cite{breiman1983cart} decision tree learning algorithm, which can produce either classification or regression trees. Because the prediction labels are categorical, this algorithm will produce a classification tree.
 
 \subsection{Evaluation}\label{sec:eval}
+The prediction models are given a total score with the use of the F$_\beta$-score and a stratified k-fold cross-validation. These methods are described below.
+
+\subsubsection{F$_\beta$-score}\label{sec:fbeta}
 The performance of the prediction models is evaluated with the use of the the F$_\beta$-score. This score is a measure for the accuracy of a test and considers both precision and recall. The $\beta$ parameter can be set to let the user give more weight to recall ($\beta > 1 $) or precision ($\beta < 1 $). The formula is described in \autoref{eq:1}.
 
 \begin{equation}\label{eq:1}
@@ -48,6 +62,17 @@ F_\beta = 1 + \beta^{2} * \frac{precision * recall}{(\beta^{2} *precision) + rec
 \end{equation}
 
 In this research both the precision and recall are important: precision is important to generate a smaller search space, this measure concerns the fraction of retrieved images that are actually correct; recall is important to retrieve all possible incriminating images, this measure concerns the fraction of relevant images that are actually retrieved. With regard to forensic investigations the recall of images is very important because you want to gather as much incriminating images as possible. For this reason $\beta$ is set to 2 to give a higher weight to recall. 
+
+The F$_\beta$-score is calculated for every camera make and model and a weighted average of the F$_\beta$-scores is calculated to score the prediction model. The weighted average is calculated by giving a weight to every F$_\beta$-score corresponding to the number of instances for each label. This methods holds label imbalance into account. For example, a recall of 90\% for label X is more impressive when there are 10,000 images made with camera make/model X in the dataset than when there are 10 relevant images.
+
+Calculate metrics for each label, and find their average, weighted by support (the number of true instances for each label)
+
+\subsubsection{Stratified $k$-fold Cross-Validation}
+The prediction models are evaluated with the $k$-fold cross-validation method. This technique assesses how the results of a statistical analysis will generalize to an independent data set.
+
+This method splits the dataset into $k$ randomly selected subsets, where $k-1$ subsets are used as the training set and 1 subset is used as the validation set. Because there is a label imbalance in the dataset (i.e. the total images from each camera make/model differ widely) a stratified   $k$-fold cross-validation is performed. The stratification makes sure each subset contains the same percentage of samples of each label as the complete set. The prediction models are trained on the training data and evaluated with the test data. This process is repeated $k$ times (or folds), with each of the $k$ subsets used exactly once as the validation set. For every fold the weighted F$_\beta$-score (as explained in \autoref{sec:fbeta}) is calculated. As a final score for the prediction model, the average of these weighted F$_\beta$-score is given.
+
+In this research the value 5 is chosen for $k$ as this splits the dataset in a training set of 80\% and validation set of 20\%.
 
 \subsection{Comparison against hash database}
 A simple way of predicting camera make and model according to JPEG quantization tables is to build a database which contains encountered JPEG quantization tables and their corresponding make and model, and then query for the found JPEG quantization tables. Since these tables are comprised of many variables, it is more efficient to store them as a single hash signature. The JPEGSnoop software, for example, works with a database of signatures. In order to evaluate the decision tree learning algorithm, its performance is compared to the performance when a database containing hashes is used. The hash database method is trained and evaluated with the same subsets that are used for the decision tree learning algorithm. 

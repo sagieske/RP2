@@ -6,16 +6,20 @@
 
 In this chapter the results of this research will be discussed. %\autoref{sec:res_activity} shows the results of the activity classification. In \autoref{sec:res_extraction} the results of the two different activity extraction methods are described and finally, in \autoref{sec:res_ranking}, the results for ranking popular activities are shown.
 
-\section{Dataset}
-In total there are 1,016 unique JPEG quantization tables retrieved from the images. In \autoref{tab:dqt_count} the number of unique JPEG quantization tables per camera model are shown. As can be derived, there are JPEG quantization tables that are found for more than one camera model. There are 398 quantization tables found in images with different camera models. 
+\section{Extraction of JPEG quantization tables}
+In total there are 1,016 unique sets of JPEG quantization tables retrieved from the images. In \autoref{tab:dqt_count} the number of unique JPEG quantization tables per camera model are shown. As can be derived, there are JPEG quantization tables that are found for more than one camera model. There are 398 quantization tables found in images with different camera models. 
+
+As the chrominance color space can be divided into chrominance-red and chrominance-blue, it could have occurred that 3 JPEG quantization tables are retrieved for an image. However, only sets of 2 JPEG quantization tables are found in the dataset.
 
 \section{Feature Selection}
-added extra features. Total of [[X]] features. However adding extra features did not have impact on performance.
-Total of 50 important features Identifiable parameters: 50 out of 128
-. Show importance in table?
+The two JPEG quantization tables are converted to a set of features and the extra statistical features (as described in \autoref{sec:featselect}) are added. Each JPEG quantization table contains 64 values and 105 extra statistical features per table are added, which gives a total of 338 attributes per image. The extra features did not have impact on the scores for the evaluation. Therefore, these extra statistical features are omitted from the feature set.
+
+After the feature selection procedure the identifiable parameters for the decision tree learning algorithm are reduced to 50 parameters. 
 
 \section{Decision Tree Learning}
-603 nodes, depth of 26
+The decision tree learning algorithm has created a decision tree of 603 nodes with a depth of 26 nodes. The average F$_\beta$-score for prediction of the camera make is 89\% and for prediction of the camera model 80\%. In the following subsections the results of the decision tree evaluation is discussed as well as the comparison against the hash database models.
+
+\subsection{Evaluation}
 
 \subsection{Comparison against hash database}
 \begin{table}
@@ -53,79 +57,3 @@ Since a decision tree uses a one-to-one mapping of a JPEG quantization table to 
 
 %----------------------------------------------------------------------------------------
 
-
-\iffalse
-\section{Activity Classification}\label{sec:res_activity}
-Firstly,we explore the inter-annotator agreement of our two annotors for the classification task. The Cohen kappa is tested on 149 manual classifications resulting in fairly mediocre value ($\kappa$ = 0.51). After assesing classification rules described in \autoref{sec:data}, which are described below, the agreement rises substantially and obtain a Cohen kappe score where $\kappa$ = 0.87. This shows that initial annotation of messages containing a future activities is initially hard, but can be improved by setting these boundaries.
- 
-The machine learning classification was conducted with 1232 different tests containing different feature vectors; 896 SVM classifier tests and 336 Naive Bayes classifier tests. The top 3 results per classifier are depicted in \autoref{table:top_clf} in \autoref{ch:appendixResult}, which shows the highest F1-scores were found using SVM classifier with the RBF kernel. This result is also seen in the total top 10 classifiers, listed in \autoref{table:top10_clf} in \autoref{ch:appendixResult}, consisting solely of this type of classifier. The latter shows that these classifiers contain features created from a combination of positive and negative influence tokens, standard or lemmatized tokens, uni- and bigrams or uni-, bi- and trigrams combinations and a BOW size within a range of 150 to 200 features. Classifiers using features from stemmed tokens perform slightly less and have reached a highest score of 73 \%. When POS tag tokens are used, the highest F1-score found in these classifiers is 67\%. The classifiers perform relatively worse than the other token types. In the analysis of the POS tags described to words, some incorrectness is found as a result of informal language structures, and due to the fact that there is less diversity in POS tag tokens they are therefore less depicting for a class. 
-
-The best classifier has a significantly good F1-score of approximately 75 \% . The predictions made by this classifier are analyzed to identify which Twitter messages are wrongfully classified. An example of many false positives within the predictions is a Twitter message that describes a present activity which is done in preparation for tonight. For the Dutch informal language used in the data set, there is often only one preposition that makes the difference for the message to describe a present or future activity which influences the class assignment. However, this word often occurs in messages that contain a future activity and, as a result, is learned as a feature for this class. False negatives often occurs when there is an uncommon combination of nouns that describes the future activity and these nouns are common in the other class, for example \textit{`late dienst'} (\textit{late night shift}). 
-
-Due to the fact that the activities will later on be ranked by popularity and popular activities are mentioned frequently in multiple Twitter messages, therefore having a greater chance of being classified correctly, a result of 75 \% correct classification is satisfactory. 
-
-%------------------------------------------------
-
-\section{Activity Extraction}\label{sec:res_extraction}
-
-\subsection{LDA Algorithm}
-The LDA algorithm for the extraction of activities is used on messages containing an activity. Test are conducted for finding the number of activities in range 5 to 100 and uses only a number of words in range 100 to 500 which have the highest LLR values. Two representative example of found clusters of words belonging to an activity in these experiments are shown here:
-~\\
-\begin{verbbox}
-ACTIVITY #0: 
-0.097*zal + 0.078*naar + 0.073*succes + 0.067*mensen +  
-0.047*mee + 0.040*erg + 0.035*ronde + 0.034*denken + 
-0.033*ga
-
-ACTIVITY #16:
-0.126*anders + 0.115*kom + 0.111*regen + 0.069*oma + 
-0.045*beginnen + 0.028*naar + 0.027*lezen + 0.026*neem + 
-0.026*mee
-\end{verbbox}
-\begin{figure}[H]
-  \centering
-
-\begin{framed}
-  \theverbbox
-\end{framed}
-
-  \caption{Activity extraction LDA}\label{fig:lda}
-\end{figure}
-
-As seen in \autoref{fig:lda}, the clusters of the LDA algorithm are not descriptive for activities. The words that are assigned to clusters are not significantly linked to each other in order to describe a specific activity. The LLR values do not solely extract activities as meaningful words, but also many adjectives, prepositions etcetera, as a result of sparse data in the background and analysis corpus. These words are commonly used in messages and are assigned with relative high probability to activity clusters. The conclusion can be drawn that the standard LDA algorithm, as implemented in this research, is not applicable for activity extraction.
-
-\subsection{POS Tag Approach}
-The POS tag approach is also examined for this task, in which uni-, bi- and trigrams of words are extracted from the Twitter message to describe an activity. Approximately 42\% of the activities is correctly extracted, using the same words the manual annotator would describe this message. 
-
-Activities are for 26 \% sufficiently extracted, in which case the activities often miss an adjective or preposition or contain a word too many. For example, the activity 'eating at grandma' is described as 'eating grandma'. This description contains the most important activity words, which makes it sufficient for ranking, though wrong interpretation is possible. Another form of sufficiently extracted activities use vague descriptions. This occurs when the message consists of multiple small statements with the words describing this activity distributed among them. An example is when the user mentions `\textit{pictures}' in one statement and `\textit{will look at it}' in another statement. The algorithm extracts `\textit{will look at it}' as activity, but it is not categorized as a correctly extracted activity. The remaining activities are not correctly described, as a result of extracting the wrong activity or extracting words not containing the important activity words. Examples of these extractions are shown below:
-
-\begin{verbbox}
-'vanavond wil ik gewoon rustig een film kijken thuis samen 
-met iemand'
-ACTIVITY: film kijken (CORRECT)
-
-'moe zijn, zometeen even broodje eten en vanavond eten bij 
-opa en oma #eten'
-ACTIVITY: oma eten (SUFFICIENT)
-
-'@LilMichael10  nu serri me kamer opruimen xD en vanavond 
-met een vriend voetballe en basketball'
-ACTIVITY: kamer opruimen (INCORRECT)
-\end{verbbox}
-\begin{figure}
-  \centering
-
-\begin{framed}
-  \theverbbox
-\end{framed}
-  \caption{Activity extraction POS tag approach}\label{fig:pos}
-\end{figure}
-
-Since 26 \% of the activities are not extracted exactly, but do contain the important words describing the activity, they can also be employed for the ranking step which is performed next. Due to the mentioning of the descriptive words in these activity extractions, the ranking step is able to take these activities into account in calculating the frequency. Overall, a satisfactory score of 68 \% is reached for activity extraction.
-
-%------------------------------------------------
-
-\section{Ranking}\label{sec:res_ranking}
-The ranking is conducted using frequency scoring. The top frequencies of 100 bigrams are used, resulting in the use of the top frequencies of 10 unigrams. The top 40 popular activities are evaluated, obtaining results for correctly ranking of 75 \% of the activities. Among the ranked activities 5 \% are vague activities and 20 \% are not correct activities. In \autoref{table:rank} in \autoref{ch:appendixResult}, the top 15 popular activities are displayed, also showing their frequencies. There are not many activities mentioned more than 5 times in the data set, which results in higher ranking of incorrect activities containing verbs which often follow an activity, for example `\textit{do}' or `\textit{go}'. In the ranking some uncommon popular activities are shown, for example `\textit{Ledig Erf}' which is a caf\'e and `\textit{Solar rocken}' in which Solar is the name of a party. The ranking shows satisfactory performance, demonstrating the popularity of common and uncommon events on one day. 
-%----------------------------------------------------------------------------------------
-\fi
