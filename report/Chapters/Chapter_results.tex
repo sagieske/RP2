@@ -18,44 +18,12 @@ After the feature selection procedure the identifiable parameters for the decisi
 
 
 \section{Decision Tree Learning}
-The decision tree learning algorithm has created a decision tree of 603 nodes with a depth of 26 nodes. The average F$_\beta$-score is 89\% for the prediction of the camera make and 80\% for the prediction of the camera model. %In the following subsections the results of the decision tree evaluation is discussed as well as the comparison against the hash database models.
+The decision tree learning algorithm has created a decision tree of 603 nodes with a depth of 26 nodes. The average F$_2$-score is 89\% for the prediction of the camera make and 80\% for the prediction of the camera model. The exact F$_2$-scores for every camera make and model are described in \autoref{tab:fscore_make} and \autoref{tab:fscore_model}, respectively.
 
-TODO:
-\begin{itemize}
-\item fscores for every camera make,
-\item fscores for every camera model
-\item different runs of fscores
-\end{itemize}
+The decision tree model gains high scores for the prediction of the camera make. The average F$_2$-scores is for many camera makes higher than 80\%. There are a few camera makes which have lower F$_2$-score, such as Motorola. This result is unexpected, because the dataset contains 4060 images made by Motorola cameras and only 6 unique sets of JPEG quantization tables are found. This result can be explained by the occurrence of these sets in images from other camera makes
 
-\begin{table}[h]
-\begin{tabular}{|l|r|r|r|r|r|r|}
-\hline
-\textbf{Camera Make} & \textbf{Fold \#1} & \textbf{Fold \#2} & \textbf{Fold \#3} & \textbf{Fold \#4} & \textbf{Fold \#5} & \textbf{Average}\\
-\hline
-Kodak & 100.00 &100.00 &100.00 &100.00 &100.00 & 100.00\\
-Ricoh & 79.30 &78.54 &79.03 &80.68 &79.96 & 79.50\\
-Panasonic & 100.00 &100.00 &100.00 &100.00 &100.00 & 100.00\\
-PS & 100.00 &96.77 &97.22 &96.77 &100.00 & 98.15\\
-Olympus & 83.56 &83.80 &81.25 &84.03 &84.25 & 83.38\\
-Sony & 68.87 &67.39 &66.90 &69.00 &68.32 & 68.10\\
-Agfa & 99.95 &99.95 &99.92 &100.00 &99.92 & 99.95\\
-Rollei & 99.93 &99.93 &99.93 &99.93 &99.98 & 99.94\\
-Samsung & 97.61 &97.78 &97.99 &97.89 &97.71 & 97.80\\
-FujiFilm & 99.06 &98.75 &98.33 &98.75 &98.75 & 98.73\\
-Praktica & 62.06 &62.50 &65.31 &65.27 &63.76 & 63.78\\
-Nikon & 99.76 &99.43 &99.88 &99.23 &99.14 & 99.49\\
-Casio & 83.49 &80.69 &82.96 &82.35 &85.15 & 82.93\\
-Canon & 93.32 &93.75 &92.39 &91.23 &93.25 & 92.79\\
-Logitech & 93.98 &93.20 &93.84 &93.06 &95.73 & 93.96\\
-Motorola & 42.87 &34.60 &37.77 &38.99 &41.25 & 39.10\\
-Epson & 58.73 &58.93 &60.92 &56.04 &57.56 & 58.44\\
-Blackberry & 79.15 &79.00 &80.83 &82.50 &79.76 & 80.25\\
-Pentax & 76.04 &75.37 &76.43 &76.41 &78.75 & 76.60\\
-\hline
-\end{tabular}
-\caption{F$_2$-score for every class at every fold}
-\label{tab:fscore_everyclass}
-\end{table}
+%In the following subsections the results of the decision tree evaluation is discussed as well as the comparison against the hash database models.
+
 
 
 %\subsection{Evaluation}

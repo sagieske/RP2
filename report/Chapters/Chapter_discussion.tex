@@ -7,21 +7,19 @@
 
 In this research, a decision tree learning approach is used for camera identification with the use of JPEG quantization tables. 
 
- A decision tree model is created using supervised machine learning to predict camera makes and models on basis of the set of JPEG quantization tables that belong to an image. 
-Identifiable parameters can be found in a set of JPEG quantization tables and can be reduced from 128 to 50 attributes. These parameters do not show a clear correlation with the tables. 
+Images are retrieved in forensic investigation as important evidence. In these cases, the origin of these images need to be identified with the use of camera identification models. The set of JPEG quantization tables used for JPEG compression in the camera can be used for these models. Its matching process for tables with an existing database can be time costly when large sets of images are recovered for forensic investigation. For this reason, this research has focused on reducing the search space for JPEG quantization tables. As the camera identification problem can be seen as a pattern recognition problem, machine learning techniques can be applied. The research question on which this research has focused was stated as: \textit{`Can searching through JPEG quantization tables be optimized with the use of decision tree learning?'}
 
-TODO:
-\begin{itemize}
-\item Introduction: importance, restate research question
-\item emperical findings
-\item theoretical implication
-\item Policy implication
-\item  Conclusion of the conclusion 
+%With a growing popularity of taking pictures, the amount of images found in forensic investigations is large. In certain cases, these images can be important evidence and the origin of the images need to be identified. Camera identification models focus on identification of the camera source of an image and make use of several hardware features of the camera. One of these features is the set of JPEG quantization tables used for JPEG compression in the camera. It is reasonably effective at narrowing the source of an image. Each set of tables consists of 128 values and the matching process for tables with an existing database can be time costly when large sets of images are recovered for forensic investigation. This research has focused on reducing the search space for JPEG quantization tables.
 
-\end{itemize}
+In this research, a decision tree learning approach is taken. Supervised machine learning is used to create a decision tree model to predict camera makes and models on basis of the set of JPEG quantization tables that belong to an image. First, a feature selection procedure is performed in which the identifiable parameters in a set of JPEG quantization tables are be reduced from 128 to 50 attributes. These 50 parameters do not show a clear special correlation with the tables. 
 
+Then, the decision tree model is trained and evaluated using the weighted F$_2$-score in a 5-fold stratified cross-validation. The decision tree model is compared to two different prediction models that use a hash database. The decision tree model gains a the highest F$_2$-score (89\%) for the prediction of the camera make. The 1$\rightarrow N$ hash database model performs slightly better for the prediction of the camera make than the decision tree model, F$_2$-score of 83\% and F$_2$-score of 80\% respectively. However, it gains low precision rates because it returns all possible classes. The low precision indicates that the search space is not effectively decreased. In contrast, the decision tree model gains high rates for accuracy while maintaining a high precision. The decision tree model can also handle small differentiations in tables better than the hash database models.
+
+Overall, the decision tree learning algorithm gains a good performance for the prediction of the camera make as well as for the prediction of the camera model. 
 
 \section{Future Work}\label{sec:fut}
+The following adjustments for the methods used in this research, as well as improve-
+ments using other techniques, are proposed:
 \begin{itemize}
 \item \textbf{Extend image database}: This research can be extended by using a larger image database which comprises of more different camera make/models.
 \item \textbf{Extend feature set}: The feature set can be extended with more attributes that correspond to the image. These can be related to the JPEG quantization tables, but also to other meta-data retrieved from the image.
