@@ -14,7 +14,8 @@ As the chrominance color space can be divided into chrominance-red and chrominan
 \section{Feature Selection}
 The two JPEG quantization tables are converted to a set of features and the extra statistical features (as described in \autoref{sec:featselect}) are added. Each JPEG quantization table contains 64 values and 105 extra statistical features per table are added, which gives a total of 338 attributes per image. The extra features did not have impact on the scores for the evaluation. Therefore, these extra statistical features are omitted from the feature set.
 
-After the feature selection procedure the identifiable parameters for the decision tree learning algorithm are reduced to 50 parameters. In table [[X]] the importance of every attribute is depicted. The parameters do not show a clear correlation with the tables. 
+After the feature selection procedure the identifiable parameters for the decision tree learning algorithm are reduced to 50 parameters. In table \autoref{tab:important} the importance of every attribute is depicted. The parameters do not show a clear correlation with the tables. The total importance of the luminance JPEG quantization table is 0.56 and total importance of the chrominance JPEG quantization table: is 0.44. 
+This shows that both JPEG quantization tables have a comparable importance.
 
 
 \section{Decision Tree Learning}
@@ -42,7 +43,7 @@ The 1$\rightarrow$1 hash database model has the lowest F$_2$-scores. This is a r
 
 \begin{tabular}{| c| c| c| c|}
 \hline
-Algorithm & Precision & Recall & F$_2$-score\\
+\textbf{Algorithm} & \textbf{Precision} & \textbf{Recall} & \textbf{F$_2$-score}\\
 \hline
 Hash (1$\rightarrow$1) & 79 \% & 68 \% & 68 \%\\
 Hash (1$\rightarrow N$) & 50 \% & 99 \% & 83 \%\\
@@ -60,7 +61,7 @@ Decision tree & 90 \% & 89 \% & 89 \% \\
 \begin{center}
 \begin{tabular}{| c| c| c| c|}
 \hline
-Algorithm & Precision & Recall & F$_2$-score\\
+\textbf{Algorithm} & \textbf{Precision} & \textbf{Recall} & \textbf{F$_2$-score}\\
 \hline
 Hash (1$\rightarrow$1) & 54 \% & 39 \% & 37 \%\\
 Hash (1$\rightarrow N$) & 50 \% & 98 \% & 83 \%\\
