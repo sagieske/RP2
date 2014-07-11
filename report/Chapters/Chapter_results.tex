@@ -14,46 +14,107 @@ As the chrominance color space can be divided into chrominance-red and chrominan
 \section{Feature Selection}
 The two JPEG quantization tables are converted to a set of features and the extra statistical features (as described in \autoref{sec:featselect}) are added. Each JPEG quantization table contains 64 values and 105 extra statistical features per table are added, which gives a total of 338 attributes per image. The extra features did not have impact on the scores for the evaluation. Therefore, these extra statistical features are omitted from the feature set.
 
-After the feature selection procedure the identifiable parameters for the decision tree learning algorithm are reduced to 50 parameters. 
+After the feature selection procedure the identifiable parameters for the decision tree learning algorithm are reduced to 50 parameters. In table [[X]] the importance of every attribute is depicted. The parameters do not show a clear correlation with the tables. 
+
 
 \section{Decision Tree Learning}
-The decision tree learning algorithm has created a decision tree of 603 nodes with a depth of 26 nodes. The average F$_\beta$-score for prediction of the camera make is 89\% and for prediction of the camera model 80\%. In the following subsections the results of the decision tree evaluation is discussed as well as the comparison against the hash database models.
+The decision tree learning algorithm has created a decision tree of 603 nodes with a depth of 26 nodes. The average F$_\beta$-score is 89\% for the prediction of the camera make and 80\% for the prediction of the camera model. %In the following subsections the results of the decision tree evaluation is discussed as well as the comparison against the hash database models.
 
-\subsection{Evaluation}
+TODO:
+\begin{itemize}
+\item fscores for every camera make,
+\item fscores for every camera model
+\item different runs of fscores
+\end{itemize}
 
-\subsection{Comparison against hash database}
-\begin{table}
+\begin{table}[h]
+\begin{tabular}{|l|r|r|r|r|r|r|}
+\hline
+\textbf{Camera Make} & \textbf{Fold \#1} & \textbf{Fold \#2} & \textbf{Fold \#3} & \textbf{Fold \#4} & \textbf{Fold \#5} & \textbf{Average}\\
+\hline
+Kodak & 100.00 &100.00 &100.00 &100.00 &100.00 & 100.00\\
+Ricoh & 79.30 &78.54 &79.03 &80.68 &79.96 & 79.50\\
+Panasonic & 100.00 &100.00 &100.00 &100.00 &100.00 & 100.00\\
+PS & 100.00 &96.77 &97.22 &96.77 &100.00 & 98.15\\
+Olympus & 83.56 &83.80 &81.25 &84.03 &84.25 & 83.38\\
+Sony & 68.87 &67.39 &66.90 &69.00 &68.32 & 68.10\\
+Agfa & 99.95 &99.95 &99.92 &100.00 &99.92 & 99.95\\
+Rollei & 99.93 &99.93 &99.93 &99.93 &99.98 & 99.94\\
+Samsung & 97.61 &97.78 &97.99 &97.89 &97.71 & 97.80\\
+FujiFilm & 99.06 &98.75 &98.33 &98.75 &98.75 & 98.73\\
+Praktica & 62.06 &62.50 &65.31 &65.27 &63.76 & 63.78\\
+Nikon & 99.76 &99.43 &99.88 &99.23 &99.14 & 99.49\\
+Casio & 83.49 &80.69 &82.96 &82.35 &85.15 & 82.93\\
+Canon & 93.32 &93.75 &92.39 &91.23 &93.25 & 92.79\\
+Logitech & 93.98 &93.20 &93.84 &93.06 &95.73 & 93.96\\
+Motorola & 42.87 &34.60 &37.77 &38.99 &41.25 & 39.10\\
+Epson & 58.73 &58.93 &60.92 &56.04 &57.56 & 58.44\\
+Blackberry & 79.15 &79.00 &80.83 &82.50 &79.76 & 80.25\\
+Pentax & 76.04 &75.37 &76.43 &76.41 &78.75 & 76.60\\
+\hline
+\end{tabular}
+\caption{F$_2$-score for every class at every fold}
+\label{tab:fscore_everyclass}
+\end{table}
+
+
+%\subsection{Evaluation}
+
+\section{Comparison against hash database}
+The decision tree model is compared to the two hash database models that are explained in \autoref{sec:impl_hash}. They are compared for the prediction of the camera make as well as the prediction of the camera model. An overview of the scores is given in \autoref{tab:fscore_make} and \autoref{tab:fscore_model}.
+
+The decision tree model has the highest F$_2$-score for the prediction of the camera make. For the prediction of the camera model it scores 3\% lower on the F$_2$-score than the 1$\rightarrow N$ hash database model. Overall, the decision tree model scores better than the 1$\rightarrow$1 hash database model and comparable to the 1$\rightarrow N$ hash database model.
+
+The 1$\rightarrow N$ hash database model scores high on recall for both predictions. This result is explained by the fact that the hash database model stores all possible camera make and models for each unique set of JPEG quantization tables. It returns all possibilities and will receive a high recall as a result of the probability that the correct camera make/model is in the returned set is very high. However, it receives low precision rates for the predictions of the camera make as well for the prediction of the camera model. This is also a result of the method returning all possibilities as many false positives are returned.
+
+The 1$\rightarrow$1 hash database model has the lowest F$_2$-scores. This is a result of overfitting of data. This method only returns the first camera make/model class where this set of JPEG quantization tables is seen. The tables are stored as a single hash and consequently it will not recognize a slightly modified set of JPEG quantization tables since this results in a completely different hash.
+
+\begin{table}[h]
+\begin{center}
+
 \begin{tabular}{| c| c| c| c|}
 \hline
-Algorithm & Precision & Recall & F2-score\\
+Algorithm & Precision & Recall & F$_2$-score\\
 \hline
-Hash (1-1) & 79 \% & 68 \% & 68 \%\\
-Hash (1-n) & 50 \% & 99 \% & 83 \%\\
+Hash (1$\rightarrow$1) & 79 \% & 68 \% & 68 \%\\
+Hash (1$\rightarrow N$) & 50 \% & 99 \% & 83 \%\\
 Decision tree & 90 \% & 89 \% & 89 \% \\
 \hline
 \end{tabular}
 \caption{Camera Make Identification}
+\label{tab:fscore_make}
+\end{center}
+
 \end{table}
 
 %1300 tables which have mutliple possibilities and thereby increasing the search space for fuurther research
-\begin{table}
-
+\begin{table}[h]
+\begin{center}
 \begin{tabular}{| c| c| c| c|}
 \hline
-Algorithm & Precision & Recall & F2-score\\
+Algorithm & Precision & Recall & F$_2$-score\\
 \hline
-Hash (1-1) & 54 \% & 39 \% & 37 \%\\
-Hash (1-n) & 50 \% & 98 \% & 83 \%\\
+Hash (1$\rightarrow$1) & 54 \% & 39 \% & 37 \%\\
+Hash (1$\rightarrow N$) & 50 \% & 98 \% & 83 \%\\
 Decision tree & 78 \% & 82 \% & 80 \% \\
 \hline
 \end{tabular}
 \caption{Camera Model Identification}
+\label{tab:fscore_model}
+\end{center}
 
 \end{table}
 
+
 \section{Discussion}
 
-Since a decision tree uses a one-to-one mapping of a JPEG quantization table to a camera make/model it will not perform perfectly on tables that occur at multiple camera make/models. The classifier makes a choice to which camera make/model this table is mapped. 
+Since a decision tree uses a one-to-one mapping of a JPEG quantization table to a camera make/model, it will not perform perfectly on tables that occur at multiple camera make/models. The classifier makes a choice to which camera make/model this table is mapped. In contrast, the 
+1$\rightarrow N$ hash database prediction model returns all possible camera makes/models. This method gains a high recall, but receives a low precision rate. Because all possibilities are returned, instead of only one camera make/model, the search space for these classes is significantly bigger than for decision tree learning. In order to decrease the search space for further processing with other camera identification methods, decision tree learning is preferred because it receives high scores for recall as well as precision.
 
+Although the decision tree learning algorithm is prone to overfitting data, it will more accurately predict camera make and models for sets of JPEG quantization tables that differ slightly. The hash database models will not recognize the set and will return a random value in this implementation. The decision tree model, however, only uses a subset of the features found in the JPEG quantization tables and as a result can handle small differentiations better.
+
+With respect to the creation of the prediction model, the hash database models are more easily trained. When a new set of JPEG quantization tables for a camera make/model occurs, it can be hashed and immediately stored in the database. In contrast, the decision tree model needs to be re-evaluated at the occurrence of a new set because this can result in a different decision tree.
+
+It should be taken into account that the dataset only consists of original images. Image editing software such as Photoshop also use JPEG compression and will contain JPEG quantization tables correlated to Photoshop instead of their original camera make or model. For the decision tree learning algorithm, images that are edited with Photoshop will be predicted as belonging to the same source even though the original images are made with different camera makes and models. 
 %----------------------------------------------------------------------------------------
 

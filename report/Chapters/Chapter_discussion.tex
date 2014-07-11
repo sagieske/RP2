@@ -1,14 +1,21 @@
 % Chapter X
 \chapter{Conclusion} % Chapter title
 \label{ch:cncl} % For referencing the chapter elsewhere, use \autoref{ch:name} 
-This chapter describes the conclusions that can be drawn from this research. In \autoref{sec:con} the results gained in this research will be discussed and in \autoref{sec:fut} future work for improvement of this research are described.
+%This chapter describes the conclusions that can be drawn from this research. In \autoref{sec:con} the results gained in this research will be discussed and in \autoref{sec:fut} future work for improvement of this research are described.
+
+%\section{Conclusion}
+
+In this research, a decision tree learning approach is used for camera identification with the use of JPEG quantization tables.  A decision tree model is created using supervised machine learning to predict camera makes and models on basis of the set of JPEG quantization tables that belong to an image. 
+Identifiable parameters can be found in a set of JPEG quantization tables and can be reduced from 128 to 50 attributes. These parameters do not show a clear correlation with the tables. 
 
 
 \section{Future Work}\label{sec:fut}
 \begin{itemize}
-\item \textbf{Extend image database}: 
-\item \textbf{Extend feature set}: 
-\item \textbf{Compare to other learning algorithms}: 
+\item \textbf{Extend image database}: This research can be extended by using a larger image database which comprises of more different camera make/models.
+\item \textbf{Extend feature set}: The feature set can be extended with more attributes that correspond to the image. These can be related to the JPEG quantization tables, but also to other meta-data retrieved from the image.
+\item \textbf{Compare to other learning algorithms}: The decision tree learning algorithm is prone to overfitting. Other supervised machine learning algorithms, such as Naive Bayes and Support Vector Machine, tend to create better generalizations and are less susceptible for overfitting. Future research can be performed on the performance of other machine learning algorithms in comparison with the decision tree learning algorithm.
+\item \textbf{Probabilistic classification}: Because a set of JPEG quantization tables can correspond to multiple camera make/models, this research can be improved with the implementation of probabilistic classification. This method gives a probability distribution over a set of classes instead of predicting one single class for a feature set.
+
 \end{itemize}
 %----------------------------------------------------------------------------------------
 \iffalse
